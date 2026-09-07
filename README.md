@@ -1,58 +1,69 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# FinPulse
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Learn. Track. Invest.**
 
-## About Laravel
+FinPulse is a financial-education platform being built to take retail investors through a simple funnel: **free community → structured learning → paid subscriptions, research, and live sessions.** The long-term goal is to build enough trust through education that users eventually open a brokerage account through the platform.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This isn't a copy of any single competitor — it borrows proven pieces from platforms like Zerodha Varsity (deep free content builds trust) and applies them to a Pakistani retail audience that currently has no dedicated platform of its own.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## How it works — three phases
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Community (Weeks 1–6)** — Open discussion feed, short free explainer videos/glossaries, badges and lightweight gamification.
+2. **Structured Learning (Weeks 7–12)** — A proper LMS: courses, chapters, quizzes, completion certificates, and weekly research summaries in plain language.
+3. **Monetization & Live Access (Weeks 13–18)** — Paid subscriptions for research/advanced courses, paid live webinars and 1-on-1 sessions, and a direct path to brokerage account signup.
 
-## Learning Laravel
+## Tech stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Layer | Choice |
+|---|---|
+| Framework | Laravel (monolith — backend and frontend in one project) |
+| Frontend | Blade + Livewire (interactive components without a separate JS frontend) |
+| Auth | Laravel Breeze |
+| Database | MySQL |
+| Testing | Pest |
+| Real-time (planned) | Laravel Reverb |
+| Roles & permissions (planned) | Spatie laravel-permission |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+This stack was chosen deliberately over a Next.js + Supabase split because the team is already experienced with Laravel from prior client work, and it's a solo/small-team build — one codebase is the right tradeoff here, not a limitation.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## User roles
 
-## Agentic Development
+- **Guest** — browses free content only
+- **Free Member** — community + free content
+- **Paid Subscriber** — free tier + paid research, courses, and live sessions
+- **Instructor / Content Manager** — uploads and tiers content
+- **Moderator** — manages the community feed
+- **Admin** — full access (kept to 1–2 people only)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Local setup
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <repo-url> finpulse
+cd finpulse
+composer install
+cp .env.example .env
+php artisan key:generate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Update `.env` with your MySQL database credentials, then:
 
-## Contributing
+```bash
+php artisan migrate
+npm install
+npm run dev
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Run tests with:
 
-## Code of Conduct
+```bash
+php artisan test
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Status
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Early build — Phase 1 (community feed + free content) in progress. See the project proposal document for the full roadmap, cost estimates, and risk notes.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Internal project — license to be determined.
