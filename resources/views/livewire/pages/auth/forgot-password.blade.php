@@ -37,25 +37,35 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-finpulse-navy">Forgot Password</h2>
+        <p class="text-sm text-finpulse-gray mt-1">
+            {{ __('No problem. Enter your email address and we\'ll send you a link to reset your password.') }}
+        </p>
     </div>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form wire:submit="sendPasswordResetLink">
+    <form wire:submit="sendPasswordResetLink" class="space-y-5">
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus />
+            <x-input-label for="email" :value="__('Email Address')" />
+            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus placeholder="name@example.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
+        <div>
+            <x-primary-button class="w-full justify-center">
                 {{ __('Email Password Reset Link') }}
             </x-primary-button>
         </div>
+
+        <div class="pt-4 text-center border-t border-gray-100">
+            <a href="{{ route('login') }}" wire:navigate class="text-sm font-semibold text-finpulse-navy hover:text-finpulse-gold transition-colors duration-150">
+                &larr; Back to login
+            </a>
+        </div>
     </form>
 </div>
+

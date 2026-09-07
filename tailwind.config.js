@@ -14,6 +14,14 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                finpulse: {
+                    navy: '#0B2545',
+                    gold: '#C89B3C',
+                    cream: '#F5EFDF',
+                    gray: '#555555',
+                },
+            },
         },
     },
 

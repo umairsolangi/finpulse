@@ -36,23 +36,29 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-finpulse-navy">Verify Email</h2>
+        <p class="text-sm text-finpulse-gray mt-1">
+            {{ __('Thanks for signing up! Before getting started, please verify your email address by clicking on the link we sent to your inbox.') }}
+        </p>
     </div>
 
     @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+        <div class="mb-4 font-medium text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-lg p-3">
             {{ __('A new verification link has been sent to the email address you provided during registration.') }}
         </div>
     @endif
 
-    <div class="mt-4 flex items-center justify-between">
-        <x-primary-button wire:click="sendVerification">
+    <div class="space-y-4 pt-2">
+        <x-primary-button wire:click="sendVerification" class="w-full justify-center">
             {{ __('Resend Verification Email') }}
         </x-primary-button>
 
-        <button wire:click="logout" type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-            {{ __('Log Out') }}
-        </button>
+        <div class="pt-2 text-center border-t border-gray-100">
+            <button wire:click="logout" type="button" class="text-sm font-semibold text-finpulse-navy hover:text-finpulse-gold transition-colors duration-150">
+                {{ __('Log Out') }}
+            </button>
+        </div>
     </div>
 </div>
+
