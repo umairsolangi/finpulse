@@ -6,6 +6,9 @@ FinPulse is a financial-education platform being built to take retail investors 
 
 This isn't a copy of any single competitor — it borrows proven pieces from platforms like Zerodha Varsity (deep free content builds trust) and applies them to a Pakistani retail audience that currently has no dedicated platform of its own.
 
+<img width="1280" height="636" alt="image" src="https://github.com/user-attachments/assets/aa7a01e3-3e1b-4f6a-a34c-9303bb1e96db" />
+
+
 ## How it works — three phases
 
 1. **Community (Weeks 1–6)** — Open discussion feed, short free explainer videos/glossaries, badges and lightweight gamification.
