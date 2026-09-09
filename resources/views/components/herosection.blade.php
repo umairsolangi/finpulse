@@ -1,5 +1,17 @@
 <section class="nx-hero" aria-labelledby="nx-hero-title">
-    <video class="nx-hero__video" autoplay muted loop playsinline poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-CsU1wpB24uCr6qEs9CQZiUqSpxKzFa.png" aria-hidden="true">
+    <video
+        class="nx-hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        disablePictureInPicture
+        disableremoteplayback
+        oncontextmenu="return false;"
+        poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-CsU1wpB24uCr6qEs9CQZiUqSpxKzFa.png"
+        aria-hidden="true"
+        tabindex="-1"
+    >
         <source src="{{ asset('herosectionvideo.mp4') }}" type="video/mp4">
     </video>
 
@@ -8,7 +20,7 @@
 
     <div class="nx-hero__inner">
         <nav class="nx-nav" aria-label="Main navigation">
-            <a class="nx-brand" href="{{ url('/') }}" aria-label="NexCash home">Nex<span>Cash</span><sup>®</sup></a>
+            <a class="nx-brand" href="{{ url('/') }}" aria-label="NexCash home">Fin<span>Pulse</span><sup>®</sup></a>
             <div class="nx-nav__links">
                 <a href="#about">About Us</a>
                 <a href="#features">Features</a>
@@ -25,7 +37,7 @@
         </div>
 
         <div class="nx-hero__footer">
-            <p>NexCash seamlessly bridges innovative digital solutions with your everyday financial needs, simplifying, securing, and enhancing the management of money.</p>
+            <p>FinPulse seamlessly bridges innovative digital solutions with your everyday financial needs, simplifying, securing, and enhancing the management of money.</p>
             <span class="nx-scroll-note"><i></i> Scroll to explore</span>
         </div>
     </div>

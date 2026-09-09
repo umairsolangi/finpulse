@@ -1,4 +1,11 @@
 <nav class="flex items-center gap-4 justify-end">
+    <a
+        href="{{ route('learn.index') }}"
+        wire:navigate
+        class="px-4 py-2 text-finpulse-navy hover:text-finpulse-gold font-semibold text-sm transition-colors duration-200"
+    >
+        Learn
+    </a>
     @auth
         <a
             href="{{ url('/dashboard') }}"

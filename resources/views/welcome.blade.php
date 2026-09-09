@@ -14,6 +14,10 @@
 
         <!-- Scripts & Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- GSAP for advanced animations -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     </head>
     <body
         x-data="{
@@ -31,7 +35,130 @@
              ===================================================== -->
         <x-herosection />
 
+        <!-- Scroll Progress Bar -->
+        <div id="scroll-progress" class="fp-scroll-progress" style="width:0%"></div>
 
+        <!-- Cursor Follower (desktop only) -->
+        <div id="cursor-dot" class="fp-cursor-dot"></div>
+
+        <!-- Floating Particles -->
+        <div id="hero-particles" class="fixed inset-0 pointer-events-none z-[1] overflow-hidden" aria-hidden="true"></div>
+
+        <!-- =====================================================
+             SECTION 2 — ABOUT FINPULSE (HERO SECTION THEME MATCHED)
+             ===================================================== -->
+        <section id="about" class="py-24 relative overflow-hidden bg-[#07113d] text-[#f7f8ff] font-['DM_Sans',sans-serif] fp-parallax-section">
+            <!-- Hero Wash Overlay & Perspective Grid Overlay -->
+            <div class="absolute inset-0 pointer-events-none opacity-40 z-0" aria-hidden="true" style="background: linear-gradient(180deg, rgba(7, 17, 61, 0.95) 0%, rgba(8, 29, 105, 0.6) 50%, rgba(7, 17, 61, 0.98) 100%);"></div>
+            <div class="absolute inset-0 pointer-events-none opacity-20 z-0" aria-hidden="true" style="background-image: linear-gradient(rgba(150, 177, 255, .2) 1px, transparent 1px), linear-gradient(90deg, rgba(150, 177, 255, .2) 1px, transparent 1px); background-size: 92px 92px;"></div>
+
+            <!-- Glowing Ambient Orbs (Matching Hero's Blue/Violet Glows) -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-r from-[#4e5bff]/20 to-[#903dff]/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <!-- Centered Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-14 reveal-item">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.18em] text-[#aebaff] bg-[#091449]/60 border border-[#889eff]/30 backdrop-blur-md mb-4">
+                        <span class="w-2 h-2 rounded-full bg-[#4e5bff] animate-pulse"></span>
+                        Platform Showcase
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#f7f8ff] tracking-tight leading-tight">
+                        See FinPulse in <em class="not-italic text-[#6d80ff] [text-shadow:0_0_28px_rgba(77,91,255,0.35)]">Action</em>
+                    </h2>
+                    <div class="w-16 h-1 bg-gradient-to-r from-[#4e5bff] to-[#903dff] rounded-full mx-auto mt-4"></div>
+                    <p class="mt-5 text-base sm:text-lg text-[#b6c0e7] max-w-2xl mx-auto leading-relaxed">
+                        Discover how our structured learning, active investor community, and actionable financial insights empower you to make smarter market decisions.
+                    </p>
+                </div>
+
+                <!-- 3D Scroll-Animated Browser Mockup Box -->
+                <div
+                    x-data="{
+                        scrollProgress: 0,
+                        updateProgress() {
+                            const rect = $el.getBoundingClientRect();
+                            const winH = window.innerHeight;
+                            const progress = Math.min(Math.max((winH - rect.top) / (winH + rect.height), 0), 1);
+                            this.scrollProgress = progress;
+                        }
+                    }"
+                    @scroll.window="updateProgress()"
+                    x-init="updateProgress()"
+                    class="max-w-5xl mx-auto perspective-1000 reveal-item"
+                >
+                    <div
+                        class="transition-all duration-300 ease-out transform rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(78,91,255,0.25)] border border-[#889eff]/30 bg-[#091449]/70 backdrop-blur-xl"
+                        :style="`transform: perspective(1000px) rotateX(${(1 - scrollProgress) * 10}deg) scale(${0.92 + (scrollProgress * 0.08)}); opacity: ${Math.min(scrollProgress * 1.4, 1)};`"
+                    >
+                        <!-- Browser Header Window Bar -->
+                        <div class="px-5 py-3.5 bg-[#030a30] border-b border-[#889eff]/20 flex items-center justify-between gap-4">
+                            <!-- Left: Window Control Buttons -->
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+
+                            <!-- Center: URL Pill Address Bar -->
+                            <div class="flex-1 max-w-sm mx-auto bg-[#07113d]/80 border border-[#889eff]/20 rounded-lg px-3 py-1 text-xs text-[#b6c0e7] flex items-center justify-center gap-2 font-mono">
+                                <svg class="w-3.5 h-3.5 text-[#6d80ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                </svg>
+                                <span>finpulse.pk / platform-demo</span>
+                            </div>
+
+                            <!-- Right: Window Label -->
+                            <div class="hidden sm:flex items-center gap-2 text-xs text-[#aebaff]/50 font-semibold uppercase tracking-wider">
+                                <span>FinPulse Platform Showcase</span>
+                            </div>
+                        </div>
+
+                        <!-- Video Showcase Box (Behaves like a GIF) -->
+                        <div class="relative aspect-video bg-black overflow-hidden select-none" oncontextmenu="return false;">
+                            <video
+                                class="w-full h-full object-cover pointer-events-none"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                disablePictureInPicture
+                                disableremoteplayback
+                                preload="auto"
+                                aria-hidden="true"
+                                tabindex="-1"
+                            >
+                                <source src="{{ asset('about.mp4') }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            <!-- Transparent overlay to prevent any interaction or right click menu -->
+                            <div class="absolute inset-0 z-10 bg-transparent pointer-events-auto cursor-default"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Features Quick Badges -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16 reveal-item">
+                    <div class="p-6 rounded-2xl bg-[#091449]/50 border border-[#889eff]/20 backdrop-blur-md text-center hover:border-[#6d80ff]/50 transition-all duration-300">
+                        <div class="text-3xl mb-3">🎓</div>
+                        <h3 class="font-bold text-[#f7f8ff] text-base mb-1">Structured Courses</h3>
+                        <p class="text-xs text-[#b6c0e7]">Step-by-step financial modules built for all experience levels.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-[#091449]/50 border border-[#889eff]/20 backdrop-blur-md text-center hover:border-[#6d80ff]/50 transition-all duration-300">
+                        <div class="text-3xl mb-3">👥</div>
+                        <h3 class="font-bold text-[#f7f8ff] text-base mb-1">Active Community</h3>
+                        <p class="text-xs text-[#b6c0e7]">Real-time market discussions, discussions, and investor networking.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-[#091449]/50 border border-[#889eff]/20 backdrop-blur-md text-center hover:border-[#6d80ff]/50 transition-all duration-300">
+                        <div class="text-3xl mb-3">📈</div>
+                        <h3 class="font-bold text-[#f7f8ff] text-base mb-1">Actionable Insights</h3>
+                        <p class="text-xs text-[#b6c0e7]">Data-driven research and fundamental metrics for real results.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- =====================================================
              SECTION 2 — HOW IT WORKS
@@ -401,7 +528,7 @@
                             </ul>
                         </div>
                         <a href="{{ route('register') }}" wire:navigate
-                           class="btn-gradient w-full py-3.5 px-6 rounded-xl text-white font-bold text-center hover:scale-[1.03] hover:shadow-lg transition-all duration-200 block focus:outline-none focus:ring-2 focus:ring-[#0B1A33] focus:ring-offset-2">
+                           class="btn-gradient fp-magnetic w-full py-3.5 px-6 rounded-xl text-white font-bold text-center hover:scale-[1.03] hover:shadow-lg transition-all duration-200 block focus:outline-none focus:ring-2 focus:ring-[#0B1A33] focus:ring-offset-2">
                             Get Started Now
                         </a>
                     </div>
@@ -514,10 +641,12 @@
         </section>
 
 
+
+
         <!-- =====================================================
              SECTION 8 — BOTTOM CTA BANNER
              ===================================================== -->
-        <section class="py-24 relative overflow-hidden bg-[#0B1A33]">
+        <section class="py-24 relative overflow-hidden bg-[#0B1A33] fp-cta-section">
             <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="opacity:0.04; background-image: repeating-linear-gradient(135deg, #FFFFFF 0px, #FFFFFF 1px, transparent 1px, transparent 40px), repeating-linear-gradient(45deg, #FFFFFF 0px, #FFFFFF 1px, transparent 1px, transparent 40px);"></div>
             <div class="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true" style="opacity:0.04;">
                 <svg class="w-full max-w-6xl" viewBox="0 0 1000 300" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
@@ -541,7 +670,7 @@
                 </p>
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}" wire:navigate
-                       class="inline-block px-12 py-5 bg-white text-[#0B1A33] font-bold text-lg rounded-xl animate-breathing-glow hover:scale-105 hover:bg-[#F8FAFE] transition-all duration-200 shadow-2xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0B1A33]">
+                       class="fp-magnetic inline-block px-12 py-5 bg-white text-[#0B1A33] font-bold text-lg rounded-xl animate-breathing-glow hover:scale-105 hover:bg-[#F8FAFE] transition-all duration-200 shadow-2xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0B1A33]">
                         Join Free
                     </a>
                 @endif
@@ -625,7 +754,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            // Smooth scroll
+            // ============================================================
+            // SMOOTH SCROLL
+            // ============================================================
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const targetId = this.getAttribute('href').slice(1);
@@ -638,53 +769,213 @@
                 });
             });
 
-            // Hero word reveal
-            if (!prefersReducedMotion) {
-                const heroLines = document.querySelectorAll('[data-hero-line]');
-                let delay = 0.05;
-                const PER_WORD_DELAY = 0.08;
-                heroLines.forEach(line => {
-                    const nodes = Array.from(line.childNodes);
-                    const newHTML = nodes.map(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            return node.textContent.split(/(\s+)/).map(part => {
-                                if (!part.trim()) return part;
-                                const span = `<span class="word-reveal" style="animation-delay:${delay.toFixed(2)}s;">${part}</span>`;
-                                delay += PER_WORD_DELAY;
-                                return span;
-                            }).join('');
-                        } else if (node.nodeType === Node.ELEMENT_NODE) {
-                            const words = node.textContent.split(/(\s+)/);
-                            const inner = words.map(w => {
-                                if (!w.trim()) return w;
-                                const span = `<span class="word-reveal" style="animation-delay:${delay.toFixed(2)}s;color:inherit;">${w}</span>`;
-                                delay += PER_WORD_DELAY;
-                                return span;
-                            }).join('');
-                            return `<span class="text-[#0A0A0A]">${inner}</span>`;
-                        }
-                        return '';
+            if (prefersReducedMotion) {
+                document.querySelectorAll('.reveal-item').forEach(el => el.classList.add('revealed'));
+                document.querySelectorAll('.stat-number').forEach(el => {
+                    const parent = el.closest('[data-target]');
+                    if (parent) el.textContent = parseInt(parent.getAttribute('data-target')).toLocaleString() + (parent.getAttribute('data-suffix') || '');
+                });
+                const pl = document.getElementById('step-progress-line');
+                if (pl) pl.style.width = '100%';
+                return;
+            }
+
+            // ============================================================
+            // GSAP SETUP
+            // ============================================================
+            gsap.registerPlugin(ScrollTrigger);
+
+            // ============================================================
+            // SCROLL PROGRESS BAR
+            // ============================================================
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                document.getElementById('scroll-progress').style.width = progress + '%';
+            });
+
+            // ============================================================
+            // HERO WORD REVEAL
+            // ============================================================
+            const heroLines = document.querySelectorAll('[data-hero-line]');
+            let delay = 0.05;
+            const PER_WORD_DELAY = 0.08;
+            heroLines.forEach(line => {
+                const nodes = Array.from(line.childNodes);
+                const newHTML = nodes.map(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        return node.textContent.split(/(\s+)/).map(part => {
+                            if (!part.trim()) return part;
+                            const span = `<span class="word-reveal" style="animation-delay:${delay.toFixed(2)}s;">${part}</span>`;
+                            delay += PER_WORD_DELAY;
+                            return span;
+                        }).join('');
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        const words = node.textContent.split(/(\s+)/);
+                        const inner = words.map(w => {
+                            if (!w.trim()) return w;
+                            const span = `<span class="word-reveal" style="animation-delay:${delay.toFixed(2)}s;color:inherit;">${w}</span>`;
+                            delay += PER_WORD_DELAY;
+                            return span;
+                        }).join('');
+                        return `<span class="text-[#0A0A0A]">${inner}</span>`;
+                    }
+                    return '';
+                }).join('');
+                line.innerHTML = newHTML;
+            });
+
+            // ============================================================
+            // GSAP SCROLL-TRIGGERED SECTION ANIMATIONS
+            // ============================================================
+
+            // Reveal items with GSAP for smoother, staggered entrances
+            gsap.utils.toArray('.reveal-item').forEach((el, i) => {
+                const stagger = parseInt(el.style.getPropertyValue('--stagger') || '0', 10);
+                gsap.fromTo(el,
+                    { opacity: 0, y: 40 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 0.8,
+                        delay: stagger * 0.12,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 88%',
+                            once: true,
+                        },
+                        onComplete: () => el.classList.add('revealed'),
+                    }
+                );
+            });
+
+            // ============================================================
+            // PARALLAX SECTIONS — subtle depth on scroll
+            // ============================================================
+            gsap.utils.toArray('.fp-parallax-section').forEach(section => {
+                const bg = section.querySelector('.fp-parallax-bg');
+                if (bg) {
+                    gsap.to(bg, {
+                        y: -60,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 1,
+                        },
+                    });
+                }
+            });
+
+            // About section 3D mockup parallax
+            const mockupContainer = document.querySelector('.perspective-1000');
+            if (mockupContainer) {
+                gsap.fromTo(mockupContainer,
+                    { rotateX: 12, scale: 0.92, opacity: 0 },
+                    {
+                        rotateX: 0, scale: 1, opacity: 1,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: mockupContainer,
+                            start: 'top 85%',
+                            end: 'top 20%',
+                            scrub: 1,
+                        },
+                    }
+                );
+            }
+
+            // ============================================================
+            // MAGNETIC BUTTONS
+            // ============================================================
+            document.querySelectorAll('.fp-magnetic').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(btn, {
+                        x: x * 0.3,
+                        y: y * 0.3,
+                        duration: 0.3,
+                        ease: 'power2.out',
+                    });
+                });
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
+                });
+            });
+
+            // ============================================================
+            // TEXT SCRAMBLE EFFECT ON HEADINGS
+            // ============================================================
+            const chars = '!<>-_\\/[]{}—=+*^?#________';
+            function scrambleText(el) {
+                const original = el.getAttribute('data-text') || el.textContent;
+                el.setAttribute('data-text', original);
+                let iteration = 0;
+                const interval = setInterval(() => {
+                    el.textContent = original.split('').map((char, index) => {
+                        if (index < iteration) return original[index];
+                        return chars[Math.floor(Math.random() * chars.length)];
                     }).join('');
-                    line.innerHTML = newHTML;
+                    if (iteration >= original.length) clearInterval(interval);
+                    iteration += 1 / 2;
+                }, 25);
+            }
+
+            document.querySelectorAll('.fp-scramble').forEach(el => {
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: 'top 85%',
+                    once: true,
+                    onEnter: () => scrambleText(el),
+                });
+            });
+
+            // ============================================================
+            // FLOATING PARTICLES
+            // ============================================================
+            const particlesContainer = document.getElementById('hero-particles');
+            if (particlesContainer) {
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'fp-particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.width = (Math.random() * 4 + 2) + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                    particle.style.animationDelay = (Math.random() * 5) + 's';
+                    particle.style.opacity = Math.random() * 0.3 + 0.1;
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // ============================================================
+            // CURSOR FOLLOWER
+            // ============================================================
+            const cursorDot = document.getElementById('cursor-dot');
+            if (cursorDot && window.innerWidth > 768) {
+                let mouseX = 0, mouseY = 0;
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    cursorDot.style.left = mouseX - 4 + 'px';
+                    cursorDot.style.top = mouseY - 4 + 'px';
+                    cursorDot.classList.add('active');
+                });
+                document.querySelectorAll('a, button, .tilt-card, .fp-magnetic').forEach(el => {
+                    el.addEventListener('mouseenter', () => cursorDot.classList.add('hovering'));
+                    el.addEventListener('mouseleave', () => cursorDot.classList.remove('hovering'));
                 });
             }
 
-            // Mockup rotation
-            const mockups = [
-                document.getElementById('mockup-0'),
-                document.getElementById('mockup-1'),
-            ].filter(Boolean);
-            if (mockups.length > 1 && !prefersReducedMotion) {
-                let currentMockup = 0;
-                setInterval(() => {
-                    mockups[currentMockup].style.display = 'none';
-                    currentMockup = (currentMockup + 1) % mockups.length;
-                    mockups[currentMockup].style.display = 'block';
-                }, 4000);
-            }
-
-            // 3D Tilt
-            if (!prefersReducedMotion && window.innerWidth > 768) {
+            // ============================================================
+            // ENHANCED 3D TILT ON CARDS
+            // ============================================================
+            if (window.innerWidth > 768) {
                 document.querySelectorAll('.tilt-card').forEach(card => {
                     card.addEventListener('mousemove', (e) => {
                         const rect = card.getBoundingClientRect();
@@ -692,91 +983,168 @@
                         const cy = rect.top + rect.height / 2;
                         const dx = (e.clientX - cx) / (rect.width / 2);
                         const dy = (e.clientY - cy) / (rect.height / 2);
-                        const maxAngle = 5;
-                        const rotX = (-dy * maxAngle).toFixed(2);
-                        const rotY = (dx * maxAngle).toFixed(2);
-                        card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+                        const maxAngle = 8;
+                        gsap.to(card, {
+                            rotateX: -dy * maxAngle,
+                            rotateY: dx * maxAngle,
+                            scale: 1.03,
+                            duration: 0.4,
+                            ease: 'power2.out',
+                            transformPerspective: 600,
+                        });
                     });
                     card.addEventListener('mouseleave', () => {
-                        card.style.transform = '';
+                        gsap.to(card, {
+                            rotateX: 0, rotateY: 0, scale: 1,
+                            duration: 0.6, ease: 'elastic.out(1, 0.5)',
+                        });
                     });
                 });
             }
 
-            // Scroll reveal
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const stagger = parseInt(entry.target.style.getPropertyValue('--stagger') || '0', 10);
-                        const delay = stagger * 150;
-                        setTimeout(() => {
-                            entry.target.classList.add('revealed');
-                        }, delay);
-                        revealObserver.unobserve(entry.target);
-                    }
+            // ============================================================
+            // PROGRESS LINE — How It Works
+            // ============================================================
+            const progressLine = document.getElementById('step-progress-line');
+            if (progressLine) {
+                gsap.to(progressLine, {
+                    width: '100%',
+                    duration: 1.5,
+                    ease: 'power2.inOut',
+                    scrollTrigger: {
+                        trigger: '#how-it-works',
+                        start: 'top 60%',
+                        once: true,
+                    },
                 });
-            }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.reveal-item').forEach(el => {
-                if (prefersReducedMotion) {
-                    el.classList.add('revealed');
-                } else {
-                    revealObserver.observe(el);
-                }
+            }
+
+            // ============================================================
+            // STATS COUNTER with GSAP
+            // ============================================================
+            document.querySelectorAll('[data-target]').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'), 10);
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const numSpan = counter.querySelector('.stat-number');
+                if (!numSpan) return;
+
+                const obj = { val: 0 };
+                gsap.to(obj, {
+                    val: target,
+                    duration: 2,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: counter,
+                        start: 'top 80%',
+                        once: true,
+                    },
+                    onUpdate: () => {
+                        numSpan.textContent = Math.floor(obj.val).toLocaleString() + suffix;
+                    },
+                });
             });
 
-            // Progress line
-            const progressLine = document.getElementById('step-progress-line');
-            if (progressLine && !prefersReducedMotion) {
-                const lineObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            setTimeout(() => { progressLine.style.width = '100%'; }, 300);
-                            lineObserver.disconnect();
-                        }
-                    });
-                }, { threshold: 0.3 });
-                lineObserver.observe(document.getElementById('how-it-works'));
-            } else if (progressLine) {
-                progressLine.style.width = '100%';
+            // ============================================================
+            // GSAP STAGGER on Bento Grid tiles
+            // ============================================================
+            const bentoTiles = document.querySelectorAll('#features .reveal-item');
+            if (bentoTiles.length) {
+                gsap.fromTo(bentoTiles,
+                    { opacity: 0, y: 50, scale: 0.95 },
+                    {
+                        opacity: 1, y: 0, scale: 1,
+                        duration: 0.6,
+                        stagger: 0.1,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: '#features',
+                            start: 'top 75%',
+                            once: true,
+                        },
+                    }
+                );
             }
 
-            // Stats counter
-            const statsSection = document.getElementById('stats-section');
-            let statsAnimated = false;
-            if (statsSection) {
-                const statsObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && !statsAnimated) {
-                            statsAnimated = true;
-                            document.querySelectorAll('[data-target]').forEach(counter => {
-                                const target = parseInt(counter.getAttribute('data-target'), 10);
-                                const suffix = counter.getAttribute('data-suffix') || '';
-                                const numSpan = counter.querySelector('.stat-number');
-                                if (!numSpan) return;
-                                if (prefersReducedMotion) {
-                                    numSpan.textContent = target.toLocaleString() + suffix;
-                                    return;
-                                }
-                                const duration = 1500;
-                                const startTime = performance.now();
-                                function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-                                function tick(now) {
-                                    const elapsed = now - startTime;
-                                    const progress = Math.min(elapsed / duration, 1);
-                                    const current = Math.floor(easeOut(progress) * target);
-                                    numSpan.textContent = current.toLocaleString() + suffix;
-                                    if (progress < 1) {
-                                        requestAnimationFrame(tick);
-                                    } else {
-                                        numSpan.textContent = target.toLocaleString() + suffix;
-                                    }
-                                }
-                                requestAnimationFrame(tick);
-                            });
-                        }
-                    });
-                }, { threshold: 0.2 });
-                statsObserver.observe(statsSection);
+            // ============================================================
+            // PRICING CARDS — scale entrance
+            // ============================================================
+            const pricingCards = document.querySelectorAll('#pricing .reveal-item');
+            if (pricingCards.length) {
+                gsap.fromTo(pricingCards,
+                    { opacity: 0, y: 40, scale: 0.9 },
+                    {
+                        opacity: 1, y: 0, scale: 1,
+                        duration: 0.7,
+                        stagger: 0.15,
+                        ease: 'back.out(1.4)',
+                        scrollTrigger: {
+                            trigger: '#pricing',
+                            start: 'top 75%',
+                            once: true,
+                        },
+                    }
+                );
+            }
+
+            // ============================================================
+            // FAQ ITEMS — slide in from left
+            // ============================================================
+            const faqItems = document.querySelectorAll('#faq .reveal-item');
+            if (faqItems.length) {
+                gsap.fromTo(faqItems,
+                    { opacity: 0, x: -30 },
+                    {
+                        opacity: 1, x: 0,
+                        duration: 0.5,
+                        stagger: 0.08,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: '#faq',
+                            start: 'top 75%',
+                            once: true,
+                        },
+                    }
+                );
+            }
+
+            // ============================================================
+            // BOTTOM CTA — dramatic scale entrance
+            // ============================================================
+            const ctaSection = document.querySelector('.fp-cta-section');
+            if (ctaSection) {
+                gsap.fromTo(ctaSection.querySelector('.max-w-3xl'),
+                    { opacity: 0, y: 60, scale: 0.92 },
+                    {
+                        opacity: 1, y: 0, scale: 1,
+                        duration: 1,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: ctaSection,
+                            start: 'top 70%',
+                            once: true,
+                        },
+                    }
+                );
+            }
+
+            // ============================================================
+            // FOOTER — fade up
+            // ============================================================
+            const footer = document.querySelector('footer');
+            if (footer) {
+                gsap.fromTo(footer,
+                    { opacity: 0, y: 30 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: footer,
+                            start: 'top 90%',
+                            once: true,
+                        },
+                    }
+                );
             }
         });
         </script>
