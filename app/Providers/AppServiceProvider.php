@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Listeners\AssignFreeMemberRole;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \Illuminate\Support\Facades\Event::listen(
-            \Illuminate\Auth\Events\Registered::class,
-            \App\Listeners\AssignFreeMemberRole::class
+        Event::listen(
+            Registered::class,
+            AssignFreeMemberRole::class
         );
     }
 }

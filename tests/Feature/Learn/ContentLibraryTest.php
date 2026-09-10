@@ -2,7 +2,6 @@
 
 use App\Enums\ContentTier;
 use App\Enums\ContentType;
-use App\Enums\Language;
 use App\Enums\SkillLevel;
 use App\Models\ContentItem;
 use Database\Seeders\RolesAndPermissionsSeeder;
@@ -34,7 +33,7 @@ test('guest can view a free tier article detail page and see body content', func
         'published_at' => now(),
     ]);
 
-    $response = $this->get('/learn/' . $item->slug);
+    $response = $this->get('/learn/'.$item->slug);
     $response->assertOk()
         ->assertSee('Understanding Mutual Funds')
         ->assertSee('This is the complete text body of the mutual funds guide.');
@@ -50,7 +49,7 @@ test('guest can view a free tier video detail page and see video player placehol
         'published_at' => now(),
     ]);
 
-    $response = $this->get('/learn/' . $item->slug);
+    $response = $this->get('/learn/'.$item->slug);
     $response->assertOk()
         ->assertSee('Video Guide to ETF Investing')
         ->assertSee('Video Player Placeholder');
@@ -66,7 +65,7 @@ test('guest viewing registered or paid tier content sees locked teaser state wit
         'published_at' => now(),
     ]);
 
-    $response = $this->get('/learn/' . $paidItem->slug);
+    $response = $this->get('/learn/'.$paidItem->slug);
     $response->assertOk()
         ->assertSee('Advanced Portfolio Optimization Secrets')
         ->assertSee('This content is locked')
@@ -124,6 +123,6 @@ test('unpublished content where published_at is null never appears in listing or
     $responseIndex = $this->get('/learn');
     $responseIndex->assertDontSee('Draft Unpublished Lesson');
 
-    $responseDetail = $this->get('/learn/' . $unpublishedItem->slug);
+    $responseDetail = $this->get('/learn/'.$unpublishedItem->slug);
     $responseDetail->assertNotFound();
 });

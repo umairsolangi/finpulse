@@ -25,7 +25,7 @@ test('assigning non-backed enum values raises a ValueError or TypeError', functi
 });
 
 test('assigning invalid enum value directly to model attribute raises ValueError or TypeError', function () {
-    $contentItem = new ContentItem();
+    $contentItem = new ContentItem;
 
     expect(fn () => $contentItem->tier = 'invalid_tier_string')
         ->toThrow(ValueError::class);

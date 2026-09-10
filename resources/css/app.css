@@ -1053,38 +1053,53 @@
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+    .nx-hero {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding-bottom: 20px;
+    }
+
     .nx-hero__inner {
-        width: min(100% - 32px, 520px);
+        width: min(100% - 28px, 520px);
+        min-height: 100vh;
+        min-height: 100svh;
+        justify-content: space-between;
     }
 
     .nx-nav {
-        padding: 11px 14px 11px 20px;
-        gap: 14px;
-    }
-
-    .nx-nav__links {
-        display: none;
+        padding: 8px 12px 8px 18px;
+        gap: 10px;
+        margin-top: 10px;
     }
 
     .nx-button--nav {
-        margin-left: auto;
-        padding: 9px 19px;
-        min-width: 86px;
+        padding: 8px 16px;
+        font-size: 12px;
+        min-width: 76px;
     }
 
     .nx-hero__content {
-        padding-top: 90px;
+        padding-top: clamp(40px, 8vh, 90px);
+        margin: auto 0;
     }
 
     .nx-hero h1 {
-        font-size: clamp(48px, 14vw, 78px);
+        font-size: clamp(28px, 8vw, 56px);
+        margin-bottom: 20px;
+        line-height: 1.05;
     }
 
     .nx-hero__footer {
-        align-items: flex-start;
+        padding: clamp(24px, 5vh, 60px) 0 20px;
         flex-direction: column;
-        padding-bottom: 24px;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .nx-hero__footer p {
+        max-width: 100%;
+        font-size: 12px;
     }
 
     .nx-scroll-note {

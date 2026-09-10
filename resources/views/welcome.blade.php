@@ -355,7 +355,7 @@
                 </div>
 
                 <div class="flex overflow-x-auto gap-5 pb-4 sm:pb-0 md:grid md:grid-cols-2 lg:grid-cols-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0">
-                    <div class="tilt-card snap-center shrink-0 w-72 sm:w-auto bg-[#091449]/60 rounded-2xl p-6 border border-[#889eff]/20 backdrop-blur-xl shadow-lg hover:border-[#6d80ff]/60 hover:shadow-[0_0_30px_rgba(78,91,255,0.25)] transition-all duration-200 flex flex-col justify-between">
+                    <div class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#091449]/60 rounded-2xl p-6 border border-[#889eff]/20 backdrop-blur-xl shadow-lg hover:border-[#6d80ff]/60 hover:shadow-[0_0_30px_rgba(78,91,255,0.25)] transition-all duration-200 flex flex-col justify-between">
                         <div>
                             <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#4e5bff]/20 text-[#aebaff] border border-[#889eff]/30 mb-4">Beginner</span>
                             <h3 class="text-lg font-bold text-[#f7f8ff] mb-2">What is a P/E Ratio?</h3>
@@ -367,7 +367,7 @@
                         </div>
                     </div>
 
-                    <div class="tilt-card snap-center shrink-0 w-72 sm:w-auto bg-[#091449]/60 rounded-2xl p-6 border border-[#889eff]/20 backdrop-blur-xl shadow-lg hover:border-[#6d80ff]/60 hover:shadow-[0_0_30px_rgba(78,91,255,0.25)] transition-all duration-200 flex flex-col justify-between">
+                    <div class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#091449]/60 rounded-2xl p-6 border border-[#889eff]/20 backdrop-blur-xl shadow-lg hover:border-[#6d80ff]/60 hover:shadow-[0_0_30px_rgba(78,91,255,0.25)] transition-all duration-200 flex flex-col justify-between">
                         <div>
                             <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#903dff]/20 text-[#aebaff] border border-[#889eff]/30 mb-4">Intermediate</span>
                             <h3 class="text-lg font-bold text-[#f7f8ff] mb-2">Reading a Candlestick Chart</h3>
@@ -379,7 +379,7 @@
                         </div>
                     </div>
 
-                    <div class="tilt-card snap-center shrink-0 w-72 sm:w-auto bg-[#091449]/60 rounded-2xl p-6 border border-[#889eff]/20 backdrop-blur-xl shadow-lg hover:border-[#6d80ff]/60 hover:shadow-[0_0_30px_rgba(78,91,255,0.25)] transition-all duration-200 flex flex-col justify-between">
+                    <div class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#091449]/60 rounded-2xl p-6 border border-[#889eff]/20 backdrop-blur-xl shadow-lg hover:border-[#6d80ff]/60 hover:shadow-[0_0_30px_rgba(78,91,255,0.25)] transition-all duration-200 flex flex-col justify-between">
                         <div>
                             <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#903dff]/20 text-[#aebaff] border border-[#889eff]/30 mb-4">Intermediate</span>
                             <h3 class="text-lg font-bold text-[#f7f8ff] mb-2">How the KSE-100 Works</h3>
@@ -391,7 +391,7 @@
                         </div>
                     </div>
 
-                    <div class="tilt-card snap-center shrink-0 w-72 sm:w-auto bg-[#091449]/60 rounded-2xl p-6 border border-[#889eff]/20 backdrop-blur-xl shadow-lg hover:border-[#6d80ff]/60 hover:shadow-[0_0_30px_rgba(78,91,255,0.25)] transition-all duration-200 flex flex-col justify-between">
+                    <div class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#091449]/60 rounded-2xl p-6 border border-[#889eff]/20 backdrop-blur-xl shadow-lg hover:border-[#6d80ff]/60 hover:shadow-[0_0_30px_rgba(78,91,255,0.25)] transition-all duration-200 flex flex-col justify-between">
                         <div>
                             <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#4e5bff]/30 text-[#aebaff] border border-[#889eff]/30 mb-4">Advanced</span>
                             <h3 class="text-lg font-bold text-[#f7f8ff] mb-2">Building Your First Watchlist</h3>
@@ -710,7 +710,7 @@
                     <div class="space-y-3">
                         <h4 class="text-sm font-bold uppercase tracking-wider text-[#6d80ff]">Stay Informed</h4>
                         <p class="text-xs text-[#b6c0e7]">Subscribe to our weekly financial insights newsletter.</p>
-                        <form onsubmit="event.preventDefault();" class="flex gap-2 max-w-md" aria-label="Newsletter subscription form">
+                        <form onsubmit="event.preventDefault();" class="flex flex-col sm:flex-row gap-2 max-w-md" aria-label="Newsletter subscription form">
                             <label for="newsletter-email" class="sr-only">Email address</label>
                             <input id="newsletter-email" type="email" placeholder="Enter your email" autocomplete="email"
                                    class="bg-[#091449]/70 border border-[#889eff]/30 rounded-lg px-4 py-2.5 text-sm text-white placeholder-[#b6c0e7]/50 flex-1 focus:outline-none focus:border-[#6d80ff] focus:ring-1 focus:ring-[#6d80ff] transition-all duration-200">
@@ -809,14 +809,16 @@
                         .to(heroContent, { opacity: 1, y: 0, duration: 0.8 }, 0.4)
                         .to(heroFooter, { opacity: 1, y: 0, duration: 0.7 }, 0.7);
 
-                    // Pin hero section on scroll with parallax out
-                    ScrollTrigger.create({
-                        trigger: heroSection,
-                        start: 'top top',
-                        end: '+=100%',
-                        pin: true,
-                        pinSpacing: false,
-                    });
+                    // Pin hero section on scroll with parallax out (Desktop only)
+                    if (window.innerWidth >= 1024) {
+                        ScrollTrigger.create({
+                            trigger: heroSection,
+                            start: 'top top',
+                            end: '+=100%',
+                            pin: true,
+                            pinSpacing: false,
+                        });
+                    }
 
                     // Hero parallax layers on scroll
                     gsap.to(heroVideo, {

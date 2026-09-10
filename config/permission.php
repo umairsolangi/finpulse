@@ -39,7 +39,7 @@ return [
     'enable_wildcard_permission' => false,
 
     'cache' => [
-        'expiration_time' => \DateInterval::createFromDateString('24 hours'),
+        'expiration_time' => DateInterval::createFromDateString('24 hours'),
         'key' => 'spatie.permission.cache',
         'store' => 'default',
     ],
