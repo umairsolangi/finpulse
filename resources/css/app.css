@@ -622,6 +622,25 @@
     100% { transform: translateX(-50%); }
 }
 
+.animate-marquee {
+    display: inline-block;
+    padding-left: 100%;
+    animation: fpMarqueeLoop 22s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+@keyframes fpMarqueeLoop {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
 /* ============================================================
    REDUCED MOTION OVERRIDES
    ============================================================ */
@@ -685,6 +704,102 @@
     }
 
     .fp-scroll-progress {
+        display: none !important;
+    }
+}
+
+/* ============================================================
+   GSAP HERO PIN SPACER
+   ============================================================ */
+.fp-pin-spacer {
+    overflow: visible !important;
+}
+
+/* ============================================================
+   GSAP SCROLL SNAP SECTIONS
+   ============================================================ */
+.fp-snap-container {
+    scroll-snap-type: y proximity;
+}
+.fp-snap-section {
+    scroll-snap-align: start;
+}
+
+/* ============================================================
+   NAV HIDE/SHOW STATES (Observer-driven)
+   ============================================================ */
+.fp-nav-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease;
+}
+.fp-nav-visible {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease;
+}
+
+/* ============================================================
+   BATCH ANIMATION STATES
+   ============================================================ */
+.fp-batch-hidden {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+}
+.fp-batch-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ============================================================
+   HERO MOTION PATH
+   ============================================================ */
+.nx-hero__motionpath {
+    transition: opacity 0.6s ease;
+}
+
+/* ============================================================
+   GSAP ANIMATION INITIAL STATES
+   ============================================================ */
+.fp-gsap-hidden {
+    visibility: hidden;
+}
+
+/* ============================================================
+   SWIPE CAROUSEL
+   ============================================================ */
+.fp-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.fp-carousel::-webkit-scrollbar {
+    display: none;
+}
+.fp-carousel-item {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   REDUCED MOTION — disable GSAP-driven transitions
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    .fp-nav-hidden,
+    .fp-nav-visible {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    .fp-batch-hidden {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .nx-hero__motionpath {
         display: none !important;
     }
 }

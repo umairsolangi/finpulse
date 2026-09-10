@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ActivityScoreService;
 use Database\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,18 @@ class Comment extends Model
         'user_id',
         'body',
     ];
+
+    protected static function booted(): void
+    {
+        static::created(function (Comment $comment): void {
+            if ($comment->user) {
+                app(ActivityScoreService::class)->recordActivity($comment->user, 'comment_created');
+            }
+        });
+
+        // NOTE: Activity score is intentionally NOT decremented when a comment is deleted.
+        // Activity score reflects historical participation, not current state.
+    }
 
     public function post(): BelongsTo
     {

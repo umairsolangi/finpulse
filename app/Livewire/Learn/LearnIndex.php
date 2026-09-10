@@ -29,6 +29,9 @@ class LearnIndex extends Component
     #[Url(as: 'q')]
     public string $search = '';
 
+    #[Url(as: 'interests')]
+    public string $interests = '';
+
     public function updatedType(): void
     {
         $this->resetPage();
@@ -49,9 +52,14 @@ class LearnIndex extends Component
         $this->resetPage();
     }
 
+    public function updatedInterests(): void
+    {
+        $this->resetPage();
+    }
+
     public function resetFilters(): void
     {
-        $this->reset(['type', 'skillLevel', 'language', 'search']);
+        $this->reset(['type', 'skillLevel', 'language', 'search', 'interests']);
         $this->resetPage();
     }
 
@@ -75,7 +83,20 @@ class LearnIndex extends Component
         }
 
         if (trim($this->search) !== '') {
-            $query->where('title', 'like', '%' . trim($this->search) . '%');
+            $query->where('title', 'like', '%'.trim($this->search).'%');
+        }
+
+        if (trim($this->interests) !== '') {
+            $terms = explode(',', $this->interests);
+            $query->where(function ($q) use ($terms) {
+                foreach ($terms as $term) {
+                    $cleaned = str_replace('_', ' ', trim($term));
+                    if (! empty($cleaned)) {
+                        $q->orWhere('title', 'like', "%{$cleaned}%")
+                            ->orWhere('body', 'like', "%{$cleaned}%");
+                    }
+                }
+            });
         }
 
         $items = $query->paginate(9);

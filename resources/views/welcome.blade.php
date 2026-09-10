@@ -18,6 +18,8 @@
         <!-- GSAP for advanced animations -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
     </head>
     <body
         x-data="{
@@ -763,7 +765,7 @@
                     const target = document.getElementById(targetId);
                     if (!target) return;
                     e.preventDefault();
-                    const navHeight = document.getElementById('main-nav')?.offsetHeight ?? 72;
+                    const navHeight = document.getElementById('nx-hero-nav')?.offsetHeight ?? 72;
                     const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
                     window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                 });
@@ -781,371 +783,554 @@
             }
 
             // ============================================================
-            // GSAP SETUP
+            // GSAP SETUP — Register all plugins
             // ============================================================
-            gsap.registerPlugin(ScrollTrigger);
+            gsap.registerPlugin(ScrollTrigger, Observer, MotionPathPlugin);
 
             // ============================================================
-            // SCROLL PROGRESS BAR
+            // GSAP CONTEXT — clean Livewire-safe scope
             // ============================================================
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.pageYOffset;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const progress = (scrollTop / docHeight) * 100;
-                document.getElementById('scroll-progress').style.width = progress + '%';
-            });
+            const ctx = gsap.context(() => {
 
-            // ============================================================
-            // HERO WORD REVEAL
-            // ============================================================
-            const heroLines = document.querySelectorAll('[data-hero-line]');
-            let delay = 0.05;
-            const PER_WORD_DELAY = 0.08;
-            heroLines.forEach(line => {
-                const nodes = Array.from(line.childNodes);
-                const newHTML = nodes.map(node => {
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        return node.textContent.split(/(\s+)/).map(part => {
-                            if (!part.trim()) return part;
-                            const span = `<span class="word-reveal" style="animation-delay:${delay.toFixed(2)}s;">${part}</span>`;
-                            delay += PER_WORD_DELAY;
-                            return span;
-                        }).join('');
-                    } else if (node.nodeType === Node.ELEMENT_NODE) {
-                        const words = node.textContent.split(/(\s+)/);
-                        const inner = words.map(w => {
-                            if (!w.trim()) return w;
-                            const span = `<span class="word-reveal" style="animation-delay:${delay.toFixed(2)}s;color:inherit;">${w}</span>`;
-                            delay += PER_WORD_DELAY;
-                            return span;
-                        }).join('');
-                        return `<span class="text-[#0A0A0A]">${inner}</span>`;
-                    }
-                    return '';
-                }).join('');
-                line.innerHTML = newHTML;
-            });
+                // ============================================================
+                // HERO PIN + SEQUENCED TIMELINE
+                // ============================================================
+                const heroSection = document.getElementById('nx-hero');
+                const heroNav = document.getElementById('nx-hero-nav');
+                const heroContent = document.getElementById('nx-hero-content');
+                const heroFooter = document.getElementById('nx-hero-footer');
+                const heroVideo = document.getElementById('nx-hero-video');
+                const heroGrid = document.getElementById('nx-hero-grid');
+                const heroDot = document.getElementById('hero-dot');
 
-            // ============================================================
-            // GSAP SCROLL-TRIGGERED SECTION ANIMATIONS
-            // ============================================================
+                if (heroSection && heroNav && heroContent) {
+                    // Initial states for hero entrance
+                    gsap.set([heroNav, heroContent, heroFooter].filter(Boolean), { opacity: 0, y: 30 });
+                    gsap.set(heroVideo, { scale: 1.15, opacity: 0 });
+                    gsap.set(heroGrid, { opacity: 0 });
 
-            // Reveal items with GSAP for smoother, staggered entrances
-            gsap.utils.toArray('.reveal-item').forEach((el, i) => {
-                const stagger = parseInt(el.style.getPropertyValue('--stagger') || '0', 10);
-                gsap.fromTo(el,
-                    { opacity: 0, y: 40 },
-                    {
-                        opacity: 1, y: 0,
-                        duration: 0.8,
-                        delay: stagger * 0.12,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 88%',
-                            once: true,
-                        },
-                        onComplete: () => el.classList.add('revealed'),
-                    }
-                );
-            });
+                    // Hero entrance timeline (plays on page load)
+                    const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
+                    heroTL
+                        .to(heroVideo, { scale: 1.06, opacity: 1, duration: 1.2, ease: 'power2.out' }, 0)
+                        .to(heroGrid, { opacity: 0.22, duration: 1 }, 0.3)
+                        .to(heroNav, { opacity: 1, y: 0, duration: 0.7 }, 0.2)
+                        .to(heroContent, { opacity: 1, y: 0, duration: 0.8 }, 0.4)
+                        .to(heroFooter, { opacity: 1, y: 0, duration: 0.7 }, 0.7);
 
-            // ============================================================
-            // PARALLAX SECTIONS — subtle depth on scroll
-            // ============================================================
-            gsap.utils.toArray('.fp-parallax-section').forEach(section => {
-                const bg = section.querySelector('.fp-parallax-bg');
-                if (bg) {
-                    gsap.to(bg, {
-                        y: -60,
+                    // Pin hero section on scroll with parallax out
+                    ScrollTrigger.create({
+                        trigger: heroSection,
+                        start: 'top top',
+                        end: '+=100%',
+                        pin: true,
+                        pinSpacing: false,
+                    });
+
+                    // Hero parallax layers on scroll
+                    gsap.to(heroVideo, {
+                        scale: 1.2,
                         ease: 'none',
                         scrollTrigger: {
-                            trigger: section,
-                            start: 'top bottom',
+                            trigger: heroSection,
+                            start: 'top top',
+                            end: 'bottom top',
+                            scrub: 1.5,
+                        },
+                    });
+
+                    gsap.to(heroGrid, {
+                        y: -100,
+                        opacity: 0,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: heroSection,
+                            start: 'top top',
                             end: 'bottom top',
                             scrub: 1,
                         },
                     });
-                }
-            });
 
-            // About section 3D mockup parallax
-            const mockupContainer = document.querySelector('.perspective-1000');
-            if (mockupContainer) {
-                gsap.fromTo(mockupContainer,
-                    { rotateX: 12, scale: 0.92, opacity: 0 },
-                    {
-                        rotateX: 0, scale: 1, opacity: 1,
-                        ease: 'power2.out',
+                    // Hero content fade out on scroll
+                    gsap.to(heroContent, {
+                        y: -60,
+                        opacity: 0,
+                        ease: 'none',
                         scrollTrigger: {
-                            trigger: mockupContainer,
-                            start: 'top 85%',
-                            end: 'top 20%',
+                            trigger: heroSection,
+                            start: '30% top',
+                            end: 'bottom top',
                             scrub: 1,
                         },
-                    }
-                );
-            }
+                    });
 
-            // ============================================================
-            // MAGNETIC BUTTONS
-            // ============================================================
-            document.querySelectorAll('.fp-magnetic').forEach(btn => {
-                btn.addEventListener('mousemove', (e) => {
-                    const rect = btn.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    gsap.to(btn, {
-                        x: x * 0.3,
-                        y: y * 0.3,
-                        duration: 0.3,
+                    // MotionPath — animate dot along SVG path
+                    if (heroDot) {
+                        gsap.fromTo(heroDot,
+                            { opacity: 0 },
+                            {
+                                opacity: 1,
+                                duration: 0.5,
+                                delay: 1.5,
+                                ease: 'power2.out',
+                            }
+                        );
+                        gsap.to(heroDot, {
+                            motionPath: {
+                                path: '#hero-path',
+                                align: '#hero-path',
+                                alignOrigin: [0.5, 0.5],
+                                autoRotate: false,
+                            },
+                            duration: 8,
+                            ease: 'none',
+                            repeat: -1,
+                            yoyo: true,
+                        });
+                    }
+                }
+
+                // ============================================================
+                // SCROLL PROGRESS BAR — using GSAP quickTo
+                // ============================================================
+                const scrollProgressEl = document.getElementById('scroll-progress');
+                if (scrollProgressEl) {
+                    const updateProgress = gsap.quickTo(scrollProgressEl, 'width', {
+                        duration: 0.2,
                         ease: 'power2.out',
                     });
-                });
-                btn.addEventListener('mouseleave', () => {
-                    gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
-                });
-            });
-
-            // ============================================================
-            // TEXT SCRAMBLE EFFECT ON HEADINGS
-            // ============================================================
-            const chars = '!<>-_\\/[]{}—=+*^?#________';
-            function scrambleText(el) {
-                const original = el.getAttribute('data-text') || el.textContent;
-                el.setAttribute('data-text', original);
-                let iteration = 0;
-                const interval = setInterval(() => {
-                    el.textContent = original.split('').map((char, index) => {
-                        if (index < iteration) return original[index];
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    }).join('');
-                    if (iteration >= original.length) clearInterval(interval);
-                    iteration += 1 / 2;
-                }, 25);
-            }
-
-            document.querySelectorAll('.fp-scramble').forEach(el => {
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: 'top 85%',
-                    once: true,
-                    onEnter: () => scrambleText(el),
-                });
-            });
-
-            // ============================================================
-            // FLOATING PARTICLES
-            // ============================================================
-            const particlesContainer = document.getElementById('hero-particles');
-            if (particlesContainer) {
-                for (let i = 0; i < 20; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'fp-particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.top = Math.random() * 100 + '%';
-                    particle.style.width = (Math.random() * 4 + 2) + 'px';
-                    particle.style.height = particle.style.width;
-                    particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
-                    particle.style.animationDelay = (Math.random() * 5) + 's';
-                    particle.style.opacity = Math.random() * 0.3 + 0.1;
-                    particlesContainer.appendChild(particle);
+                    window.addEventListener('scroll', () => {
+                        const scrollTop = window.pageYOffset;
+                        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                        updateProgress((scrollTop / docHeight) * 100 + '%');
+                    });
                 }
-            }
 
-            // ============================================================
-            // CURSOR FOLLOWER
-            // ============================================================
-            const cursorDot = document.getElementById('cursor-dot');
-            if (cursorDot && window.innerWidth > 768) {
-                let mouseX = 0, mouseY = 0;
-                document.addEventListener('mousemove', (e) => {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    cursorDot.style.left = mouseX - 4 + 'px';
-                    cursorDot.style.top = mouseY - 4 + 'px';
-                    cursorDot.classList.add('active');
+                // ============================================================
+                // HERO WORD REVEAL
+                // ============================================================
+                const heroLines = document.querySelectorAll('[data-hero-line]');
+                let delay = 0.05;
+                const PER_WORD_DELAY = 0.08;
+                heroLines.forEach(line => {
+                    const nodes = Array.from(line.childNodes);
+                    const newHTML = nodes.map(node => {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            return node.textContent.split(/(\s+)/).map(part => {
+                                if (!part.trim()) return part;
+                                const span = `<span class="word-reveal" style="animation-delay:${delay.toFixed(2)}s;">${part}</span>`;
+                                delay += PER_WORD_DELAY;
+                                return span;
+                            }).join('');
+                        } else if (node.nodeType === Node.ELEMENT_NODE) {
+                            const words = node.textContent.split(/(\s+)/);
+                            const inner = words.map(w => {
+                                if (!w.trim()) return w;
+                                const span = `<span class="word-reveal" style="animation-delay:${delay.toFixed(2)}s;color:inherit;">${w}</span>`;
+                                delay += PER_WORD_DELAY;
+                                return span;
+                            }).join('');
+                            return `<span class="text-[#0A0A0A]">${inner}</span>`;
+                        }
+                        return '';
+                    }).join('');
+                    line.innerHTML = newHTML;
                 });
-                document.querySelectorAll('a, button, .tilt-card, .fp-magnetic').forEach(el => {
-                    el.addEventListener('mouseenter', () => cursorDot.classList.add('hovering'));
-                    el.addEventListener('mouseleave', () => cursorDot.classList.remove('hovering'));
-                });
-            }
 
-            // ============================================================
-            // ENHANCED 3D TILT ON CARDS
-            // ============================================================
-            if (window.innerWidth > 768) {
-                document.querySelectorAll('.tilt-card').forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const cx = rect.left + rect.width / 2;
-                        const cy = rect.top + rect.height / 2;
-                        const dx = (e.clientX - cx) / (rect.width / 2);
-                        const dy = (e.clientY - cy) / (rect.height / 2);
-                        const maxAngle = 8;
-                        gsap.to(card, {
-                            rotateX: -dy * maxAngle,
-                            rotateY: dx * maxAngle,
-                            scale: 1.03,
-                            duration: 0.4,
-                            ease: 'power2.out',
-                            transformPerspective: 600,
-                        });
-                    });
-                    card.addEventListener('mouseleave', () => {
-                        gsap.to(card, {
-                            rotateX: 0, rotateY: 0, scale: 1,
-                            duration: 0.6, ease: 'elastic.out(1, 0.5)',
-                        });
-                    });
-                });
-            }
-
-            // ============================================================
-            // PROGRESS LINE — How It Works
-            // ============================================================
-            const progressLine = document.getElementById('step-progress-line');
-            if (progressLine) {
-                gsap.to(progressLine, {
-                    width: '100%',
-                    duration: 1.5,
-                    ease: 'power2.inOut',
-                    scrollTrigger: {
-                        trigger: '#how-it-works',
-                        start: 'top 60%',
-                        once: true,
+                // ============================================================
+                // SCROLL-TRIGGERED SECTION ANIMATIONS — using batch for performance
+                // ============================================================
+                ScrollTrigger.batch('.reveal-item', {
+                    start: 'top 88%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 40 },
+                            {
+                                opacity: 1, y: 0,
+                                duration: 0.8,
+                                stagger: 0.1,
+                                ease: 'power3.out',
+                                overwrite: true,
+                            }
+                        );
                     },
                 });
-            }
 
-            // ============================================================
-            // STATS COUNTER with GSAP
-            // ============================================================
-            document.querySelectorAll('[data-target]').forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'), 10);
-                const suffix = counter.getAttribute('data-suffix') || '';
-                const numSpan = counter.querySelector('.stat-number');
-                if (!numSpan) return;
+                // ============================================================
+                // PARALLAX SECTIONS — subtle depth on scroll
+                // ============================================================
+                gsap.utils.toArray('.fp-parallax-section').forEach(section => {
+                    const bg = section.querySelector('.fp-parallax-bg');
+                    if (bg) {
+                        gsap.to(bg, {
+                            y: -60,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: section,
+                                start: 'top bottom',
+                                end: 'bottom top',
+                                scrub: 1,
+                            },
+                        });
+                    }
+                });
 
-                const obj = { val: 0 };
-                gsap.to(obj, {
-                    val: target,
-                    duration: 2,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: counter,
+                // About section 3D mockup parallax
+                const mockupContainer = document.querySelector('.perspective-1000');
+                if (mockupContainer) {
+                    gsap.fromTo(mockupContainer,
+                        { rotateX: 12, scale: 0.92, opacity: 0 },
+                        {
+                            rotateX: 0, scale: 1, opacity: 1,
+                            ease: 'power2.out',
+                            scrollTrigger: {
+                                trigger: mockupContainer,
+                                start: 'top 85%',
+                                end: 'top 20%',
+                                scrub: 1,
+                            },
+                        }
+                    );
+                }
+
+                // ============================================================
+                // MAGNETIC BUTTONS — using gsap.quickTo for high performance
+                // ============================================================
+                document.querySelectorAll('.fp-magnetic').forEach(btn => {
+                    const magneticX = gsap.quickTo(btn, 'x', { duration: 0.3, ease: 'power2.out' });
+                    const magneticY = gsap.quickTo(btn, 'y', { duration: 0.3, ease: 'power2.out' });
+
+                    btn.addEventListener('mousemove', (e) => {
+                        const rect = btn.getBoundingClientRect();
+                        const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
+                        const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
+                        magneticX(x);
+                        magneticY(y);
+                    });
+                    btn.addEventListener('mouseleave', () => {
+                        gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
+                    });
+                });
+
+                // ============================================================
+                // TEXT SCRAMBLE EFFECT ON HEADINGS
+                // ============================================================
+                const chars = '!<>-_\\/[]{}—=+*^?#________';
+                function scrambleText(el) {
+                    const original = el.getAttribute('data-text') || el.textContent;
+                    el.setAttribute('data-text', original);
+                    let iteration = 0;
+                    const interval = setInterval(() => {
+                        el.textContent = original.split('').map((char, index) => {
+                            if (index < iteration) return original[index];
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                        if (iteration >= original.length) clearInterval(interval);
+                        iteration += 1 / 2;
+                    }, 25);
+                }
+
+                document.querySelectorAll('.fp-scramble').forEach(el => {
+                    ScrollTrigger.create({
+                        trigger: el,
+                        start: 'top 85%',
+                        once: true,
+                        onEnter: () => scrambleText(el),
+                    });
+                });
+
+                // ============================================================
+                // FLOATING PARTICLES
+                // ============================================================
+                const particlesContainer = document.getElementById('hero-particles');
+                if (particlesContainer) {
+                    for (let i = 0; i < 20; i++) {
+                        const particle = document.createElement('div');
+                        particle.className = 'fp-particle';
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.top = Math.random() * 100 + '%';
+                        particle.style.width = (Math.random() * 4 + 2) + 'px';
+                        particle.style.height = particle.style.width;
+                        particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                        particle.style.animationDelay = (Math.random() * 5) + 's';
+                        particle.style.opacity = Math.random() * 0.3 + 0.1;
+                        particlesContainer.appendChild(particle);
+                    }
+                }
+
+                // ============================================================
+                // CURSOR FOLLOWER — using gsap.quickTo for 60fps
+                // ============================================================
+                const cursorDot = document.getElementById('cursor-dot');
+                if (cursorDot && window.innerWidth > 768) {
+                    const cursorX = gsap.quickTo(cursorDot, 'left', { duration: 0.15, ease: 'power3.out' });
+                    const cursorY = gsap.quickTo(cursorDot, 'top', { duration: 0.15, ease: 'power3.out' });
+
+                    document.addEventListener('mousemove', (e) => {
+                        cursorX(e.clientX - 4);
+                        cursorY(e.clientY - 4);
+                        cursorDot.classList.add('active');
+                    });
+                    document.querySelectorAll('a, button, .tilt-card, .fp-magnetic').forEach(el => {
+                        el.addEventListener('mouseenter', () => cursorDot.classList.add('hovering'));
+                        el.addEventListener('mouseleave', () => cursorDot.classList.remove('hovering'));
+                    });
+                }
+
+                // ============================================================
+                // ENHANCED 3D TILT ON CARDS
+                // ============================================================
+                if (window.innerWidth > 768) {
+                    document.querySelectorAll('.tilt-card').forEach(card => {
+                        const tiltX = gsap.quickTo(card, 'rotateX', { duration: 0.4, ease: 'power2.out' });
+                        const tiltY = gsap.quickTo(card, 'rotateY', { duration: 0.4, ease: 'power2.out' });
+                        const tiltScale = gsap.quickTo(card, 'scale', { duration: 0.4, ease: 'power2.out' });
+
+                        card.addEventListener('mousemove', (e) => {
+                            const rect = card.getBoundingClientRect();
+                            const cx = rect.left + rect.width / 2;
+                            const cy = rect.top + rect.height / 2;
+                            const dx = (e.clientX - cx) / (rect.width / 2);
+                            const dy = (e.clientY - cy) / (rect.height / 2);
+                            const maxAngle = 8;
+                            tiltX(-dy * maxAngle);
+                            tiltY(dx * maxAngle);
+                            tiltScale(1.03);
+                            gsap.set(card, { transformPerspective: 600 });
+                        });
+                        card.addEventListener('mouseleave', () => {
+                            tiltX(0);
+                            tiltY(0);
+                            tiltScale(1);
+                        });
+                    });
+                }
+
+                // ============================================================
+                // PROGRESS LINE — How It Works
+                // ============================================================
+                const progressLine = document.getElementById('step-progress-line');
+                if (progressLine) {
+                    gsap.to(progressLine, {
+                        width: '100%',
+                        duration: 1.5,
+                        ease: 'power2.inOut',
+                        scrollTrigger: {
+                            trigger: '#how-it-works',
+                            start: 'top 60%',
+                            once: true,
+                        },
+                    });
+                }
+
+                // ============================================================
+                // STATS COUNTER with GSAP
+                // ============================================================
+                document.querySelectorAll('[data-target]').forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'), 10);
+                    const suffix = counter.getAttribute('data-suffix') || '';
+                    const numSpan = counter.querySelector('.stat-number');
+                    if (!numSpan) return;
+
+                    const obj = { val: 0 };
+                    gsap.to(obj, {
+                        val: target,
+                        duration: 2,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: counter,
+                            start: 'top 80%',
+                            once: true,
+                        },
+                        onUpdate: () => {
+                            numSpan.textContent = Math.floor(obj.val).toLocaleString() + suffix;
+                        },
+                    });
+                });
+
+                // ============================================================
+                // GSAP STAGGER on Bento Grid tiles — using batch
+                // ============================================================
+                const bentoTiles = document.querySelectorAll('#features .reveal-item');
+                if (bentoTiles.length) {
+                    ScrollTrigger.batch(bentoTiles, {
                         start: 'top 80%',
                         once: true,
-                    },
-                    onUpdate: () => {
-                        numSpan.textContent = Math.floor(obj.val).toLocaleString() + suffix;
-                    },
+                        onEnter: (batch) => {
+                            gsap.fromTo(batch,
+                                { opacity: 0, y: 50, scale: 0.95 },
+                                {
+                                    opacity: 1, y: 0, scale: 1,
+                                    duration: 0.6,
+                                    stagger: 0.1,
+                                    ease: 'power3.out',
+                                    overwrite: true,
+                                }
+                            );
+                        },
+                    });
+                }
+
+                // ============================================================
+                // PRICING CARDS — scale entrance
+                // ============================================================
+                const pricingCards = document.querySelectorAll('#pricing .reveal-item');
+                if (pricingCards.length) {
+                    ScrollTrigger.batch(pricingCards, {
+                        start: 'top 80%',
+                        once: true,
+                        onEnter: (batch) => {
+                            gsap.fromTo(batch,
+                                { opacity: 0, y: 40, scale: 0.9 },
+                                {
+                                    opacity: 1, y: 0, scale: 1,
+                                    duration: 0.7,
+                                    stagger: 0.15,
+                                    ease: 'back.out(1.4)',
+                                    overwrite: true,
+                                }
+                            );
+                        },
+                    });
+                }
+
+                // ============================================================
+                // FAQ ITEMS — slide in from left
+                // ============================================================
+                const faqItems = document.querySelectorAll('#faq .reveal-item');
+                if (faqItems.length) {
+                    ScrollTrigger.batch(faqItems, {
+                        start: 'top 80%',
+                        once: true,
+                        onEnter: (batch) => {
+                            gsap.fromTo(batch,
+                                { opacity: 0, x: -30 },
+                                {
+                                    opacity: 1, x: 0,
+                                    duration: 0.5,
+                                    stagger: 0.08,
+                                    ease: 'power2.out',
+                                    overwrite: true,
+                                }
+                            );
+                        },
+                    });
+                }
+
+                // ============================================================
+                // BOTTOM CTA — dramatic scale entrance
+                // ============================================================
+                const ctaSection = document.querySelector('.fp-cta-section');
+                if (ctaSection) {
+                    gsap.fromTo(ctaSection.querySelector('.max-w-3xl'),
+                        { opacity: 0, y: 60, scale: 0.92 },
+                        {
+                            opacity: 1, y: 0, scale: 1,
+                            duration: 1,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: ctaSection,
+                                start: 'top 70%',
+                                once: true,
+                            },
+                        }
+                    );
+                }
+
+                // ============================================================
+                // FOOTER — fade up
+                // ============================================================
+                const footer = document.querySelector('footer');
+                if (footer) {
+                    gsap.fromTo(footer,
+                        { opacity: 0, y: 30 },
+                        {
+                            opacity: 1, y: 0,
+                            duration: 0.8,
+                            ease: 'power2.out',
+                            scrollTrigger: {
+                                trigger: footer,
+                                start: 'top 90%',
+                                once: true,
+                            },
+                        }
+                    );
+                }
+
+                // ============================================================
+                // OBSERVER — Scroll direction nav hide/show
+                // ============================================================
+                const mainNav = document.getElementById('nx-hero-nav');
+                if (mainNav && window.innerWidth > 768) {
+                    let lastScrollTop = 0;
+                    Observer.create({
+                        type: 'scroll',
+                        onUp: () => {
+                            const st = window.pageYOffset;
+                            if (st > lastScrollTop && st > 200) {
+                                mainNav.classList.add('fp-nav-hidden');
+                                mainNav.classList.remove('fp-nav-visible');
+                            }
+                            lastScrollTop = st <= 0 ? 0 : st;
+                        },
+                        onDown: () => {
+                            const st = window.pageYOffset;
+                            if (st < lastScrollTop) {
+                                mainNav.classList.remove('fp-nav-hidden');
+                                mainNav.classList.add('fp-nav-visible');
+                            }
+                            lastScrollTop = st <= 0 ? 0 : st;
+                        },
+                        wheel: true,
+                        touch: true,
+                    });
+                }
+
+                // ============================================================
+                // OBSERVER — Mobile swipe carousel for sample content
+                // ============================================================
+                const sampleCarousel = document.querySelector('.snap-x');
+                if (sampleCarousel && window.innerWidth < 768) {
+                    Observer.create({
+                        target: sampleCarousel,
+                        type: 'touch',
+                        onLeft: () => sampleCarousel.scrollBy({ left: 300, behavior: 'smooth' }),
+                        onRight: () => sampleCarousel.scrollBy({ left: -300, behavior: 'smooth' }),
+                        tolerance: 10,
+                        preventDefault: true,
+                    });
+                }
+
+                // ============================================================
+                // MATCHMEDIA — Responsive breakpoint animations
+                // ============================================================
+                const mm = gsap.matchMedia();
+
+                mm.add('(min-width: 1024px)', () => {
+                    // Desktop-only: full hero pin with parallax
+                    return () => {};
                 });
-            });
 
-            // ============================================================
-            // GSAP STAGGER on Bento Grid tiles
-            // ============================================================
-            const bentoTiles = document.querySelectorAll('#features .reveal-item');
-            if (bentoTiles.length) {
-                gsap.fromTo(bentoTiles,
-                    { opacity: 0, y: 50, scale: 0.95 },
-                    {
-                        opacity: 1, y: 0, scale: 1,
-                        duration: 0.6,
-                        stagger: 0.1,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: '#features',
-                            start: 'top 75%',
-                            once: true,
-                        },
+                mm.add('(max-width: 767px)', () => {
+                    // Mobile-only: simplified hero (no pin, no magnetic)
+                    if (heroSection) {
+                        ScrollTrigger.getAll().forEach(st => {
+                            if (st.trigger === heroSection) st.kill();
+                        });
                     }
-                );
-            }
+                    return () => {};
+                });
 
-            // ============================================================
-            // PRICING CARDS — scale entrance
-            // ============================================================
-            const pricingCards = document.querySelectorAll('#pricing .reveal-item');
-            if (pricingCards.length) {
-                gsap.fromTo(pricingCards,
-                    { opacity: 0, y: 40, scale: 0.9 },
-                    {
-                        opacity: 1, y: 0, scale: 1,
-                        duration: 0.7,
-                        stagger: 0.15,
-                        ease: 'back.out(1.4)',
-                        scrollTrigger: {
-                            trigger: '#pricing',
-                            start: 'top 75%',
-                            once: true,
-                        },
-                    }
-                );
-            }
+                mm.add('(prefers-reduced-motion: reduce)', () => {
+                    // Kill all animations for reduced motion
+                    gsap.globalTimeline.clear();
+                    ScrollTrigger.getAll().forEach(st => st.kill());
+                    return () => {};
+                });
 
-            // ============================================================
-            // FAQ ITEMS — slide in from left
-            // ============================================================
-            const faqItems = document.querySelectorAll('#faq .reveal-item');
-            if (faqItems.length) {
-                gsap.fromTo(faqItems,
-                    { opacity: 0, x: -30 },
-                    {
-                        opacity: 1, x: 0,
-                        duration: 0.5,
-                        stagger: 0.08,
-                        ease: 'power2.out',
-                        scrollTrigger: {
-                            trigger: '#faq',
-                            start: 'top 75%',
-                            once: true,
-                        },
-                    }
-                );
-            }
+            }); // end gsap.context
 
-            // ============================================================
-            // BOTTOM CTA — dramatic scale entrance
-            // ============================================================
-            const ctaSection = document.querySelector('.fp-cta-section');
-            if (ctaSection) {
-                gsap.fromTo(ctaSection.querySelector('.max-w-3xl'),
-                    { opacity: 0, y: 60, scale: 0.92 },
-                    {
-                        opacity: 1, y: 0, scale: 1,
-                        duration: 1,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: ctaSection,
-                            start: 'top 70%',
-                            once: true,
-                        },
-                    }
-                );
-            }
-
-            // ============================================================
-            // FOOTER — fade up
-            // ============================================================
-            const footer = document.querySelector('footer');
-            if (footer) {
-                gsap.fromTo(footer,
-                    { opacity: 0, y: 30 },
-                    {
-                        opacity: 1, y: 0,
-                        duration: 0.8,
-                        ease: 'power2.out',
-                        scrollTrigger: {
-                            trigger: footer,
-                            start: 'top 90%',
-                            once: true,
-                        },
-                    }
-                );
-            }
         });
         </script>
     </body>

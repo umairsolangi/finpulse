@@ -6,6 +6,7 @@ use App\Enums\PostCategory;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Reaction;
+use App\Services\ActivityScoreService;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
@@ -22,6 +23,7 @@ class Feed extends Component
 
     // Create post fields
     public string $category = '';
+
     public string $body = '';
 
     // Comment input array keyed by post id
@@ -53,12 +55,14 @@ class Feed extends Component
 
         $this->reset(['category', 'body']);
         $this->resetPage();
+        $this->checkAndDispatchEarnedBadge();
     }
 
     public function toggleReaction(int $postId): void
     {
         if (auth()->guest()) {
             $this->redirect(route('login'));
+
             return;
         }
 
@@ -72,6 +76,7 @@ class Feed extends Component
                 'post_id' => $postId,
                 'user_id' => $userId,
             ]);
+            $this->checkAndDispatchEarnedBadge();
         }
     }
 
@@ -105,8 +110,17 @@ class Feed extends Component
 
         $this->commentBody[$postId] = '';
 
-        if (!in_array($postId, $this->openComments)) {
+        if (! in_array($postId, $this->openComments)) {
             $this->openComments[] = $postId;
+        }
+
+        $this->checkAndDispatchEarnedBadge();
+    }
+
+    protected function checkAndDispatchEarnedBadge(): void
+    {
+        if ($badge = app(ActivityScoreService::class)->pullLastAwardedBadge()) {
+            $this->dispatch('badge-earned', badge: $badge->name);
         }
     }
 

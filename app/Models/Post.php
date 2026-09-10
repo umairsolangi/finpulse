@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\PostCategory;
+use App\Services\ActivityScoreService;
 use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,18 @@ class Post extends Model
         return [
             'category' => PostCategory::class,
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::created(function (Post $post): void {
+            if ($post->user) {
+                app(ActivityScoreService::class)->recordActivity($post->user, 'post_created');
+            }
+        });
+
+        // NOTE: Activity score is intentionally NOT decremented when a post is deleted.
+        // Activity score reflects historical participation, not current state.
     }
 
     public function user(): BelongsTo

@@ -17,6 +17,7 @@
         <!-- GSAP for app animations -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
     </head>
     <body class="font-sans antialiased bg-[#F8FAFE] min-h-screen" x-data="{ sideOpen: false }">
         <div class="min-h-screen flex">
@@ -49,6 +50,11 @@
                            class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('feed') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
                             <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                             Feed
+                        </a>
+                        <a href="{{ route('leaderboard') }}" wire:navigate
+                           class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('leaderboard') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            Leaderboard
                         </a>
                     @endauth
                 </nav>
@@ -129,6 +135,10 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                             Feed
                         </a>
+                        <a href="{{ route('leaderboard') }}" wire:navigate @click="sideOpen = false" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('leaderboard') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            Leaderboard
+                        </a>
                     @endauth
                 </nav>
                 <div class="px-4 py-4 border-t border-white/10">
@@ -176,41 +186,140 @@
             </main>
         </div>
 
+        <!-- Global Badge Earned Toast Notification -->
+        <div
+            x-data="{ show: false, badge: '', message: '' }"
+            @badge-earned.window="badge = $event.detail.badge; message = 'You earned the ' + badge + ' badge!'; show = true; setTimeout(() => show = false, 5000)"
+            x-show="show"
+            x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            class="fixed bottom-5 right-5 z-50 max-w-sm w-full bg-white rounded-2xl shadow-2xl border border-amber-300/80 p-4 flex items-center gap-3 overflow-hidden"
+            style="display: none;"
+            x-cloak
+        >
+            <div class="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-300 flex items-center justify-center text-2xl shrink-0 text-amber-600 animate-bounce">
+                🏆
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="text-[11px] font-extrabold uppercase tracking-wider text-amber-800">Badge Unlocked!</p>
+                <p class="text-sm font-bold text-finpulse-navy truncate" x-text="message"></p>
+            </div>
+            <button @click="show = false" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg text-lg leading-none">
+                &times;
+            </button>
+        </div>
+
         <!-- App-wide scroll animation script -->
         <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-            gsap.registerPlugin(ScrollTrigger);
+            gsap.registerPlugin(ScrollTrigger, Observer);
 
-            // Animate all cards and sections on scroll
-            gsap.utils.toArray('.fp-animate-in').forEach((el, i) => {
-                gsap.fromTo(el,
-                    { opacity: 0, y: 30 },
-                    {
-                        opacity: 1, y: 0,
-                        duration: 0.6,
-                        delay: i * 0.05,
-                        ease: 'power3.out',
-                        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-                    }
-                );
-            });
+            // ============================================================
+            // GSAP CONTEXT — Livewire-safe cleanup
+            // ============================================================
+            const ctx = gsap.context(() => {
 
-            // Stagger cards in grids
-            gsap.utils.toArray('.fp-stagger-grid').forEach(grid => {
-                const cards = grid.children;
-                gsap.fromTo(cards,
-                    { opacity: 0, y: 40, scale: 0.95 },
-                    {
-                        opacity: 1, y: 0, scale: 1,
-                        duration: 0.5,
-                        stagger: 0.08,
-                        ease: 'power3.out',
-                        scrollTrigger: { trigger: grid, start: 'top 85%', once: true },
-                    }
-                );
-            });
+                // Animate all cards and sections on scroll using batch
+                ScrollTrigger.batch('.fp-animate-in', {
+                    start: 'top 90%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 30 },
+                            {
+                                opacity: 1, y: 0,
+                                duration: 0.6,
+                                stagger: 0.06,
+                                ease: 'power3.out',
+                                overwrite: true,
+                            }
+                        );
+                    },
+                });
+
+                // Stagger cards in grids using batch
+                ScrollTrigger.batch('.fp-stagger-grid > *', {
+                    start: 'top 88%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 40, scale: 0.95 },
+                            {
+                                opacity: 1, y: 0, scale: 1,
+                                duration: 0.5,
+                                stagger: 0.08,
+                                ease: 'power3.out',
+                                overwrite: true,
+                            }
+                        );
+                    },
+                });
+
+                // ============================================================
+                // OBSERVER — Desktop top bar auto-hide on scroll direction
+                // ============================================================
+                const topBar = document.getElementById('top-bar');
+                if (topBar && window.innerWidth >= 1024) {
+                    let lastScrollTop = 0;
+                    let ticking = false;
+
+                    Observer.create({
+                        type: 'scroll',
+                        onUp: () => {
+                            if (!ticking) {
+                                requestAnimationFrame(() => {
+                                    const st = window.pageYOffset;
+                                    if (st > lastScrollTop && st > 100) {
+                                        topBar.classList.add('fp-nav-hidden');
+                                        topBar.classList.remove('fp-nav-visible');
+                                    }
+                                    lastScrollTop = st <= 0 ? 0 : st;
+                                    ticking = false;
+                                });
+                                ticking = true;
+                            }
+                        },
+                        onDown: () => {
+                            if (!ticking) {
+                                requestAnimationFrame(() => {
+                                    const st = window.pageYOffset;
+                                    if (st < lastScrollTop) {
+                                        topBar.classList.remove('fp-nav-hidden');
+                                        topBar.classList.add('fp-nav-visible');
+                                    }
+                                    lastScrollTop = st <= 0 ? 0 : st;
+                                    ticking = false;
+                                });
+                                ticking = true;
+                            }
+                        },
+                        wheel: true,
+                        touch: true,
+                    });
+                }
+
+                // ============================================================
+                // MATCHMEDIA — Responsive animations
+                // ============================================================
+                const mm = gsap.matchMedia();
+
+                mm.add('(min-width: 1024px)', () => {
+                    // Desktop-only animations here
+                    return () => {};
+                });
+
+                mm.add('(max-width: 767px)', () => {
+                    // Mobile-only animations here
+                    return () => {};
+                });
+
+            }); // end gsap.context
         });
         </script>
     </body>
