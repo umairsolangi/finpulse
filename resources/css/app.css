@@ -9,12 +9,23 @@
 @tailwind components;
 @tailwind utilities;
 
+[x-cloak] { display: none !important; }
+
+#community-topics {
+    background-color: #F8FAFC !important;
+}
+
 /* ============================================================
    BASE LAYER
    ============================================================ */
 @layer base {
     html {
         scroll-behavior: smooth;
+        background-color: #071a12;
+    }
+
+    body {
+        background-color: #071a12;
     }
 
     :focus-visible {
