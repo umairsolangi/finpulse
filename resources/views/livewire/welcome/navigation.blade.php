@@ -6,6 +6,13 @@
     >
         Learn
     </a>
+    <a
+        href="{{ route('courses.index') }}"
+        wire:navigate
+        class="px-4 py-2 text-finpulse-navy hover:text-finpulse-gold font-semibold text-sm transition-colors duration-200"
+    >
+        Courses
+    </a>
     @auth
         <a
             href="{{ url('/dashboard') }}"

@@ -2,35 +2,26 @@
 
 namespace App\Models;
 
-use Database\Factories\CourseProgressFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CourseProgress extends Model
+class Certificate extends Model
 {
-    /** @use HasFactory<CourseProgressFactory> */
     use HasFactory;
-
-    protected $table = 'course_progress';
 
     protected $fillable = [
         'user_id',
         'course_id',
-        'chapter_id',
-        'completed_at',
+        'issued_at',
+        'certificate_number',
     ];
 
     protected function casts(): array
     {
         return [
-            'completed_at' => 'datetime',
+            'issued_at' => 'datetime',
         ];
-    }
-
-    public function getIsCompletedAttribute(): bool
-    {
-        return ! is_null($this->completed_at);
     }
 
     public function user(): BelongsTo
@@ -43,8 +34,13 @@ class CourseProgress extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
-    public function chapter(): BelongsTo
+    public static function generateCertificateNumber(): string
     {
-        return $this->belongsTo(CourseChapter::class, 'chapter_id');
+        $year = now()->format('Y');
+        do {
+            $number = sprintf('FP-%s-%06d', $year, random_int(100000, 999999));
+        } while (static::where('certificate_number', $number)->exists());
+
+        return $number;
     }
 }

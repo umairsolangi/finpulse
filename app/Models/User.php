@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['name', 'email', 'password', 'activity_score', 'onboarded_at'])]
+#[Fillable(['name', 'email', 'password', 'activity_score', 'onboarded_at', 'last_login_at'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -29,6 +29,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
             'password' => 'hashed',
             'activity_score' => 'integer',
             'onboarded_at' => 'datetime',
@@ -85,5 +86,15 @@ class User extends Authenticatable
     public function interests(): HasMany
     {
         return $this->hasMany(UserInterest::class, 'user_id');
+    }
+
+    public function certificates(): HasMany
+    {
+        return $this->hasMany(Certificate::class, 'user_id')->latest('issued_at');
+    }
+
+    public function quizAttempts(): HasMany
+    {
+        return $this->hasMany(QuizAttempt::class, 'user_id')->latest();
     }
 }

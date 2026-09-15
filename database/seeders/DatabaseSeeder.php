@@ -9,6 +9,9 @@ use App\Enums\PostCategory;
 use App\Enums\SkillLevel;
 use App\Models\Comment;
 use App\Models\ContentItem;
+use App\Models\Course;
+use App\Models\CourseChapter;
+use App\Models\CourseProgress;
 use App\Models\Post;
 use App\Models\Reaction;
 use App\Models\User;
@@ -197,5 +200,77 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        // 7. Seed Sample Courses & Chapters for LMS Core
+        $sampleItems = ContentItem::take(4)->get();
+
+        $bootcampCourse = Course::create([
+            'title' => 'Pakistan Stock Exchange (PSX) Beginner Bootcamp',
+            'slug' => 'psx-beginner-bootcamp',
+            'description' => 'A comprehensive introductory course on navigating the Pakistan Stock Exchange, opening a CDC sub-account, reading quotes, and executing your first trade with confidence.',
+            'tier' => ContentTier::FREE,
+            'language' => Language::ENGLISH,
+            'skill_level' => SkillLevel::BEGINNER,
+            'created_by' => $adminUser->id,
+        ]);
+
+        $chapter1 = CourseChapter::create([
+            'course_id' => $bootcampCourse->id,
+            'content_item_id' => $sampleItems[0]?->id,
+            'title' => 'Understanding Capital Markets & What the PSX Does',
+            'order' => 1,
+        ]);
+
+        $chapter2 = CourseChapter::create([
+            'course_id' => $bootcampCourse->id,
+            'content_item_id' => $sampleItems[1]?->id,
+            'title' => 'Broker Selection, NCCPL, and CDC Account Setup',
+            'order' => 2,
+        ]);
+
+        $chapter3 = CourseChapter::create([
+            'course_id' => $bootcampCourse->id,
+            'content_item_id' => $sampleItems[2]?->id,
+            'title' => 'How to Place Buy and Sell Orders via Online Terminals',
+            'order' => 3,
+        ]);
+
+        $chapter4 = CourseChapter::create([
+            'course_id' => $bootcampCourse->id,
+            'content_item_id' => $sampleItems[3]?->id,
+            'title' => 'Risk Management and Capital Preservation Rules',
+            'order' => 4,
+        ]);
+
+        // Seed initial progress for Test User on Bootcamp chapter 1
+        CourseProgress::create([
+            'user_id' => $testUser->id,
+            'course_id' => $bootcampCourse->id,
+            'chapter_id' => $chapter1->id,
+            'completed_at' => now(),
+        ]);
+
+        // Seed a Paid Tier Course
+        $paidCourse = Course::create([
+            'title' => 'Advanced Equity Valuation & Sector Financial Modeling',
+            'slug' => 'advanced-equity-valuation',
+            'description' => 'Deep dive into DCF modeling, dividend discount methods, and financial statement analysis of KSE-100 listed firms.',
+            'tier' => ContentTier::PAID,
+            'language' => Language::ENGLISH,
+            'skill_level' => SkillLevel::ADVANCED,
+            'created_by' => $adminUser->id,
+        ]);
+
+        CourseChapter::create([
+            'course_id' => $paidCourse->id,
+            'title' => 'Financial Statement Normalization for High-Inflation Economies',
+            'order' => 1,
+        ]);
+
+        CourseChapter::create([
+            'course_id' => $paidCourse->id,
+            'title' => 'Building a Discounted Cash Flow (DCF) Model',
+            'order' => 2,
+        ]);
     }
 }

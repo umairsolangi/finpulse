@@ -17,4 +17,15 @@ return [
         'reaction_given' => 1,
         'content_completed' => 3, // Stub for future course/content completion tracking
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Quiz Pass Threshold Percentage
+    |--------------------------------------------------------------------------
+    |
+    | Defines the minimum score percentage required for a user to pass a quiz
+    | and unlock chapter completion.
+    |
+    */
+    'quiz_pass_percentage' => 70,
 ];
