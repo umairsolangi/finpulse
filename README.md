@@ -29,6 +29,47 @@ This isn't a copy of any single competitor — it borrows proven pieces from pla
 
 This stack was chosen deliberately over a Next.js + Supabase split because the team is already experienced with Laravel from prior client work, and it's a solo/small-team build — one codebase is the right tradeoff here, not a limitation.
 
+# Core features
+
+### Community and engagement
+- Open community feed for discussions and updates
+- Free explainer content for beginners
+- Glossary and short learning resources
+- Badges and lightweight gamification
+
+### Learning platform
+- Structured courses with chapters
+- Quizzes and progress tracking
+- Completion certificates
+- Weekly research summaries in simple language
+
+### Premium features
+- Paid subscriptions for advanced research and courses
+- Paid live webinars and sessions
+- 1-on-1 expert sessions
+- Direct path to brokerage account signup
+
+### Platform capabilities
+- Laravel monolith for backend and frontend
+- Blade and Livewire for interactive UI
+- Laravel Breeze authentication
+- MySQL database
+- Pest testing
+
+## User roles
+
+- **Guest** — can browse free content only
+- **Free Member** — can access the community and free learning content
+- **Paid Subscriber** — gets premium research, courses, and live sessions
+- **Instructor / Content Manager** — uploads and organizes content
+- **Moderator** — manages community activity
+- **Admin** — full access for a small trusted team
+
+## Project status
+
+FinPulse is in early development. The current focus is Phase 1: building the community feed and free content experience.
+
+
 ## User roles
 
 - **Guest** — browses free content only
