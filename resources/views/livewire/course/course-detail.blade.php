@@ -84,8 +84,8 @@
             </div>
         </div>
 
-        <!-- Locked Teaser Paywall Stub (when not free tier) -->
-        @if(!$isFreeTier)
+        <!-- Locked Teaser Paywall Stub (when not accessible) -->
+        @if(!$canAccess)
             <div class="bg-gray-900 text-white rounded-xl p-8 text-center border border-gray-800 space-y-4 my-4 shadow-md fp-animate-in">
                 <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto fp-float">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@
                         </a>
                     @else
                         <a
-                            href="{{ route('dashboard') }}"
+                            href="{{ route('pricing') }}"
                             wire:navigate
                             class="px-5 py-2.5 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                         >
@@ -135,7 +135,7 @@
         @endif
 
         <!-- Progress & Action Bar (for free tier or viewable) -->
-        @if($isFreeTier && $totalChapters > 0)
+        @if($canAccess && $totalChapters > 0)
             <div class="bg-gray-50 rounded-xl p-5 border border-gray-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div class="flex-1 w-full sm:w-auto space-y-2">
                     <div class="flex items-center justify-between text-xs font-semibold text-finpulse-navy">
@@ -213,7 +213,7 @@
             @forelse($chapters as $chapter)
                 @php
                     $isDone = in_array($chapter->id, $completedChapterIds);
-                    $canOpen = $isFreeTier;
+                    $canOpen = $canAccess;
                 @endphp
                 <div class="p-4 sm:p-5 flex items-center justify-between gap-4 transition-colors duration-150 {{ $isDone ? 'bg-emerald-50/40 hover:bg-emerald-50/70' : 'hover:bg-gray-50' }}">
                     <div class="flex items-center gap-3.5 min-w-0">

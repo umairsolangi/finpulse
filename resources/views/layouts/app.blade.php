@@ -62,6 +62,22 @@
                     </svg>
                     Research
                 </a>
+                <a href="{{ route('live-sessions.index') }}" wire:navigate
+                    class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('live-sessions.*') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Live Sessions
+                </a>
+                <a href="{{ route('pricing') }}" wire:navigate
+                    class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('pricing') ? 'bg-white/15 text-[#C89B3C]' : 'text-[#C89B3C] hover:text-amber-300 hover:bg-white/5' }}">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Pricing & Plans
+                </a>
                 @auth
                     <a href="{{ route('dashboard') }}" wire:navigate
                         class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
@@ -108,10 +124,13 @@
                             class="flex-1 text-center px-3 py-1.5 text-xs font-semibold text-white/60 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-all">
                             Profile
                         </a>
-                        <button wire:click="logout"
-                            class="flex-1 text-center px-3 py-1.5 text-xs font-semibold text-white/60 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-all">
-                            Log Out
-                        </button>
+                        <form method="POST" action="{{ route('logout') }}" class="flex-1">
+                            @csrf
+                            <button type="submit"
+                                class="w-full text-center px-3 py-1.5 text-xs font-semibold text-white/60 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-all">
+                                Log Out
+                            </button>
+                        </form>
                     </div>
                 @else
                     <div class="flex gap-2">
@@ -199,6 +218,22 @@
                     </svg>
                     Research
                 </a>
+                <a href="{{ route('live-sessions.index') }}" wire:navigate @click="sideOpen = false"
+                    class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('live-sessions.*') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Live Sessions
+                </a>
+                <a href="{{ route('pricing') }}" wire:navigate @click="sideOpen = false"
+                    class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('pricing') ? 'bg-white/15 text-[#C89B3C]' : 'text-[#C89B3C] hover:text-amber-300 hover:bg-white/5' }}">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Pricing & Plans
+                </a>
                 @auth
                     <a href="{{ route('dashboard') }}" wire:navigate @click="sideOpen = false"
                         class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('dashboard') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
@@ -240,9 +275,13 @@
                     <div class="flex gap-2">
                         <a href="{{ route('profile') }}" wire:navigate @click="sideOpen = false"
                             class="flex-1 text-center px-3 py-1.5 text-xs font-semibold text-white/60 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-all">Profile</a>
-                        <button wire:click="logout"
-                            class="flex-1 text-center px-3 py-1.5 text-xs font-semibold text-white/60 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-all">Log
-                            Out</button>
+                        <form method="POST" action="{{ route('logout') }}" class="flex-1">
+                            @csrf
+                            <button type="submit"
+                                class="w-full text-center px-3 py-1.5 text-xs font-semibold text-white/60 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-all">
+                                Log Out
+                            </button>
+                        </form>
                     </div>
                 @endauth
             </div>
@@ -277,6 +316,26 @@
                 @endif
 
                 {{ $slot }}
+
+                <!-- Global Compliance & Legal Footer -->
+                <footer class="mt-16 border-t border-gray-200/80 bg-white/80 backdrop-blur-sm py-8 px-4 sm:px-6 lg:px-8 text-xs text-gray-500">
+                    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-finpulse-navy">FinPulse</span>
+                            <span>•</span>
+                            <span>Financial Literacy & Research Platform</span>
+                        </div>
+                        <div class="flex items-center gap-4 flex-wrap">
+                            <a href="{{ route('pricing') }}" wire:navigate class="hover:text-finpulse-navy font-semibold transition-colors">Pricing</a>
+                            <a href="{{ route('terms') }}" wire:navigate class="hover:text-finpulse-navy transition-colors">Terms of Service</a>
+                            <a href="{{ route('privacy') }}" wire:navigate class="hover:text-finpulse-navy transition-colors">Privacy Policy</a>
+                            <a href="{{ route('refund-policy') }}" wire:navigate class="hover:text-finpulse-navy transition-colors">Refund & Cancellation</a>
+                        </div>
+                    </div>
+                    <div class="max-w-7xl mx-auto mt-4 pt-4 border-t border-gray-100 text-[11px] text-gray-400 text-center sm:text-left leading-relaxed">
+                        Disclaimer: FinPulse is an educational platform. Market analyses and valuation frameworks are provided solely for financial literacy and do not constitute registered investment advice.
+                    </div>
+                </footer>
             </div>
         </main>
     </div>

@@ -25,8 +25,8 @@
 
     <!-- Main Content Container -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-10 space-y-8 fp-animate-in">
-        @if(!$isFreeTier)
-            <!-- Locked Teaser State (when tier is not free) -->
+        @if(!$canAccess)
+            <!-- Locked Teaser State (when access is not granted) -->
             <div class="bg-gray-900 text-white rounded-xl p-8 text-center border border-gray-800 space-y-4 shadow-md fp-animate-in">
                 <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto fp-float">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,7 +64,7 @@
                         </a>
                     @else
                         <a
-                            href="{{ route('dashboard') }}"
+                            href="{{ route('pricing') }}"
                             wire:navigate
                             class="px-5 py-2.5 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                         >

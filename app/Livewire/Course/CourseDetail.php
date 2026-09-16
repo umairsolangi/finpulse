@@ -77,6 +77,7 @@ class CourseDetail extends Component
         }
 
         $isFreeTier = ($this->course->tier?->value ?? $this->course->tier) === ContentTier::FREE->value;
+        $canAccess = $isFreeTier || (auth()->check() && auth()->user()->hasPaidAccess());
 
         return view('livewire.course.course-detail', [
             'course' => $this->course,
@@ -89,6 +90,7 @@ class CourseDetail extends Component
             'targetChapter' => $targetChapter,
             'actionType' => $actionType,
             'isFreeTier' => $isFreeTier,
+            'canAccess' => $canAccess,
             'certificate' => $certificate,
         ]);
     }

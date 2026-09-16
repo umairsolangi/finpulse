@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['name', 'email', 'password', 'activity_score', 'onboarded_at', 'last_login_at'])]
+#[Fillable(['name', 'email', 'password', 'activity_score', 'onboarded_at', 'last_login_at', 'brokerage_referral_clicked_at'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -33,6 +33,7 @@ class User extends Authenticatable
             'password' => 'hashed',
             'activity_score' => 'integer',
             'onboarded_at' => 'datetime',
+            'brokerage_referral_clicked_at' => 'datetime',
         ];
     }
 
@@ -96,5 +97,60 @@ class User extends Authenticatable
     public function quizAttempts(): HasMany
     {
         return $this->hasMany(QuizAttempt::class, 'user_id')->latest();
+    }
+
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscription::class, 'user_id')->latest();
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class, 'user_id')->latest();
+    }
+
+    public function liveSessionBookings(): HasMany
+    {
+        return $this->hasMany(LiveSessionBooking::class, 'user_id');
+    }
+
+    public function hostedLiveSessions(): HasMany
+    {
+        return $this->hasMany(LiveSession::class, 'host_id');
+    }
+
+    /**
+     * Check if the user has an active, unexpired subscription.
+     */
+    public function hasActiveSubscription(): bool
+    {
+        return $this->subscriptions()
+            ->whereIn('status', ['active', 'cancelled'])
+            ->where('ends_at', '>', now())
+            ->exists();
+    }
+
+    /**
+     * Get current active subscription instance if any.
+     */
+    public function activeSubscription(): ?Subscription
+    {
+        return $this->subscriptions()
+            ->whereIn('status', ['active', 'cancelled'])
+            ->where('ends_at', '>', now())
+            ->latest('ends_at')
+            ->first();
+    }
+
+    /**
+     * Determine if user has full paid tier access (active subscription or privileged role).
+     */
+    public function hasPaidAccess(): bool
+    {
+        if ($this->hasActiveSubscription()) {
+            return true;
+        }
+
+        return $this->hasRole(['Paid Subscriber', 'Instructor', 'Admin']);
     }
 }

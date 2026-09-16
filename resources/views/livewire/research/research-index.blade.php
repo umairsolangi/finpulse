@@ -58,7 +58,7 @@
                 $isFree = $item->tier->value === 'free';
                 $isRegistered = $item->tier->value === 'registered';
                 $isPaid = $item->tier->value === 'paid';
-                $userCanAccess = $isFree || (auth()->check() && ($isRegistered || auth()->user()->hasRole(['Paid Subscriber', 'Instructor', 'Admin'])));
+                $userCanAccess = $isFree || (auth()->check() && ($isRegistered || auth()->user()->hasPaidAccess()));
             @endphp
             <div class="bg-white rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between overflow-hidden group">
                 <div class="p-6">
@@ -75,19 +75,15 @@
                         </span>
                     </div>
 
-                    <a href="{{ route('research.show', $item->slug) }}" wire:navigate class="block group">
-                        <h2 class="text-xl font-bold text-[#0B1A33] font-serif group-hover:text-[#C89B3C] transition-colors line-clamp-2 leading-snug">
+                    <h3 class="font-bold text-lg text-finpulse-navy group-hover:text-[#C89B3C] transition-colors leading-snug line-clamp-2">
+                        <a href="{{ route('research.show', $item->slug) }}" wire:navigate>
                             {{ $item->title }}
-                        </h2>
-                    </a>
+                        </a>
+                    </h3>
 
-                    {{-- Executive Summary Callout --}}
-                    <div class="mt-4 p-3 bg-gray-50 rounded-xl border-l-4 border-[#0B1A33]">
-                        <p class="text-xs font-semibold text-[#0B1A33] uppercase tracking-wider mb-1">Executive Summary</p>
-                        <p class="text-xs text-gray-600 line-clamp-3 leading-relaxed">
-                            {{ Str::limit(strip_tags($item->body), 150) }}
-                        </p>
-                    </div>
+                    <p class="text-xs text-gray-500 mt-2 line-clamp-3 leading-relaxed">
+                        {{ $item->summary ?? Str::limit(strip_tags($item->body), 120) }}
+                    </p>
 
                     {{-- Gating / Access indicator --}}
                     @if(!$userCanAccess)
@@ -99,7 +95,7 @@
                                 @if(!auth()->check())
                                     <span>Full report requires {{ $isPaid ? 'a Paid subscription' : 'free registration' }}. <a href="{{ route('login') }}" class="font-bold underline text-[#0B1A33]">Log in</a> or <a href="{{ route('register') }}" class="font-bold underline text-[#C89B3C]">sign up</a>.</span>
                                 @else
-                                    <span>Institutional tier summary. Premium subscription required to unlock complete financial models.</span>
+                                    <span>Institutional tier summary. <a href="{{ route('pricing') }}" class="font-bold underline text-[#0B1A33]">Upgrade to Paid</a> to unlock complete financial models.</span>
                                 @endif
                             </div>
                         </div>

@@ -194,6 +194,7 @@ class ChapterViewer extends Component
         }
 
         $isFreeTier = ($this->course->tier?->value ?? $this->course->tier) === ContentTier::FREE->value;
+        $canAccess = $isFreeTier || (auth()->check() && auth()->user()->hasPaidAccess());
 
         return view('livewire.course.chapter-viewer', [
             'course' => $this->course,
@@ -207,6 +208,7 @@ class ChapterViewer extends Component
             'isLastChapter' => $isLastChapter,
             'completedChapterIds' => $completedChapterIds,
             'isFreeTier' => $isFreeTier,
+            'canAccess' => $canAccess,
         ]);
     }
 }

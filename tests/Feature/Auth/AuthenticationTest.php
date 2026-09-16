@@ -72,3 +72,15 @@ test('users can logout', function () {
 
     $this->assertGuest();
 });
+
+test('users can logout via post route', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user);
+
+    $response = $this->post('/logout');
+
+    $response->assertRedirect('/');
+
+    $this->assertGuest();
+});

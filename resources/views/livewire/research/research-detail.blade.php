@@ -101,11 +101,36 @@
                                 </a>
                             </div>
                         @else
-                            <div class="text-xs text-amber-700 bg-amber-50 px-4 py-2 rounded-lg border border-amber-200">
-                                Contact membership support to upgrade to a Paid Subscriber tier.
-                            </div>
+                            <a href="{{ route('pricing') }}" wire:navigate class="px-5 py-2.5 text-xs font-bold text-finpulse-navy bg-[#C89B3C] hover:bg-amber-400 rounded-xl transition-all shadow-sm">
+                                Upgrade to Paid Subscriber
+                            </a>
                         @endguest
                     </div>
+            @endif
+
+            {{-- Brokerage Partner Referral CTA Banner --}}
+            @if($canAccess)
+                <div class="mt-10 p-6 rounded-2xl bg-gradient-to-r from-[#0B1A33] to-[#12284d] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md border border-gray-800">
+                    <div class="space-y-1.5">
+                        <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 bg-[#C89B3C]/20 text-amber-300 rounded-full border border-[#C89B3C]/40">
+                            Brokerage Partner Offer
+                        </span>
+                        <h4 class="font-bold text-base text-white">Ready to execute your investment thesis?</h4>
+                        <p class="text-xs text-gray-300 max-w-lg">
+                            Open a digital PSX trading account with our SECP-regulated partner brokerage and unlock reduced commission rates.
+                        </p>
+                    </div>
+                    <a
+                        href="{{ route('referral.brokerage') }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="shrink-0 px-5 py-2.5 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-xs rounded-xl shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-1.5"
+                    >
+                        <span>Open Trading Account</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
                 </div>
             @endif
         </div>

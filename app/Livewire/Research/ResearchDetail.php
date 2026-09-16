@@ -29,7 +29,7 @@ class ResearchDetail extends Component
         $canAccess = $isFree || (
             auth()->check() && (
                 $isRegistered ||
-                auth()->user()->hasRole(['Paid Subscriber', 'Instructor', 'Admin'])
+                auth()->user()->hasPaidAccess()
             )
         );
 

@@ -55,6 +55,15 @@ class ResearchCreate extends Component
 
     public function save(): mixed
     {
+        abort_unless(
+            auth()->check() && (
+                auth()->user()->can('content.publish') ||
+                auth()->user()->hasRole(['Instructor', 'Admin'])
+            ),
+            403,
+            'Unauthorized to publish research.'
+        );
+
         $this->validate();
 
         $publishedAtDate = $this->publishedAt ? Carbon::parse($this->publishedAt) : now();

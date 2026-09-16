@@ -25,6 +25,8 @@
             };
 
             $isFreeTier = ($item->tier?->value ?? $item->tier) === 'free';
+            $isRegistered = ($item->tier?->value ?? $item->tier) === 'registered';
+            $canAccess = $isFreeTier || (auth()->check() && ($isRegistered || auth()->user()->hasPaidAccess()));
         @endphp
 
         <div class="space-y-4">
@@ -69,7 +71,7 @@
         </div>
 
         <!-- Content Body / Paywall Locked Teaser -->
-        @if(!$isFreeTier)
+        @if(!$canAccess)
             <!-- Locked Teaser State -->
             <div class="bg-gray-900 text-white rounded-xl p-8 text-center border border-gray-800 space-y-4 my-4 shadow-md fp-animate-in">
                 <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto fp-float">
@@ -108,7 +110,7 @@
                         </a>
                     @else
                         <a
-                            href="{{ route('dashboard') }}"
+                            href="{{ route('pricing') }}"
                             wire:navigate
                             class="px-5 py-2.5 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                         >
