@@ -53,115 +53,112 @@
     <div id="hero-particles" class="fixed inset-0 pointer-events-none z-[1] overflow-hidden" aria-hidden="true"></div>
 
     <!-- =====================================================
-             SECTION 2 — ABOUT FINPULSE (LIGHT MODE SHOWCASE)
+             SECTION 2 — ABOUT US (EXACT DESIGN AS ATTACHED)
              ===================================================== -->
-    <section id="about"
-        class="py-24 relative overflow-hidden bg-white text-[#0F172A] font-['DM_Sans',sans-serif] fp-parallax-section">
-        <!-- Light Grid Background Overlay -->
-        <div class="absolute inset-0 pointer-events-none opacity-40 z-0" aria-hidden="true"
-            style="background-image: linear-gradient(rgba(100, 116, 139, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(100, 116, 139, 0.1) 1px, transparent 1px); background-size: 80px 80px;">
-        </div>
+    <section id="about" class="py-20 lg:py-28 relative bg-white font-['DM_Sans',sans-serif] overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-        <!-- Soft Ambient Glow -->
-        <div
-            class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#00C48C]/10 rounded-full blur-[100px] pointer-events-none">
-        </div>
+                <!-- Left Column: Staggered Image & Badge Collage (6 cols) -->
+                <div class="lg:col-span-6 relative reveal-item">
+                    <div class="relative w-full max-w-md sm:max-w-lg mx-auto">
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Centered Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-14 reveal-item">
-
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
-                    See FinPulse in <em class="not-italic text-[#00C48C]">Action</em>
-                </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
-                <p class="mt-5 text-base sm:text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
-                    Discover how our structured learning, active investor community, and actionable financial insights
-                    empower you to make smarter market decisions.
-                </p>
-            </div>
-
-            <!-- 3D Scroll-Animated Browser Mockup Box -->
-            <div x-data="{
-                        scrollProgress: 0,
-                        updateProgress() {
-                            const rect = $el.getBoundingClientRect();
-                            const winH = window.innerHeight;
-                            const progress = Math.min(Math.max((winH - rect.top) / (winH + rect.height), 0), 1);
-                            this.scrollProgress = progress;
-                        }
-                    }" @scroll.window="updateProgress()" x-init="updateProgress()"
-                class="max-w-5xl mx-auto perspective-1000 reveal-item">
-                <div class="transition-all duration-300 ease-out transform rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.12)] border border-slate-200 bg-white"
-                    :style="`transform: perspective(1000px) rotateX(${(1 - scrollProgress) * 10}deg) scale(${0.92 + (scrollProgress * 0.08)}); opacity: ${Math.min(scrollProgress * 1.4, 1)};`">
-                    <!-- Browser Header Window Bar -->
-                    <div
-                        class="px-5 py-3.5 bg-[#0F172A] border-b border-slate-800 flex items-center justify-between gap-4">
-                        <!-- Left: Window Control Buttons -->
-                        <div class="flex items-center gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                            <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+                        <!-- Top Floating Stat Card (30,000+) -->
+                        <div class="absolute -top-6 sm:-top-8 right-1 sm:right-4 z-30 bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-[0_20px_45px_rgba(15,23,42,0.1)] border border-slate-100/90 w-52 sm:w-64 transform hover:-translate-y-1 transition-transform duration-300">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl sm:text-2xl font-black text-[#0F172A] tracking-tight">30,000+</span>
+                                <span class="w-6 h-6 rounded-full bg-emerald-50 text-[#00C48C] flex items-center justify-center font-bold text-sm">
+                                    ↗
+                                </span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 font-medium leading-relaxed mt-1.5 mb-3">
+                                Active retail learners in Pakistan with 5 star ratings and happy investors.
+                            </p>
+                            <!-- Overlapping Avatar Stack -->
+                            <div class="flex items-center -space-x-2 overflow-hidden pt-1 border-t border-slate-100">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80" alt="Learner">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="Learner">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="Learner">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80" alt="Learner">
+                                <span class="inline-flex items-center justify-center h-6 w-6 rounded-full ring-2 ring-white bg-emerald-100 text-[9px] font-bold text-[#00A86B]">
+                                    +8k
+                                </span>
+                            </div>
                         </div>
 
-                        <!-- Center: URL Pill Address Bar -->
-                        <div
-                            class="flex-1 max-w-sm mx-auto bg-slate-800/90 border border-slate-700 rounded-lg px-3 py-1 text-xs text-slate-300 flex items-center justify-center gap-2 font-mono">
-                            <svg class="w-3.5 h-3.5 text-[#00C48C]" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                            </svg>
-                            <span>finpulse.pk / platform-demo</span>
+                        <!-- Staggered Two-Image Collage -->
+                        <div class="grid grid-cols-2 gap-4 sm:gap-6 pt-10 sm:pt-12 items-start">
+                            <!-- Left Image (Square / Elevated) -->
+                            <div class="relative group pt-4">
+                                <div class="rounded-3xl overflow-hidden shadow-[0_16px_36px_rgba(15,23,42,0.08)] border border-slate-100 bg-slate-50 aspect-square">
+                                    <img src="{{ asset('images/about_finpulse_learn.jpg') }}"
+                                         alt="FinPulse Learning Hub on Tablet"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
+                                </div>
+                            </div>
+
+                            <!-- Right Image (Tall / Staggered Downward) -->
+                            <div class="relative group pt-12 sm:pt-14">
+                                <div class="rounded-3xl overflow-hidden shadow-[0_20px_45px_rgba(15,23,42,0.12)] border border-slate-100 bg-slate-50 aspect-[3/4] sm:aspect-[3/4.2]">
+                                    <img src="{{ asset('images/about_finpulse_investor.jpg') }}"
+                                         alt="FinPulse Retail Investor with App"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Right: Window Label -->
-                        <div
-                            class="hidden sm:flex items-center gap-2 text-xs text-slate-400 font-semibold uppercase tracking-wider">
-                            <span>FinPulse Platform Showcase</span>
+                        <!-- Bottom Floating Rating Card (Best ratings) -->
+                        <div class="absolute -bottom-5 sm:-bottom-7 left-1 sm:left-4 z-30 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-[0_15px_35px_rgba(15,23,42,0.09)] border border-slate-100/90 w-44 sm:w-48 transform hover:-translate-y-1 transition-transform duration-300">
+                            <div class="text-[11px] font-bold text-slate-700 tracking-wide mb-1.5">
+                                Best ratings
+                            </div>
+                            <div class="flex items-center gap-1.5 text-base">
+                                <span title="Poor">😡</span>
+                                <span title="Fair">😐</span>
+                                <span title="Good">🙂</span>
+                                <span title="Great">😊</span>
+                                <span class="relative inline-block" title="Loved it">
+                                    <span class="text-lg">🤩</span>
+                                    <span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#00C48C] ring-2 ring-white"></span>
+                                </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Video Showcase Box (Behaves like a GIF) -->
-                    <div class="relative aspect-video bg-black overflow-hidden select-none"
-                        oncontextmenu="return false;">
-                        <video class="w-full h-full object-cover pointer-events-none" autoplay muted loop playsinline
-                            disablePictureInPicture disableremoteplayback preload="auto" aria-hidden="true"
-                            tabindex="-1">
-                            <source src="{{ asset('about.mp4') }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-
-                        <!-- Transparent overlay to prevent any interaction or right click menu -->
-                        <div class="absolute inset-0 z-10 bg-transparent pointer-events-auto cursor-default"></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Bottom Features Quick Badges -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16 reveal-item">
-                <div
-                    class="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-md text-center hover:border-[#00C48C]/50 hover:shadow-xl transition-all duration-300">
-                    <div class="text-3xl mb-3">🎓</div>
-                    <h3 class="font-bold text-[#0F172A] text-base mb-1">Structured Courses</h3>
-                    <p class="text-xs text-[#475569]">Step-by-step financial modules built for all experience levels.
-                    </p>
+                <!-- Right Column: Editorial Text Content (6 cols) -->
+                <div class="lg:col-span-6 flex flex-col justify-center pl-0 lg:pl-8 reveal-item">
+                    <!-- Eyebrow: "A  B  I  T" -->
+                    <div class="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-[#00A86B] mb-2">
+                        A &nbsp;B &nbsp;I &nbsp;T
+                    </div>
+
+                    <!-- Big Title: "ABOUT US" -->
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0F172A] tracking-tight uppercase leading-none mb-6">
+                        ABOUT US
+                    </h2>
+
+                    <!-- Narrative Paragraphs -->
+                    <div class="space-y-4 text-slate-500 text-sm sm:text-base leading-relaxed max-w-lg mb-8 font-normal">
+                        <p>
+                            Pakistan has over 240 million people, yet fewer than 0.2% invest in the capital markets. FinPulse was founded to dismantle those barriers — turning intimidating financial jargon, volatile PSX market swings, and opaque broker systems into structured, accessible education.
+                        </p>
+                        <p>
+                            From mastering the fundamentals of CDC accounts, mutual funds, and KSE-100 equities to conducting fundamental balance sheet analysis and Shariah-compliant screening, we empower everyday Pakistanis to build lasting wealth with clarity and real conviction.
+                        </p>
+                    </div>
+
+                    <!-- Unique Stylized Button: "EXPLORE MORE" with angular cut -->
+                    <div>
+                        <a href="#how-it-works"
+                           class="inline-flex items-center justify-center text-white font-bold text-xs sm:text-sm uppercase tracking-wider px-8 py-4 bg-gradient-to-r from-[#00C48C] to-[#00A86B] hover:from-[#00D084] hover:to-[#00B875] shadow-[0_12px_28px_rgba(0,196,140,0.35)] hover:shadow-[0_16px_36px_rgba(0,196,140,0.5)] transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                           style="border-radius: 10px; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 0 100%);">
+                            EXPLORE MORE
+                        </a>
+                    </div>
                 </div>
 
-                <div
-                    class="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-md text-center hover:border-[#00C48C]/50 hover:shadow-xl transition-all duration-300">
-                    <div class="text-3xl mb-3">👥</div>
-                    <h3 class="font-bold text-[#0F172A] text-base mb-1">Active Community</h3>
-                    <p class="text-xs text-[#475569]">Real-time market discussions, discussions, and investor
-                        networking.</p>
-                </div>
-
-                <div
-                    class="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-md text-center hover:border-[#00C48C]/50 hover:shadow-xl transition-all duration-300">
-                    <div class="text-3xl mb-3">📈</div>
-                    <h3 class="font-bold text-[#0F172A] text-base mb-1">Actionable Insights</h3>
-                    <p class="text-xs text-[#475569]">Data-driven research and fundamental metrics for real results.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -670,25 +667,34 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div class="text-center max-w-3xl mx-auto mb-12 reveal-item">
-                    <span class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-4">PSX Market</span>
+                    <span
+                        class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-4">PSX
+                        Market</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
                         Explore <em class="not-italic text-[#00C48C]">PSX Stocks.</em>
                     </h2>
                     <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
-                    <p class="mt-4 text-base text-[#475569]">Search Pakistan's top listed companies and view their interactive chart below.</p>
+                    <p class="mt-4 text-base text-[#475569]">Search Pakistan's top listed companies and view their
+                        interactive chart below.</p>
                 </div>
 
                 <!-- Search Input -->
                 <div class="max-w-2xl mx-auto relative mb-5 reveal-item" @click.away="searchOpen = false">
                     <div class="relative">
-                        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         <input type="text" x-model="query" @input="filterResults()" @focus="searchOpen = true"
                             placeholder="Search ticker or company... e.g. MCB, OGDC, HBL"
                             class="w-full pl-12 pr-10 py-4 rounded-2xl border border-slate-200 bg-white shadow-md text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#00C48C]/40 focus:border-[#00C48C] transition-all" />
-                        <button x-show="query.length > 0" @click="query = ''; filterResults()" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <button x-show="query.length > 0" @click="query = ''; filterResults()"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                         </button>
                     </div>
                     <!-- Dropdown -->
@@ -698,9 +704,11 @@
                         x-transition:enter-end="opacity-100 translate-y-0"
                         class="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-2xl shadow-2xl z-50 overflow-hidden">
                         <template x-for="s in filteredStocks.slice(0, 6)" :key="s.ticker">
-                            <button @click="selectStock(s)" class="w-full px-5 py-3.5 flex items-center justify-between hover:bg-slate-50 border-b border-slate-100 last:border-0 transition-colors">
+                            <button @click="selectStock(s)"
+                                class="w-full px-5 py-3.5 flex items-center justify-between hover:bg-slate-50 border-b border-slate-100 last:border-0 transition-colors">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-9 h-9 rounded-xl bg-[#00C48C]/10 flex items-center justify-center shrink-0">
+                                    <div
+                                        class="w-9 h-9 rounded-xl bg-[#00C48C]/10 flex items-center justify-center shrink-0">
                                         <span class="text-[9px] font-black text-[#00A86B]" x-text="s.ticker"></span>
                                     </div>
                                     <div class="text-left">
@@ -709,8 +717,11 @@
                                     </div>
                                 </div>
                                 <div class="text-right shrink-0 ml-3">
-                                    <p class="text-sm font-bold text-slate-800" x-text="'PKR ' + s.price.toLocaleString()"></p>
-                                    <p class="text-xs font-bold" :class="s.change >= 0 ? 'text-[#00C48C]' : 'text-red-500'" x-text="(s.change >= 0 ? '+' : '') + s.change + '%'"></p>
+                                    <p class="text-sm font-bold text-slate-800"
+                                        x-text="'PKR ' + s.price.toLocaleString()"></p>
+                                    <p class="text-xs font-bold"
+                                        :class="s.change >= 0 ? 'text-[#00C48C]' : 'text-red-500'"
+                                        x-text="(s.change >= 0 ? '+' : '') + s.change + '%'"></p>
                                 </div>
                             </button>
                         </template>
@@ -721,7 +732,8 @@
                 <div class="flex flex-wrap gap-2 justify-center mb-8">
                     <span class="text-xs text-slate-400 font-medium self-center">Trending:</span>
                     <template x-for="t in ['MCB', 'OGDC', 'ENGRO', 'TRG', 'LUCK', 'HBL']" :key="t">
-                        <button @click="selectByTicker(t)" class="px-3 py-1.5 rounded-full text-xs font-bold border transition-all duration-200"
+                        <button @click="selectByTicker(t)"
+                            class="px-3 py-1.5 rounded-full text-xs font-bold border transition-all duration-200"
                             :class="selected && selected.ticker === t ? 'bg-[#00C48C] text-white border-[#00C48C]' : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-[#00C48C]/60 hover:text-[#00A86B]'"
                             x-text="t"></button>
                     </template>
@@ -730,15 +742,18 @@
                 <!-- Market snapshot cards -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto reveal-item">
                     <template x-for="s in stocks.slice(0, 4)" :key="s.ticker + '_snap'">
-                        <button @click="selectStock(s)" class="rounded-2xl border p-4 text-left transition-all duration-200"
+                        <button @click="selectStock(s)"
+                            class="rounded-2xl border p-4 text-left transition-all duration-200"
                             :class="selected && selected.ticker === s.ticker ? 'border-[#00C48C]/60 bg-[#00C48C]/5 shadow-md' : 'border-slate-200 bg-white hover:border-[#00C48C]/40 hover:shadow-sm'">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest" x-text="s.ticker"></span>
+                                <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest"
+                                    x-text="s.ticker"></span>
                                 <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
                                     :class="s.change >= 0 ? 'text-[#00C48C] bg-[#00C48C]/10' : 'text-red-500 bg-red-50'"
                                     x-text="(s.change >= 0 ? '+' : '') + s.change + '%'"></span>
                             </div>
-                            <p class="text-sm font-extrabold text-slate-900" x-text="'PKR ' + s.price.toLocaleString()"></p>
+                            <p class="text-sm font-extrabold text-slate-900" x-text="'PKR ' + s.price.toLocaleString()">
+                            </p>
                             <p class="text-[9px] text-slate-400 mt-0.5 truncate" x-text="s.name"></p>
                         </button>
                     </template>
@@ -748,19 +763,24 @@
 
         <!-- ── Interactive Chart ── -->
         <section id="stock-chart" class="py-20 bg-[#061A14] font-['DM_Sans',sans-serif] relative overflow-hidden">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00C48C]/5 rounded-full blur-[100px] pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00C48C]/5 rounded-full blur-[100px] pointer-events-none"
+                aria-hidden="true"></div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 <!-- Header -->
                 <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-6 mb-8 reveal-item">
                     <div>
                         <div class="flex items-center gap-3 flex-wrap mb-1">
-                            <span class="text-lg sm:text-2xl font-black text-white" x-text="selected ? selected.name : ''"></span>
-                            <span class="px-2 py-0.5 rounded-full bg-[#00C48C]/20 text-[#00C48C] text-xs font-bold" x-text="selected ? selected.ticker : ''"></span>
-                            <span class="px-2 py-0.5 rounded-full bg-white/5 text-slate-400 text-xs" x-text="selected ? selected.sector : ''"></span>
+                            <span class="text-lg sm:text-2xl font-black text-white"
+                                x-text="selected ? selected.name : ''"></span>
+                            <span class="px-2 py-0.5 rounded-full bg-[#00C48C]/20 text-[#00C48C] text-xs font-bold"
+                                x-text="selected ? selected.ticker : ''"></span>
+                            <span class="px-2 py-0.5 rounded-full bg-white/5 text-slate-400 text-xs"
+                                x-text="selected ? selected.sector : ''"></span>
                         </div>
                         <div class="flex items-center gap-3 flex-wrap">
-                            <span class="text-3xl font-black text-white" x-text="selected ? 'PKR ' + selected.price.toLocaleString() : ''"></span>
+                            <span class="text-3xl font-black text-white"
+                                x-text="selected ? 'PKR ' + selected.price.toLocaleString() : ''"></span>
                             <span class="text-sm font-bold px-2.5 py-1 rounded-full"
                                 :class="selected && selected.change >= 0 ? 'text-[#00C48C] bg-[#00C48C]/15' : 'text-red-400 bg-red-500/15'"
                                 x-text="selected ? (selected.change >= 0 ? '▲ +' : '▼ ') + selected.change + '%' : ''"></span>
@@ -769,7 +789,8 @@
                     <!-- Time tabs -->
                     <div class="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1 self-start">
                         <template x-for="p in ['1W','1M','3M','1Y']" :key="p">
-                            <button @click="setTimePeriod(p)" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200"
+                            <button @click="setTimePeriod(p)"
+                                class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200"
                                 :class="timePeriod === p ? 'bg-[#00C48C] text-white shadow-sm' : 'text-slate-400 hover:text-white'"
                                 x-text="p"></button>
                         </template>
@@ -792,90 +813,93 @@
                     </div>
                     <div class="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
                         <p class="text-[10px] text-slate-400 uppercase tracking-wider mb-1">52W High</p>
-                        <p class="text-sm font-bold text-white" x-text="selected ? 'PKR ' + selected.high52w.toLocaleString() : '-'"></p>
+                        <p class="text-sm font-bold text-white"
+                            x-text="selected ? 'PKR ' + selected.high52w.toLocaleString() : '-'"></p>
                     </div>
                 </div>
 
                 <!-- Chart container -->
-                <div class="bg-[#0B2A20]/40 border border-[#00C48C]/15 rounded-2xl p-4 sm:p-6 backdrop-blur-sm reveal-item">
+                <div
+                    class="bg-[#0B2A20]/40 border border-[#00C48C]/15 rounded-2xl p-4 sm:p-6 backdrop-blur-sm reveal-item">
                     <div x-ref="chartEl" style="min-height:280px;"></div>
                 </div>
-                <p class="text-center text-xs text-slate-600 mt-4">* Simulated price data for educational purposes only. Not financial advice.</p>
+                <p class="text-center text-xs text-slate-600 mt-4">* Simulated price data for educational purposes only.
+                    Not financial advice.</p>
             </div>
         </section>
     </div>
 
     <script>
-    function stockDashboard() {
-        var stocks = [
-            {ticker:'MCB',  name:'MCB Bank Ltd.',         sector:'Banking',     price:204.50, change:2.3,  volume:'3.2M', marketCap:'PKR 243B', pe:'7.2x',  high52w:218},
-            {ticker:'OGDC', name:'Oil & Gas Dev. Co.',    sector:'Oil & Gas',   price:178.25, change:1.1,  volume:'5.8M', marketCap:'PKR 765B', pe:'5.8x',  high52w:195},
-            {ticker:'HBL',  name:'Habib Bank Ltd.',       sector:'Banking',     price:156.80, change:-0.8, volume:'2.1M', marketCap:'PKR 212B', pe:'6.5x',  high52w:172.5},
-            {ticker:'ENGRO',name:'Engro Corporation',     sector:'Fertilizer',  price:289.75, change:0.5,  volume:'1.4M', marketCap:'PKR 156B', pe:'9.1x',  high52w:310},
-            {ticker:'PSO',  name:'Pakistan State Oil',    sector:'Oil & Gas',   price:334.50, change:3.2,  volume:'4.2M', marketCap:'PKR 185B', pe:'4.3x',  high52w:368},
-            {ticker:'LUCK', name:'Lucky Cement Ltd.',     sector:'Cement',      price:882.00, change:1.8,  volume:'0.9M', marketCap:'PKR 273B', pe:'11.2x', high52w:940},
-            {ticker:'UBL',  name:'United Bank Ltd.',      sector:'Banking',     price:198.60, change:0.3,  volume:'1.8M', marketCap:'PKR 205B', pe:'6.8x',  high52w:215},
-            {ticker:'TRG',  name:'TRG Pakistan Ltd.',     sector:'Technology',  price:130.20, change:4.1,  volume:'6.3M', marketCap:'PKR 52B',  pe:'22.4x', high52w:148},
-            {ticker:'MEBL', name:'Meezan Bank Ltd.',      sector:'Banking',     price:186.90, change:1.5,  volume:'3.5M', marketCap:'PKR 271B', pe:'8.3x',  high52w:204},
-            {ticker:'NESTLE',name:'Nestlé Pakistan Ltd.', sector:'FMCG',        price:6250,   change:-1.2, volume:'0.1M', marketCap:'PKR 294B', pe:'28.6x', high52w:7100},
-            {ticker:'FFBL', name:'Fauji Fertilizer BQ',   sector:'Fertilizer',  price:28.40,  change:-0.4, volume:'8.2M', marketCap:'PKR 32B',  pe:'6.1x',  high52w:38},
-            {ticker:'PKGS', name:'Packages Ltd.',         sector:'Packaging',   price:523,    change:-0.9, volume:'0.3M', marketCap:'PKR 62B',  pe:'14.3x', high52w:590},
-        ];
-        var cache = {};
-        function genData(base, days) {
-            var data = [], price = base * (0.88 + Math.random() * 0.07), now = Date.now();
-            var step = days <= 90 ? 86400000 : 604800000;
-            var n    = days <= 90 ? days : 52;
-            for (var i = n; i >= 0; i--) {
-                price = Math.max(base * 0.45, price * (1 + (Math.random() - 0.47) * 0.02));
-                data.push({x: now - i * step, y: parseFloat(price.toFixed(2))});
+        function stockDashboard() {
+            var stocks = [
+                { ticker: 'MCB', name: 'MCB Bank Ltd.', sector: 'Banking', price: 204.50, change: 2.3, volume: '3.2M', marketCap: 'PKR 243B', pe: '7.2x', high52w: 218 },
+                { ticker: 'OGDC', name: 'Oil & Gas Dev. Co.', sector: 'Oil & Gas', price: 178.25, change: 1.1, volume: '5.8M', marketCap: 'PKR 765B', pe: '5.8x', high52w: 195 },
+                { ticker: 'HBL', name: 'Habib Bank Ltd.', sector: 'Banking', price: 156.80, change: -0.8, volume: '2.1M', marketCap: 'PKR 212B', pe: '6.5x', high52w: 172.5 },
+                { ticker: 'ENGRO', name: 'Engro Corporation', sector: 'Fertilizer', price: 289.75, change: 0.5, volume: '1.4M', marketCap: 'PKR 156B', pe: '9.1x', high52w: 310 },
+                { ticker: 'PSO', name: 'Pakistan State Oil', sector: 'Oil & Gas', price: 334.50, change: 3.2, volume: '4.2M', marketCap: 'PKR 185B', pe: '4.3x', high52w: 368 },
+                { ticker: 'LUCK', name: 'Lucky Cement Ltd.', sector: 'Cement', price: 882.00, change: 1.8, volume: '0.9M', marketCap: 'PKR 273B', pe: '11.2x', high52w: 940 },
+                { ticker: 'UBL', name: 'United Bank Ltd.', sector: 'Banking', price: 198.60, change: 0.3, volume: '1.8M', marketCap: 'PKR 205B', pe: '6.8x', high52w: 215 },
+                { ticker: 'TRG', name: 'TRG Pakistan Ltd.', sector: 'Technology', price: 130.20, change: 4.1, volume: '6.3M', marketCap: 'PKR 52B', pe: '22.4x', high52w: 148 },
+                { ticker: 'MEBL', name: 'Meezan Bank Ltd.', sector: 'Banking', price: 186.90, change: 1.5, volume: '3.5M', marketCap: 'PKR 271B', pe: '8.3x', high52w: 204 },
+                { ticker: 'NESTLE', name: 'Nestlé Pakistan Ltd.', sector: 'FMCG', price: 6250, change: -1.2, volume: '0.1M', marketCap: 'PKR 294B', pe: '28.6x', high52w: 7100 },
+                { ticker: 'FFBL', name: 'Fauji Fertilizer BQ', sector: 'Fertilizer', price: 28.40, change: -0.4, volume: '8.2M', marketCap: 'PKR 32B', pe: '6.1x', high52w: 38 },
+                { ticker: 'PKGS', name: 'Packages Ltd.', sector: 'Packaging', price: 523, change: -0.9, volume: '0.3M', marketCap: 'PKR 62B', pe: '14.3x', high52w: 590 },
+            ];
+            var cache = {};
+            function genData(base, days) {
+                var data = [], price = base * (0.88 + Math.random() * 0.07), now = Date.now();
+                var step = days <= 90 ? 86400000 : 604800000;
+                var n = days <= 90 ? days : 52;
+                for (var i = n; i >= 0; i--) {
+                    price = Math.max(base * 0.45, price * (1 + (Math.random() - 0.47) * 0.02));
+                    data.push({ x: now - i * step, y: parseFloat(price.toFixed(2)) });
+                }
+                data[data.length - 1].y = base;
+                return data;
             }
-            data[data.length - 1].y = base;
-            return data;
+            stocks.forEach(function (s) {
+                cache[s.ticker] = { '1W': genData(s.price, 7), '1M': genData(s.price, 30), '3M': genData(s.price, 90), '1Y': genData(s.price, 365) };
+            });
+            return {
+                stocks: stocks, filteredStocks: stocks, selected: stocks[0],
+                query: '', searchOpen: false, timePeriod: '1M', chart: null,
+                filterResults: function () {
+                    var q = this.query.toLowerCase();
+                    this.filteredStocks = q ? this.stocks.filter(function (s) { return s.ticker.toLowerCase().includes(q) || s.name.toLowerCase().includes(q) || s.sector.toLowerCase().includes(q); }) : this.stocks;
+                    this.searchOpen = true;
+                },
+                selectStock: function (stock) { this.selected = stock; this.query = ''; this.searchOpen = false; this.updateChart(); },
+                selectByTicker: function (t) { var s = this.stocks.find(function (x) { return x.ticker === t; }); if (s) this.selectStock(s); },
+                setTimePeriod: function (p) { this.timePeriod = p; this.updateChart(); },
+                initChart: function () {
+                    var self = this;
+                    this.$nextTick(function () {
+                        var el = self.$refs.chartEl;
+                        if (!el || typeof ApexCharts === 'undefined') return;
+                        self.chart = new ApexCharts(el, self.buildOptions());
+                        self.chart.render();
+                    });
+                },
+                updateChart: function () { if (this.chart) this.chart.updateOptions(this.buildOptions(), true, true); },
+                buildOptions: function () {
+                    var s = this.selected, p = this.timePeriod;
+                    var color = s && s.change >= 0 ? '#00C48C' : '#ef4444';
+                    var data = cache[s.ticker][p];
+                    return {
+                        series: [{ name: s.ticker, data: data }],
+                        chart: { type: 'area', height: 280, background: 'transparent', toolbar: { show: false }, animations: { enabled: true, speed: 500 }, zoom: { enabled: false } },
+                        colors: [color],
+                        fill: { type: 'gradient', gradient: { colorStops: [{ offset: 0, color: color, opacity: 0.2 }, { offset: 100, color: color, opacity: 0 }] } },
+                        stroke: { curve: 'smooth', width: 2.5 },
+                        xaxis: { type: 'datetime', labels: { style: { colors: '#64748b', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+                        yaxis: { opposite: true, labels: { style: { colors: '#64748b', fontSize: '11px' }, formatter: function (v) { return 'PKR ' + Math.round(v); } } },
+                        grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4, xaxis: { lines: { show: false } } },
+                        tooltip: { theme: 'dark', x: { format: 'dd MMM yy' }, y: { formatter: function (v) { return 'PKR ' + v.toFixed(2); } } },
+                        dataLabels: { enabled: false }, markers: { size: 0 },
+                    };
+                },
+            };
         }
-        stocks.forEach(function(s) {
-            cache[s.ticker] = {'1W': genData(s.price,7), '1M': genData(s.price,30), '3M': genData(s.price,90), '1Y': genData(s.price,365)};
-        });
-        return {
-            stocks: stocks, filteredStocks: stocks, selected: stocks[0],
-            query: '', searchOpen: false, timePeriod: '1M', chart: null,
-            filterResults: function() {
-                var q = this.query.toLowerCase();
-                this.filteredStocks = q ? this.stocks.filter(function(s){ return s.ticker.toLowerCase().includes(q)||s.name.toLowerCase().includes(q)||s.sector.toLowerCase().includes(q); }) : this.stocks;
-                this.searchOpen = true;
-            },
-            selectStock: function(stock) { this.selected = stock; this.query = ''; this.searchOpen = false; this.updateChart(); },
-            selectByTicker: function(t) { var s = this.stocks.find(function(x){return x.ticker===t;}); if(s) this.selectStock(s); },
-            setTimePeriod: function(p) { this.timePeriod = p; this.updateChart(); },
-            initChart: function() {
-                var self = this;
-                this.$nextTick(function() {
-                    var el = self.$refs.chartEl;
-                    if (!el || typeof ApexCharts === 'undefined') return;
-                    self.chart = new ApexCharts(el, self.buildOptions());
-                    self.chart.render();
-                });
-            },
-            updateChart: function() { if (this.chart) this.chart.updateOptions(this.buildOptions(), true, true); },
-            buildOptions: function() {
-                var s = this.selected, p = this.timePeriod;
-                var color = s && s.change >= 0 ? '#00C48C' : '#ef4444';
-                var data  = cache[s.ticker][p];
-                return {
-                    series: [{name: s.ticker, data: data}],
-                    chart:  {type:'area', height:280, background:'transparent', toolbar:{show:false}, animations:{enabled:true,speed:500}, zoom:{enabled:false}},
-                    colors: [color],
-                    fill:   {type:'gradient', gradient:{colorStops:[{offset:0,color:color,opacity:0.2},{offset:100,color:color,opacity:0}]}},
-                    stroke: {curve:'smooth', width:2.5},
-                    xaxis:  {type:'datetime', labels:{style:{colors:'#64748b',fontSize:'11px'}}, axisBorder:{show:false}, axisTicks:{show:false}},
-                    yaxis:  {opposite:true, labels:{style:{colors:'#64748b',fontSize:'11px'}, formatter:function(v){return 'PKR '+Math.round(v);}}},
-                    grid:   {borderColor:'rgba(255,255,255,0.05)', strokeDashArray:4, xaxis:{lines:{show:false}}},
-                    tooltip:{theme:'dark', x:{format:'dd MMM yy'}, y:{formatter:function(v){return 'PKR '+v.toFixed(2);}}},
-                    dataLabels:{enabled:false}, markers:{size:0},
-                };
-            },
-        };
-    }
     </script>
 
     <!-- =====================================================
@@ -884,12 +908,15 @@
     <section id="calculator" class="py-24 bg-white border-t border-slate-200 font-['DM_Sans',sans-serif]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-14 reveal-item">
-                <span class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-4">SIP Calculator</span>
+                <span
+                    class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-4">SIP
+                    Calculator</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
                     Plan Your <em class="not-italic text-[#00C48C]">Wealth Journey.</em>
                 </h2>
                 <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
-                <p class="mt-4 text-base text-[#475569]">See how your regular investments compound into serious wealth over time.</p>
+                <p class="mt-4 text-base text-[#475569]">See how your regular investments compound into serious wealth
+                    over time.</p>
             </div>
 
             <div x-data="{
@@ -917,8 +944,9 @@
                             <span class="text-sm font-extrabold text-[#00A86B]" x-text="fmt(initial)"></span>
                         </div>
                         <input type="range" x-model.number="initial" min="0" max="1000000" step="5000"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200"/>
-                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>PKR 0</span><span>PKR 10L</span></div>
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>PKR 0</span><span>PKR
+                                10L</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2.5">
@@ -926,8 +954,9 @@
                             <span class="text-sm font-extrabold text-[#00A86B]" x-text="fmt(monthly)"></span>
                         </div>
                         <input type="range" x-model.number="monthly" min="1000" max="200000" step="1000"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200"/>
-                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>PKR 1K</span><span>PKR 2L</span></div>
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>PKR 1K</span><span>PKR
+                                2L</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2.5">
@@ -935,50 +964,67 @@
                             <span class="text-sm font-extrabold text-[#00A86B]" x-text="rate + '% p.a.'"></span>
                         </div>
                         <input type="range" x-model.number="rate" min="5" max="30" step="0.5"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200"/>
-                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>5%</span><span>30%</span></div>
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5">
+                            <span>5%</span><span>30%</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2.5">
                             <label class="text-sm font-bold text-slate-700">Investment Period</label>
-                            <span class="text-sm font-extrabold text-[#00A86B]" x-text="years + (years == 1 ? ' Year' : ' Years')"></span>
+                            <span class="text-sm font-extrabold text-[#00A86B]"
+                                x-text="years + (years == 1 ? ' Year' : ' Years')"></span>
                         </div>
                         <input type="range" x-model.number="years" min="1" max="30" step="1"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200"/>
-                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>1 Year</span><span>30 Years</span></div>
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>1 Year</span><span>30
+                                Years</span></div>
                     </div>
                 </div>
 
                 <!-- Results -->
                 <div class="flex flex-col gap-5">
-                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-8 text-center shadow-2xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
-                        <div class="absolute -top-8 -right-8 w-44 h-44 bg-white/10 rounded-full blur-2xl" aria-hidden="true"></div>
-                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-3">Estimated Final Corpus</p>
+                    <div
+                        class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-8 text-center shadow-2xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <div class="absolute -top-8 -right-8 w-44 h-44 bg-white/10 rounded-full blur-2xl"
+                            aria-hidden="true"></div>
+                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-3">Estimated Final
+                            Corpus</p>
                         <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(finalValue)"></p>
-                        <p class="text-sm text-emerald-100/80 mt-3" x-text="'After ' + years + ' yrs at ' + rate + '% p.a.'"></p>
+                        <p class="text-sm text-emerald-100/80 mt-3"
+                            x-text="'After ' + years + ' yrs at ' + rate + '% p.a.'"></p>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5 text-center">
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Total Invested</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Total Invested
+                            </p>
                             <p class="text-base font-extrabold text-slate-900" x-text="fmt(totalInvested)"></p>
                         </div>
                         <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5 text-center">
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Est. Returns</p>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Est. Returns
+                            </p>
                             <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(returns)"></p>
                         </div>
                     </div>
                     <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5">
                         <div class="flex justify-between text-xs font-bold text-slate-500 mb-2">
-                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-slate-300 inline-block"></span>Invested</span>
-                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#00C48C] inline-block"></span>Returns</span>
+                            <span class="flex items-center gap-1.5"><span
+                                    class="w-2.5 h-2.5 rounded-sm bg-slate-300 inline-block"></span>Invested</span>
+                            <span class="flex items-center gap-1.5"><span
+                                    class="w-2.5 h-2.5 rounded-sm bg-[#00C48C] inline-block"></span>Returns</span>
                         </div>
                         <div class="flex h-4 rounded-full overflow-hidden bg-slate-200">
-                            <div class="bg-slate-400 h-full transition-all duration-500" :style="'width:' + (100 - returnsPct) + '%'"></div>
-                            <div class="bg-gradient-to-r from-[#00C48C] to-[#00A86B] h-full transition-all duration-500" :style="'width:' + returnsPct + '%'"></div>
+                            <div class="bg-slate-400 h-full transition-all duration-500"
+                                :style="'width:' + (100 - returnsPct) + '%'"></div>
+                            <div class="bg-gradient-to-r from-[#00C48C] to-[#00A86B] h-full transition-all duration-500"
+                                :style="'width:' + returnsPct + '%'"></div>
                         </div>
-                        <p class="text-[10px] text-center text-slate-400 mt-2">Your corpus is <span class="font-bold text-[#00A86B]" x-text="(finalValue > 0 ? Math.round((finalValue / Math.max(1, totalInvested) - 1) * 100) : 0) + '% larger'"></span> than total invested.</p>
+                        <p class="text-[10px] text-center text-slate-400 mt-2">Your corpus is <span
+                                class="font-bold text-[#00A86B]"
+                                x-text="(finalValue > 0 ? Math.round((finalValue / Math.max(1, totalInvested) - 1) * 100) : 0) + '% larger'"></span>
+                            than total invested.</p>
                     </div>
-                    <p class="text-[10px] text-slate-400 text-center">* Projections only. Returns not guaranteed. Consult a financial advisor.</p>
+                    <p class="text-[10px] text-slate-400 text-center">* Projections only. Returns not guaranteed.
+                        Consult a financial advisor.</p>
                 </div>
             </div>
         </div>
@@ -991,29 +1037,44 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 reveal-item">
                 <div>
-                    <span class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-3">FinPulse Blog</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">Latest <em class="not-italic text-[#00C48C]">Insights.</em></h2>
+                    <span
+                        class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-3">FinPulse
+                        Blog</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">Latest <em
+                            class="not-italic text-[#00C48C]">Insights.</em></h2>
                 </div>
-                <a href="#" class="text-sm font-bold text-[#00A86B] hover:text-[#007a52] flex items-center gap-1.5 transition-colors group shrink-0">
+                <a href="#"
+                    class="text-sm font-bold text-[#00A86B] hover:text-[#007a52] flex items-center gap-1.5 transition-colors group shrink-0">
                     View All Articles <span class="group-hover:translate-x-1 transition-transform inline-block">→</span>
                 </a>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 <!-- Article 1 -->
-                <a href="#" class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                    <div class="relative aspect-[16/10] bg-gradient-to-br from-[#00A86B] to-[#007a52] flex items-center justify-center overflow-hidden">
-                        <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2"/></svg>
-                        <div class="absolute bottom-3 left-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-[#00A86B]">PSX Basics</span></div>
+                <a href="#"
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    <div
+                        class="relative aspect-[16/10] bg-gradient-to-br from-[#00A86B] to-[#007a52] flex items-center justify-center overflow-hidden">
+                        <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2" />
+                        </svg>
+                        <div class="absolute bottom-3 left-3"><span
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-[#00A86B]">PSX
+                                Basics</span></div>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">How to Read the KSE-100 Index: A Beginner's Complete Guide</h3>
-                            <p class="text-xs text-[#64748B] leading-relaxed">Understand what the KSE-100 measures, why it moves, and how to use it to make smarter investment decisions.</p>
+                            <h3
+                                class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">
+                                How to Read the KSE-100 Index: A Beginner's Complete Guide</h3>
+                            <p class="text-xs text-[#64748B] leading-relaxed">Understand what the KSE-100 measures, why
+                                it moves, and how to use it to make smarter investment decisions.</p>
                         </div>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 rounded-full bg-[#00C48C]/15 flex items-center justify-center"><span class="text-[8px] font-black text-[#00A86B]">FP</span></div>
+                                <div class="w-6 h-6 rounded-full bg-[#00C48C]/15 flex items-center justify-center"><span
+                                        class="text-[8px] font-black text-[#00A86B]">FP</span></div>
                                 <span class="text-xs font-medium text-slate-600">FinPulse Team</span>
                             </div>
                             <span class="text-[10px] text-slate-400">8 min · Sep 2026</span>
@@ -1022,19 +1083,30 @@
                 </a>
 
                 <!-- Article 2 -->
-                <a href="#" class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                    <div class="relative aspect-[16/10] bg-gradient-to-br from-[#4e5bff] to-[#3730d1] flex items-center justify-center overflow-hidden">
-                        <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <div class="absolute bottom-3 left-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-[#4e5bff]">Mutual Funds</span></div>
+                <a href="#"
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    <div
+                        class="relative aspect-[16/10] bg-gradient-to-br from-[#4e5bff] to-[#3730d1] flex items-center justify-center overflow-hidden">
+                        <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div class="absolute bottom-3 left-3"><span
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-[#4e5bff]">Mutual
+                                Funds</span></div>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">Mutual Funds vs Direct Stocks: Which Strategy Fits You?</h3>
-                            <p class="text-xs text-[#64748B] leading-relaxed">Compare the risks, returns, and suitability of both to decide which investment approach matches your goals.</p>
+                            <h3
+                                class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">
+                                Mutual Funds vs Direct Stocks: Which Strategy Fits You?</h3>
+                            <p class="text-xs text-[#64748B] leading-relaxed">Compare the risks, returns, and
+                                suitability of both to decide which investment approach matches your goals.</p>
                         </div>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 rounded-full bg-[#4e5bff]/15 flex items-center justify-center"><span class="text-[8px] font-black text-[#4e5bff]">AK</span></div>
+                                <div class="w-6 h-6 rounded-full bg-[#4e5bff]/15 flex items-center justify-center"><span
+                                        class="text-[8px] font-black text-[#4e5bff]">AK</span></div>
                                 <span class="text-xs font-medium text-slate-600">Ahmed Khan</span>
                             </div>
                             <span class="text-[10px] text-slate-400">12 min · Aug 2026</span>
@@ -1043,19 +1115,30 @@
                 </a>
 
                 <!-- Article 3 -->
-                <a href="#" class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                    <div class="relative aspect-[16/10] bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center overflow-hidden">
-                        <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        <div class="absolute bottom-3 left-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-[#d97706]">Fundamentals</span></div>
+                <a href="#"
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    <div
+                        class="relative aspect-[16/10] bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center overflow-hidden">
+                        <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"
+                                d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <div class="absolute bottom-3 left-3"><span
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-[#d97706]">Fundamentals</span>
+                        </div>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">How to Read a Company's Financial Statements</h3>
-                            <p class="text-xs text-[#64748B] leading-relaxed">Decode income statements, balance sheets, and cash flow reports to make confident, data-driven decisions.</p>
+                            <h3
+                                class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">
+                                How to Read a Company's Financial Statements</h3>
+                            <p class="text-xs text-[#64748B] leading-relaxed">Decode income statements, balance sheets,
+                                and cash flow reports to make confident, data-driven decisions.</p>
                         </div>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center"><span class="text-[8px] font-black text-amber-600">SR</span></div>
+                                <div class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center"><span
+                                        class="text-[8px] font-black text-amber-600">SR</span></div>
                                 <span class="text-xs font-medium text-slate-600">Sara Raza</span>
                             </div>
                             <span class="text-[10px] text-slate-400">10 min · Jul 2026</span>
@@ -1145,7 +1228,8 @@
                     </div>
                     <div class="flex-1">
                         <h3 class="text-2xl font-bold text-white mb-2">Paid Subscriber</h3>
-                        <p class="text-sm text-emerald-100/70 mb-6">For committed investors seeking deep research & live access.</p>
+                        <p class="text-sm text-emerald-100/70 mb-6">For committed investors seeking deep research & live
+                            access.</p>
                         <div class="text-4xl font-extrabold text-white mb-1">
                             Rs. 1,500 <span class="text-sm font-normal text-emerald-100/60">/ month</span>
                         </div>
