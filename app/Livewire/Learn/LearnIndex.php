@@ -6,7 +6,9 @@ use App\Enums\ContentTier;
 use App\Enums\ContentType;
 use App\Enums\Language;
 use App\Enums\SkillLevel;
+use App\Models\ContentBookmark;
 use App\Models\ContentItem;
+use App\Models\ContentView;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -31,6 +33,9 @@ class LearnIndex extends Component
 
     #[Url(as: 'interests')]
     public string $interests = '';
+
+    #[Url(as: 'saved')]
+    public bool $onlyBookmarks = false;
 
     public function updatedType(): void
     {
@@ -57,18 +62,43 @@ class LearnIndex extends Component
         $this->resetPage();
     }
 
+    public function updatedOnlyBookmarks(): void
+    {
+        $this->resetPage();
+    }
+
+    public function toggleSavedFilter(): void
+    {
+        if (! auth()->check()) {
+            $this->redirect(route('login'), navigate: true);
+
+            return;
+        }
+
+        $this->onlyBookmarks = ! $this->onlyBookmarks;
+        $this->resetPage();
+    }
+
     public function resetFilters(): void
     {
-        $this->reset(['type', 'skillLevel', 'language', 'search', 'interests']);
+        $this->reset(['type', 'skillLevel', 'language', 'search', 'interests', 'onlyBookmarks']);
         $this->resetPage();
     }
 
     public function render()
     {
         $query = ContentItem::query()
-            ->where('tier', ContentTier::FREE)
             ->whereNotNull('published_at')
             ->latest('published_at');
+
+        if (! auth()->check() || ! auth()->user()->hasPaidAccess()) {
+            $query->whereIn('tier', [ContentTier::FREE, ContentTier::REGISTERED]);
+        }
+
+        if ($this->onlyBookmarks && auth()->check()) {
+            $bookmarkedIds = ContentBookmark::where('user_id', auth()->id())->pluck('content_item_id');
+            $query->whereIn('id', $bookmarkedIds);
+        }
 
         if ($this->type !== 'all' && ContentType::tryFrom($this->type)) {
             $query->where('type', $this->type);
@@ -101,11 +131,25 @@ class LearnIndex extends Component
 
         $items = $query->paginate(9);
 
+        $bookmarkedIds = [];
+        $completedIds = [];
+
+        if (auth()->check()) {
+            $userId = auth()->id();
+            $bookmarkedIds = ContentBookmark::where('user_id', $userId)->pluck('content_item_id')->toArray();
+            $completedIds = ContentView::where('user_id', $userId)
+                ->whereNotNull('completed_at')
+                ->pluck('content_item_id')
+                ->toArray();
+        }
+
         return view('livewire.learn.learn-index', [
             'items' => $items,
             'types' => ContentType::cases(),
             'skillLevels' => SkillLevel::cases(),
             'languages' => Language::cases(),
+            'bookmarkedIds' => $bookmarkedIds,
+            'completedIds' => $completedIds,
         ]);
     }
 }

@@ -6,22 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ContentView extends Model
+class ContentBookmark extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
         'content_item_id',
-        'completed_at',
     ];
-
-    protected function casts(): array
-    {
-        return [
-            'completed_at' => 'datetime',
-        ];
-    }
 
     public function user(): BelongsTo
     {
