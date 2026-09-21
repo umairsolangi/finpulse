@@ -903,129 +903,686 @@
     </script>
 
     <!-- =====================================================
-             SECTION — INVESTMENT / SIP CALCULATOR
+             SECTION — INTERACTIVE FINANCIAL CALCULATOR HUB
              ===================================================== -->
-    <section id="calculator" class="py-24 bg-white border-t border-slate-200 font-['DM_Sans',sans-serif]">
+    <section id="calculator" class="py-24 bg-white border-t border-slate-200 font-['DM_Sans',sans-serif]"
+        x-data="{
+            activeTool: 'sip',
+            fmt: function(n) { return 'PKR ' + Math.round(n).toLocaleString(); },
+            
+            // 1. SIP Planner
+            sipInitial: 50000,
+            sipMonthly: 10000,
+            sipRate: 15,
+            sipYears: 5,
+            get sipTotalInvested() { return this.sipInitial + (this.sipMonthly * this.sipYears * 12); },
+            get sipFinalValue() {
+                var r = this.sipRate / 100 / 12, n = this.sipYears * 12;
+                var lump = this.sipInitial * Math.pow(1 + r, n);
+                var sip  = r > 0 ? this.sipMonthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : this.sipMonthly * n;
+                return Math.round(lump + sip);
+            },
+            get sipReturns() { return Math.max(0, this.sipFinalValue - this.sipTotalInvested); },
+            get sipReturnsPct() { return Math.min(100, Math.round((this.sipReturns / Math.max(1, this.sipFinalValue)) * 100)); },
+
+            // 2. Lump-Sum Compounding
+            lumpPrincipal: 200000,
+            lumpRate: 16,
+            lumpYears: 5,
+            get lumpTotalValue() {
+                return Math.round(this.lumpPrincipal * Math.pow(1 + (this.lumpRate / 100), this.lumpYears));
+            },
+            get lumpProfit() { return Math.max(0, this.lumpTotalValue - this.lumpPrincipal); },
+            get lumpMultiple() { return (this.lumpTotalValue / Math.max(1, this.lumpPrincipal)).toFixed(1); },
+
+            // 3. PSX Trade & Net Profit (Brokerage + CGT + SECP/CDC)
+            tradeBuyPrice: 120,
+            tradeSellPrice: 155,
+            tradeShares: 1000,
+            tradeCommissionRate: 0.15,
+            tradeIsFiler: true,
+            get tradeBuyTurnover() { return this.tradeBuyPrice * this.tradeShares; },
+            get tradeSellTurnover() { return this.tradeSellPrice * this.tradeShares; },
+            get tradeGrossProfit() { return (this.tradeSellPrice - this.tradeBuyPrice) * this.tradeShares; },
+            get tradeBrokerageFee() {
+                return Math.round((this.tradeBuyTurnover + this.tradeSellTurnover) * (this.tradeCommissionRate / 100));
+            },
+            get tradeRegulatoryFees() {
+                return Math.round((this.tradeBuyTurnover + this.tradeSellTurnover) * 0.0003);
+            },
+            get tradeCgtTax() {
+                if (this.tradeGrossProfit <= 0) return 0;
+                var rate = this.tradeIsFiler ? 0.15 : 0.30;
+                return Math.round(Math.max(0, this.tradeGrossProfit - this.tradeBrokerageFee) * rate);
+            },
+            get tradeTotalCharges() { return this.tradeBrokerageFee + this.tradeRegulatoryFees + this.tradeCgtTax; },
+            get tradeNetProfit() { return this.tradeGrossProfit - this.tradeTotalCharges; },
+            get tradeRoiPct() { return ((this.tradeNetProfit / Math.max(1, this.tradeBuyTurnover)) * 100).toFixed(1); },
+
+            // 4. Dividend Yield & DRIP
+            divPrice: 240,
+            divShares: 1000,
+            divDps: 28,
+            divYears: 5,
+            divReinvest: true,
+            get divPortfolioVal() { return this.divPrice * this.divShares; },
+            get divAnnualPayout() { return this.divDps * this.divShares; },
+            get divYieldPct() { return ((this.divDps / Math.max(1, this.divPrice)) * 100).toFixed(1); },
+            get divFutureCorpus() {
+                if (!this.divReinvest) {
+                    return Math.round(this.divPortfolioVal + (this.divAnnualPayout * this.divYears));
+                }
+                var yld = (this.divDps / Math.max(1, this.divPrice));
+                var totalGrowthRate = 0.07 + yld;
+                return Math.round(this.divPortfolioVal * Math.pow(1 + totalGrowthRate, this.divYears));
+            },
+
+            // 5. Target Goal (Reverse SIP)
+            goalTarget: 3000000,
+            goalYears: 5,
+            goalRate: 15,
+            get goalMonthlyRequired() {
+                var r = this.goalRate / 100 / 12;
+                var n = this.goalYears * 12;
+                if (r === 0) return Math.round(this.goalTarget / n);
+                var monthly = this.goalTarget / (((Math.pow(1 + r, n) - 1) / r) * (1 + r));
+                return Math.round(monthly);
+            },
+            get goalTotalDeposited() { return this.goalMonthlyRequired * this.goalYears * 12; },
+            get goalWealthGain() { return Math.max(0, this.goalTarget - this.goalTotalDeposited); },
+
+            // 6. Inflation Drag
+            infAmount: 1000000,
+            infRate: 14,
+            infYears: 5,
+            get infRealValue() {
+                return Math.round(this.infAmount / Math.pow(1 + (this.infRate / 100), this.infYears));
+            },
+            get infLoss() { return Math.max(0, this.infAmount - this.infRealValue); },
+            get infLossPct() { return Math.round((this.infLoss / Math.max(1, this.infAmount)) * 100); },
+
+            // 7. Rule of 72
+            ruleRate: 16,
+            get ruleYearsToDouble() { return (72 / Math.max(1, this.ruleRate)).toFixed(1); },
+            get ruleYearsToTriple() { return (114 / Math.max(1, this.ruleRate)).toFixed(1); },
+
+            // 8. Emergency Fund
+            emgExpenses: 120000,
+            emgMonths: 6,
+            get emgTotalNeeded() { return this.emgExpenses * this.emgMonths; },
+            get emgCashPart() { return Math.round(this.emgTotalNeeded * 0.30); },
+            get emgFundPart() { return Math.round(this.emgTotalNeeded * 0.70); }
+        }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-14 reveal-item">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10 reveal-item">
                 <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-4">SIP
-                    Calculator</span>
+                    class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-4">
+                    Pakistani Investor Toolkit
+                </span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-                    Plan Your <em class="not-italic text-[#00C48C]">Wealth Journey.</em>
+                    Smart Financial <em class="not-italic text-[#00C48C]">Decision Calculators.</em>
                 </h2>
                 <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
-                <p class="mt-4 text-base text-[#475569]">See how your regular investments compound into serious wealth
-                    over time.</p>
+                <p class="mt-4 text-base text-[#475569]">
+                    Select any tool below to simulate your investments, trade costs, and wealth goals in real time.
+                </p>
             </div>
 
-            <div x-data="{
-                    initial: 50000,
-                    monthly: 10000,
-                    rate: 15,
-                    years: 5,
-                    get totalInvested() { return this.initial + (this.monthly * this.years * 12); },
-                    get finalValue() {
-                        var r = this.rate / 100 / 12, n = this.years * 12;
-                        var lump = this.initial * Math.pow(1 + r, n);
-                        var sip  = r > 0 ? this.monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : this.monthly * n;
-                        return Math.round(lump + sip);
-                    },
-                    get returns() { return Math.max(0, this.finalValue - this.totalInvested); },
-                    get returnsPct() { return Math.min(100, Math.round((this.returns / Math.max(1, this.finalValue)) * 100)); },
-                    fmt: function(n) { return 'PKR ' + Math.round(n).toLocaleString(); }
-                }" class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto reveal-item">
+            <!-- Sober & Simple Segmented Switcher (No Icons, No Scrollbar) -->
+            <div class="mb-12 max-w-5xl mx-auto">
+                <div class="bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/80">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-1">
+                        <!-- 1: SIP Planner -->
+                        <button type="button" @click="activeTool = 'sip'"
+                            :class="activeTool === 'sip' 
+                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
+                            class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
+                            SIP Planner
+                        </button>
 
-                <!-- Inputs -->
-                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-8 space-y-7">
-                    <div>
-                        <div class="flex justify-between mb-2.5">
-                            <label class="text-sm font-bold text-slate-700">Initial Investment</label>
-                            <span class="text-sm font-extrabold text-[#00A86B]" x-text="fmt(initial)"></span>
-                        </div>
-                        <input type="range" x-model.number="initial" min="0" max="1000000" step="5000"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
-                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>PKR 0</span><span>PKR
-                                10L</span></div>
+                        <!-- 2: Lump-Sum -->
+                        <button type="button" @click="activeTool = 'lump'"
+                            :class="activeTool === 'lump' 
+                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
+                            class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
+                            Lump-Sum
+                        </button>
+
+                        <!-- 3: PSX Trade -->
+                        <button type="button" @click="activeTool = 'trade'"
+                            :class="activeTool === 'trade' 
+                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
+                            class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
+                            PSX Trade
+                        </button>
+
+                        <!-- 4: Dividend -->
+                        <button type="button" @click="activeTool = 'dividend'"
+                            :class="activeTool === 'dividend' 
+                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
+                            class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
+                            Dividend
+                        </button>
+
+                        <!-- 5: Target Goal -->
+                        <button type="button" @click="activeTool = 'goal'"
+                            :class="activeTool === 'goal' 
+                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
+                            class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
+                            Target Goal
+                        </button>
+
+                        <!-- 6: Inflation -->
+                        <button type="button" @click="activeTool = 'inflation'"
+                            :class="activeTool === 'inflation' 
+                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
+                            class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
+                            Inflation
+                        </button>
+
+                        <!-- 7: Rule of 72 -->
+                        <button type="button" @click="activeTool = 'rule72'"
+                            :class="activeTool === 'rule72' 
+                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
+                            class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
+                            Rule of 72
+                        </button>
+
+                        <!-- 8: Emergency -->
+                        <button type="button" @click="activeTool = 'emergency'"
+                            :class="activeTool === 'emergency' 
+                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
+                            class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
+                            Emergency
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TOOL 1: SIP PLANNER ================= -->
+            <div x-show="activeTool === 'sip'" x-transition:enter="transition ease-out duration-300 transform opacity-0 translate-y-3"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Systematic Investment Plan (SIP)</h3>
+                        <p class="text-xs text-slate-500">Calculate regular monthly compounding over time.</p>
                     </div>
                     <div>
-                        <div class="flex justify-between mb-2.5">
-                            <label class="text-sm font-bold text-slate-700">Monthly SIP Amount</label>
-                            <span class="text-sm font-extrabold text-[#00A86B]" x-text="fmt(monthly)"></span>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Initial Investment</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(sipInitial)"></span>
                         </div>
-                        <input type="range" x-model.number="monthly" min="1000" max="200000" step="1000"
+                        <input type="range" x-model.number="sipInitial" min="0" max="1000000" step="5000"
                             class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
-                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>PKR 1K</span><span>PKR
-                                2L</span></div>
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 0</span><span>PKR 10L</span></div>
                     </div>
                     <div>
-                        <div class="flex justify-between mb-2.5">
-                            <label class="text-sm font-bold text-slate-700">Expected Annual Return</label>
-                            <span class="text-sm font-extrabold text-[#00A86B]" x-text="rate + '% p.a.'"></span>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Monthly SIP Amount</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(sipMonthly)"></span>
                         </div>
-                        <input type="range" x-model.number="rate" min="5" max="30" step="0.5"
+                        <input type="range" x-model.number="sipMonthly" min="1000" max="200000" step="1000"
                             class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
-                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5">
-                            <span>5%</span><span>30%</span></div>
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 1K</span><span>PKR 2L</span></div>
                     </div>
                     <div>
-                        <div class="flex justify-between mb-2.5">
-                            <label class="text-sm font-bold text-slate-700">Investment Period</label>
-                            <span class="text-sm font-extrabold text-[#00A86B]"
-                                x-text="years + (years == 1 ? ' Year' : ' Years')"></span>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Annual Return</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="sipRate + '% p.a.'"></span>
                         </div>
-                        <input type="range" x-model.number="years" min="1" max="30" step="1"
+                        <input type="range" x-model.number="sipRate" min="5" max="30" step="0.5"
                             class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
-                        <div class="flex justify-between text-[10px] text-slate-400 mt-1.5"><span>1 Year</span><span>30
-                                Years</span></div>
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>5%</span><span>30%</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Investment Period</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="sipYears + (sipYears == 1 ? ' Year' : ' Years')"></span>
+                        </div>
+                        <input type="range" x-model.number="sipYears" min="1" max="30" step="1"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>1 Year</span><span>30 Years</span></div>
                     </div>
                 </div>
 
-                <!-- Results -->
-                <div class="flex flex-col gap-5">
-                    <div
-                        class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-8 text-center shadow-2xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
-                        <div class="absolute -top-8 -right-8 w-44 h-44 bg-white/10 rounded-full blur-2xl"
-                            aria-hidden="true"></div>
-                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-3">Estimated Final
-                            Corpus</p>
-                        <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(finalValue)"></p>
-                        <p class="text-sm text-emerald-100/80 mt-3"
-                            x-text="'After ' + years + ' yrs at ' + rate + '% p.a.'"></p>
+                <div class="flex flex-col gap-4 sm:gap-5">
+                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <div class="absolute -top-8 -right-8 w-44 h-44 bg-white/10 rounded-full blur-2xl"></div>
+                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Estimated Final Corpus</p>
+                        <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(sipFinalValue)"></p>
+                        <p class="text-sm text-emerald-100/85 mt-3" x-text="'After ' + sipYears + ' yrs at ' + sipRate + '% p.a.'"></p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Total Invested</p>
+                            <p class="text-base font-extrabold text-slate-900" x-text="fmt(sipTotalInvested)"></p>
+                        </div>
+                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Est. Profit</p>
+                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(sipReturns)"></p>
+                        </div>
+                    </div>
+                    <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 sm:p-5">
+                        <div class="flex justify-between text-xs font-bold text-slate-500 mb-2">
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-slate-300 inline-block"></span>Invested</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#00C48C] inline-block"></span>Returns</span>
+                        </div>
+                        <div class="flex h-3.5 rounded-full overflow-hidden bg-slate-200">
+                            <div class="bg-slate-400 h-full transition-all duration-500" :style="'width:' + (100 - sipReturnsPct) + '%'"></div>
+                            <div class="bg-gradient-to-r from-[#00C48C] to-[#00A86B] h-full transition-all duration-500" :style="'width:' + sipReturnsPct + '%'"></div>
+                        </div>
+                        <p class="text-[10px] text-center text-slate-500 mt-2">Your corpus is <span class="font-bold text-[#00A86B]" x-text="(sipFinalValue > 0 ? Math.round((sipFinalValue / Math.max(1, sipTotalInvested) - 1) * 100) : 0) + '% larger'"></span> than total invested.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TOOL 2: LUMP-SUM COMPOUNDING ================= -->
+            <div x-show="activeTool === 'lump'" x-transition:enter="transition ease-out duration-300 transform opacity-0 translate-y-3"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" style="display: none;">
+                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Lump-Sum Investment Compounding</h3>
+                        <p class="text-xs text-slate-500">See how a single one-time deposit grows over the years.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Initial Deposit Amount</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(lumpPrincipal)"></span>
+                        </div>
+                        <input type="range" x-model.number="lumpPrincipal" min="10000" max="5000000" step="25000"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 10K</span><span>PKR 50 Lakh</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Annual Return</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="lumpRate + '% p.a.'"></span>
+                        </div>
+                        <input type="range" x-model.number="lumpRate" min="5" max="30" step="0.5"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>5%</span><span>30%</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Time Horizon</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="lumpYears + (lumpYears == 1 ? ' Year' : ' Years')"></span>
+                        </div>
+                        <input type="range" x-model.number="lumpYears" min="1" max="25" step="1"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>1 Year</span><span>25 Years</span></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 sm:gap-5">
+                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <div class="absolute -top-8 -right-8 w-44 h-44 bg-white/10 rounded-full blur-2xl"></div>
+                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Total Maturity Value</p>
+                        <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(lumpTotalValue)"></p>
+                        <p class="text-sm text-emerald-100/85 mt-3" x-text="'Grows ' + lumpMultiple + 'x in ' + lumpYears + ' years'"></p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Original Deposit</p>
+                            <p class="text-base font-extrabold text-slate-900" x-text="fmt(lumpPrincipal)"></p>
+                        </div>
+                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Pure Profit Gain</p>
+                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(lumpProfit)"></p>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center text-xs text-emerald-800">
+                        💡 <strong>Compounding Magic:</strong> Without adding a single rupee, your money grew by <span class="font-extrabold" x-text="fmt(lumpProfit)"></span> solely through reinvested compound growth!
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TOOL 3: PSX TRADE & NET PROFIT ================= -->
+            <div x-show="activeTool === 'trade'" x-transition:enter="transition ease-out duration-300 transform opacity-0 translate-y-3"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" style="display: none;">
+                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5">
+                    <div class="border-b border-slate-200 pb-3 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900">PSX Trade & Net Profit Calculator</h3>
+                            <p class="text-xs text-slate-500">Includes brokerage commission, CDC, SECP & FBR CGT.</p>
+                        </div>
+                        <button type="button" @click="tradeIsFiler = !tradeIsFiler"
+                            :class="tradeIsFiler ? 'bg-emerald-100 text-[#00A86B] border-emerald-300' : 'bg-amber-100 text-amber-800 border-amber-300'"
+                            class="px-2.5 py-1 rounded-lg text-xs font-bold border transition-colors">
+                            <span x-text="tradeIsFiler ? 'Active Filer (15% CGT)' : 'Non-Filer (30% CGT)'"></span>
+                        </button>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5 text-center">
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Total Invested
-                            </p>
-                            <p class="text-base font-extrabold text-slate-900" x-text="fmt(totalInvested)"></p>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Buying Price (PKR)</label>
+                            <input type="number" x-model.number="tradeBuyPrice" step="0.5"
+                                class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold text-slate-800 focus:outline-none focus:border-[#00C48C]" />
                         </div>
-                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5 text-center">
-                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Est. Returns
-                            </p>
-                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(returns)"></p>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Selling Price (PKR)</label>
+                            <input type="number" x-model.number="tradeSellPrice" step="0.5"
+                                class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold text-slate-800 focus:outline-none focus:border-[#00C48C]" />
                         </div>
                     </div>
-                    <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-5">
-                        <div class="flex justify-between text-xs font-bold text-slate-500 mb-2">
-                            <span class="flex items-center gap-1.5"><span
-                                    class="w-2.5 h-2.5 rounded-sm bg-slate-300 inline-block"></span>Invested</span>
-                            <span class="flex items-center gap-1.5"><span
-                                    class="w-2.5 h-2.5 rounded-sm bg-[#00C48C] inline-block"></span>Returns</span>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Quantity of Shares</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="tradeShares.toLocaleString() + ' Shares'"></span>
                         </div>
-                        <div class="flex h-4 rounded-full overflow-hidden bg-slate-200">
-                            <div class="bg-slate-400 h-full transition-all duration-500"
-                                :style="'width:' + (100 - returnsPct) + '%'"></div>
-                            <div class="bg-gradient-to-r from-[#00C48C] to-[#00A86B] h-full transition-all duration-500"
-                                :style="'width:' + returnsPct + '%'"></div>
-                        </div>
-                        <p class="text-[10px] text-center text-slate-400 mt-2">Your corpus is <span
-                                class="font-bold text-[#00A86B]"
-                                x-text="(finalValue > 0 ? Math.round((finalValue / Math.max(1, totalInvested) - 1) * 100) : 0) + '% larger'"></span>
-                            than total invested.</p>
+                        <input type="range" x-model.number="tradeShares" min="50" max="50000" step="50"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>50 Shares</span><span>50,000 Shares</span></div>
                     </div>
-                    <p class="text-[10px] text-slate-400 text-center">* Projections only. Returns not guaranteed.
-                        Consult a financial advisor.</p>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Broker Commission Rate</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="tradeCommissionRate + '% per side'"></span>
+                        </div>
+                        <input type="range" x-model.number="tradeCommissionRate" min="0.05" max="0.50" step="0.01"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>0.05% (Fintech)</span><span>0.50% (Full Service)</span></div>
+                    </div>
                 </div>
+
+                <div class="flex flex-col gap-4 sm:gap-5">
+                    <div :class="tradeNetProfit >= 0 ? 'bg-gradient-to-br from-[#00D084] to-[#00A86B]' : 'bg-gradient-to-br from-rose-500 to-red-600'"
+                        class="rounded-3xl p-7 text-center shadow-xl relative overflow-hidden flex-1 flex flex-col justify-center text-white">
+                        <p class="text-xs font-bold text-white/80 uppercase tracking-wider mb-2">Net Cash-In-Hand Profit</p>
+                        <p class="text-4xl sm:text-5xl font-black leading-none" x-text="fmt(tradeNetProfit)"></p>
+                        <p class="text-sm text-white/90 mt-3" x-text="'Net ROI: ' + tradeRoiPct + '% after all deductions'"></p>
+                    </div>
+                    <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-xs space-y-2">
+                        <div class="flex justify-between text-slate-600">
+                            <span>Gross Trading Profit:</span>
+                            <span class="font-bold text-slate-900" x-text="fmt(tradeGrossProfit)"></span>
+                        </div>
+                        <div class="flex justify-between text-slate-600">
+                            <span>Broker Commission (Buy + Sell):</span>
+                            <span class="font-bold text-rose-600" x-text="'- ' + fmt(tradeBrokerageFee)"></span>
+                        </div>
+                        <div class="flex justify-between text-slate-600">
+                            <span>SECP, PSX & CDC Levies:</span>
+                            <span class="font-bold text-rose-600" x-text="'- ' + fmt(tradeRegulatoryFees)"></span>
+                        </div>
+                        <div class="flex justify-between text-slate-600 border-t border-slate-200 pt-1.5">
+                            <span>Capital Gains Tax (CGT):</span>
+                            <span class="font-bold text-rose-600" x-text="'- ' + fmt(tradeCgtTax)"></span>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-slate-400 text-center">* CGT calculated as per Finance Act 2024 for PSX listed equities.</p>
+                </div>
+            </div>
+
+            <!-- ================= TOOL 4: DIVIDEND & DRIP ================= -->
+            <div x-show="activeTool === 'dividend'" x-transition:enter="transition ease-out duration-300 transform opacity-0 translate-y-3"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" style="display: none;">
+                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Dividend Yield & Reinvestment (DRIP)</h3>
+                        <p class="text-xs text-slate-500">Calculate passive cash dividends and wealth if reinvested.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Share Price (PKR)</label>
+                            <input type="number" x-model.number="divPrice" min="1"
+                                class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold text-slate-800" />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Annual Dividend / Share</label>
+                            <input type="number" x-model.number="divDps" min="0" step="0.5"
+                                class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold text-slate-800" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Shares Owned</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="divShares.toLocaleString() + ' Shares'"></span>
+                        </div>
+                        <input type="range" x-model.number="divShares" min="100" max="25000" step="100"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200">
+                        <div>
+                            <p class="text-xs font-bold text-slate-800">Reinvest Dividends (DRIP)</p>
+                            <p class="text-[10px] text-slate-500">Compound cash payouts into purchasing more shares</p>
+                        </div>
+                        <input type="checkbox" x-model="divReinvest" class="w-5 h-5 rounded text-[#00C48C] accent-[#00C48C]" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 sm:gap-5">
+                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Annual Dividend Payout</p>
+                        <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(divAnnualPayout)"></p>
+                        <p class="text-sm text-emerald-100/90 mt-3" x-text="'Dividend Yield: ' + divYieldPct + '% per annum'"></p>
+                    </div>
+                    <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Projected 5-Year Portfolio Value</p>
+                        <p class="text-xl font-extrabold text-[#00A86B]" x-text="fmt(divFutureCorpus)"></p>
+                        <p class="text-[11px] text-slate-500 mt-1" x-text="divReinvest ? '🚀 Reinvesting dividends significantly accelerates portfolio compounding.' : '💵 Taking cash payouts without reinvestment.'"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TOOL 5: TARGET GOAL ================= -->
+            <div x-show="activeTool === 'goal'" x-transition:enter="transition ease-out duration-300 transform opacity-0 translate-y-3"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" style="display: none;">
+                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Target Goal (Reverse SIP)</h3>
+                        <p class="text-xs text-slate-500">Find out how much you need to save monthly to reach your goal.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Target Financial Goal</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(goalTarget)"></span>
+                        </div>
+                        <input type="range" x-model.number="goalTarget" min="500000" max="25000000" step="250000"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 5 Lakh</span><span>PKR 2.5 Crore</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Target Timeframe</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="goalYears + (goalYears == 1 ? ' Year' : ' Years')"></span>
+                        </div>
+                        <input type="range" x-model.number="goalYears" min="1" max="20" step="1"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>1 Year</span><span>20 Years</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Annual Return</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="goalRate + '% p.a.'"></span>
+                        </div>
+                        <input type="range" x-model.number="goalRate" min="5" max="25" step="0.5"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>5%</span><span>25%</span></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 sm:gap-5">
+                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Required Monthly Investment</p>
+                        <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(goalMonthlyRequired)"></p>
+                        <p class="text-sm text-emerald-100/90 mt-3" x-text="'Invest monthly for ' + goalYears + ' years'"></p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Your Contribution</p>
+                            <p class="text-base font-extrabold text-slate-900" x-text="fmt(goalTotalDeposited)"></p>
+                        </div>
+                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Market Growth Gain</p>
+                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(goalWealthGain)"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TOOL 6: INFLATION DRAG ================= -->
+            <div x-show="activeTool === 'inflation'" x-transition:enter="transition ease-out duration-300 transform opacity-0 translate-y-3"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" style="display: none;">
+                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Purchasing Power & Inflation Drag</h3>
+                        <p class="text-xs text-slate-500">See how holding idle cash destroys wealth over time.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Cash Kept Idle in Bank / Locker</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-slate-900" x-text="fmt(infAmount)"></span>
+                        </div>
+                        <input type="range" x-model.number="infAmount" min="100000" max="10000000" step="100000"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-rose-500 bg-slate-200" />
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Average Inflation</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-rose-600" x-text="infRate + '% p.a.'"></span>
+                        </div>
+                        <input type="range" x-model.number="infRate" min="6" max="28" step="1"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-rose-500 bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>6%</span><span>28% (Recent Peak)</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Time Horizon</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-slate-700" x-text="infYears + (infYears == 1 ? ' Year' : ' Years')"></span>
+                        </div>
+                        <input type="range" x-model.number="infYears" min="1" max="15" step="1"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-rose-500 bg-slate-200" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 sm:gap-5">
+                    <div class="bg-gradient-to-br from-rose-500 to-red-600 rounded-3xl p-7 text-center shadow-xl shadow-red-500/20 relative overflow-hidden flex-1 flex flex-col justify-center text-white">
+                        <p class="text-xs font-bold text-white/80 uppercase tracking-wider mb-2">Real Purchasing Value Left</p>
+                        <p class="text-4xl sm:text-5xl font-black leading-none" x-text="fmt(infRealValue)"></p>
+                        <p class="text-sm text-red-100 mt-3" x-text="'Lost ' + infLossPct + '% of purchasing power to inflation'"></p>
+                    </div>
+                    <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Silent Wealth Lost to Inflation</p>
+                        <p class="text-xl font-extrabold text-rose-600" x-text="'- ' + fmt(infLoss)"></p>
+                        <p class="text-[11px] text-slate-500 mt-1">💡 Investing in productive assets like PSX equities or Islamic mutual funds beats inflation drag.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TOOL 7: RULE OF 72 ================= -->
+            <div x-show="activeTool === 'rule72'" x-transition:enter="transition ease-out duration-300 transform opacity-0 translate-y-3"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" style="display: none;">
+                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Rule of 72 (Doubling Time)</h3>
+                        <p class="text-xs text-slate-500">The world-famous mental math shortcut to estimate when wealth doubles.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Annual Rate of Return</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="ruleRate + '% p.a.'"></span>
+                        </div>
+                        <input type="range" x-model.number="ruleRate" min="5" max="36" step="1"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>5%</span><span>36%</span></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-2">
+                        <button type="button" @click="ruleRate = 11" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#00C48C] text-left text-xs">
+                            <span class="font-bold block text-slate-800">Bank Savings</span>
+                            <span class="text-slate-500">~11% p.a.</span>
+                        </button>
+                        <button type="button" @click="ruleRate = 14" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#00C48C] text-left text-xs">
+                            <span class="font-bold block text-slate-800">National Savings</span>
+                            <span class="text-slate-500">~14% p.a.</span>
+                        </button>
+                        <button type="button" @click="ruleRate = 16" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#00C48C] text-left text-xs">
+                            <span class="font-bold block text-slate-800">Income Funds</span>
+                            <span class="text-slate-500">~16% p.a.</span>
+                        </button>
+                        <button type="button" @click="ruleRate = 22" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#00C48C] text-left text-xs">
+                            <span class="font-bold block text-slate-800">PSX Equities</span>
+                            <span class="text-slate-500">~22% p.a. (CAGR)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 sm:gap-5">
+                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Years to 2x Your Wealth</p>
+                        <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="ruleYearsToDouble + ' Years'"></p>
+                        <p class="text-sm text-emerald-100/90 mt-3" x-text="'At ' + ruleRate + '% annual compounding rate'"></p>
+                    </div>
+                    <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Timeline to 3x (Triple) Money</p>
+                        <p class="text-xl font-extrabold text-[#00A86B]" x-text="ruleYearsToTriple + ' Years'"></p>
+                        <p class="text-[11px] text-slate-500 mt-1">Formula: Years = 72 ÷ Return Rate %</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TOOL 8: EMERGENCY FUND ================= -->
+            <div x-show="activeTool === 'emergency'" x-transition:enter="transition ease-out duration-300 transform opacity-0 translate-y-3"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" style="display: none;">
+                <div class="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-900">Emergency Fund & Safety Net</h3>
+                        <p class="text-xs text-slate-500">Calculate the ideal liquid cushion before investing aggressively.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Monthly Essential Household Expenses</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(emgExpenses)"></span>
+                        </div>
+                        <input type="range" x-model.number="emgExpenses" min="30000" max="500000" step="5000"
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 30K</span><span>PKR 5 Lakh</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-xs sm:text-sm font-bold text-slate-700">Months of Safety Cushion</label>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="emgMonths + ' Months'"></span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <button type="button" @click="emgMonths = 3" :class="emgMonths === 3 ? 'bg-[#00C48C] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">3 Mo</button>
+                            <button type="button" @click="emgMonths = 6" :class="emgMonths === 6 ? 'bg-[#00C48C] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">6 Mo</button>
+                            <button type="button" @click="emgMonths = 9" :class="emgMonths === 9 ? 'bg-[#00C48C] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">9 Mo</button>
+                            <button type="button" @click="emgMonths = 12" :class="emgMonths === 12 ? 'bg-[#00C48C] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">12 Mo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 sm:gap-5">
+                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Recommended Safety Reserve</p>
+                        <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(emgTotalNeeded)"></p>
+                        <p class="text-sm text-emerald-100/90 mt-3" x-text="'Guarantees ' + emgMonths + ' months of worry-free living'"></p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Instant Cash (30%)</p>
+                            <p class="text-base font-extrabold text-slate-900" x-text="fmt(emgCashPart)"></p>
+                        </div>
+                        <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Money Market Fund (70%)</p>
+                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(emgFundPart)"></p>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-slate-400 text-center">* Park the 70% portion in Islamic Money Market Funds for high liquidity + daily halal returns.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="text-xs text-slate-400">
+                    * Disclaimer: Calculators are for educational and financial literacy purposes only. Returns are projections and subject to market risks.
+                </p>
             </div>
         </div>
     </section>
