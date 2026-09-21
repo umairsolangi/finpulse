@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ContentTier;
+use App\Enums\CourseTopic;
 use App\Enums\Language;
 use App\Enums\SkillLevel;
 use Database\Factories\CourseFactory;
@@ -23,6 +24,8 @@ class Course extends Model
         'tier',
         'language',
         'skill_level',
+        'topic',
+        'published_at',
         'created_by',
     ];
 
@@ -32,6 +35,8 @@ class Course extends Model
             'tier' => ContentTier::class,
             'language' => Language::class,
             'skill_level' => SkillLevel::class,
+            'topic' => CourseTopic::class,
+            'published_at' => 'datetime',
         ];
     }
 

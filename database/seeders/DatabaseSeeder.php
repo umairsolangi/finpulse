@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\ContentTier;
 use App\Enums\ContentType;
+use App\Enums\CourseTopic;
 use App\Enums\Language;
 use App\Enums\PostCategory;
 use App\Enums\SkillLevel;
@@ -211,6 +212,8 @@ class DatabaseSeeder extends Seeder
             'tier' => ContentTier::FREE,
             'language' => Language::ENGLISH,
             'skill_level' => SkillLevel::BEGINNER,
+            'topic' => CourseTopic::STOCKS,
+            'published_at' => Carbon::now()->subDays(20),
             'created_by' => $adminUser->id,
         ]);
 
@@ -250,7 +253,7 @@ class DatabaseSeeder extends Seeder
             'completed_at' => now(),
         ]);
 
-        // Seed a Paid Tier Course
+        // Seed a Paid Tier Course (Valuation)
         $paidCourse = Course::create([
             'title' => 'Advanced Equity Valuation & Sector Financial Modeling',
             'slug' => 'advanced-equity-valuation',
@@ -258,6 +261,8 @@ class DatabaseSeeder extends Seeder
             'tier' => ContentTier::PAID,
             'language' => Language::ENGLISH,
             'skill_level' => SkillLevel::ADVANCED,
+            'topic' => CourseTopic::STOCKS,
+            'published_at' => Carbon::now()->subDays(15),
             'created_by' => $adminUser->id,
         ]);
 
@@ -272,5 +277,141 @@ class DatabaseSeeder extends Seeder
             'title' => 'Building a Discounted Cash Flow (DCF) Model',
             'order' => 2,
         ]);
+
+        // Additional courses across topics for rich real-data carousel
+        $techAnalysisCourse = Course::create([
+            'title' => 'Mastering Technical Analysis & PSX Price Action',
+            'slug' => 'mastering-technical-analysis-psx',
+            'description' => 'Learn key support and resistance zones, candlestick reversal patterns, RSI, and MACD indicators to time market entries.',
+            'tier' => ContentTier::PAID,
+            'language' => Language::ENGLISH,
+            'skill_level' => SkillLevel::INTERMEDIATE,
+            'topic' => CourseTopic::TECHNICAL_ANALYSIS,
+            'published_at' => Carbon::now()->subDays(12),
+            'created_by' => $members[0]->id, // Tariq Mahmood
+        ]);
+
+        $mutualFundsCourse = Course::create([
+            'title' => 'Mutual Funds & Smart Money Market Allocation',
+            'slug' => 'mutual-funds-money-market-allocation',
+            'description' => 'Understand NAV calculations, equity vs fixed income funds, and maximize post-tax yields with voluntary pension schemes.',
+            'tier' => ContentTier::FREE,
+            'language' => Language::ENGLISH,
+            'skill_level' => SkillLevel::BEGINNER,
+            'topic' => CourseTopic::MUTUAL_FUNDS,
+            'published_at' => Carbon::now()->subDays(8),
+            'created_by' => $members[1]->id, // Ayesha Khan
+        ]);
+
+        $basicsCourse = Course::create([
+            'title' => 'Personal Finance Foundations & Debt Management',
+            'slug' => 'personal-finance-foundations',
+            'description' => 'Build a high-yield emergency buffer, optimize monthly cashflow, and establish disciplined long-term compounding habits.',
+            'tier' => ContentTier::FREE,
+            'language' => Language::ENGLISH,
+            'skill_level' => SkillLevel::BEGINNER,
+            'topic' => CourseTopic::BASICS,
+            'published_at' => Carbon::now()->subDays(5),
+            'created_by' => $members[2]->id, // Usman Ali
+        ]);
+
+        $futuresCourse = Course::create([
+            'title' => 'Futures Trading & Risk Hedging in Pakistan',
+            'slug' => 'futures-trading-hedging-pakistan',
+            'description' => 'Demystify deliverable futures contracts (DFCs), cash-settled futures, margin requirements, and short-term volatility management.',
+            'tier' => ContentTier::PAID,
+            'language' => Language::ENGLISH,
+            'skill_level' => SkillLevel::ADVANCED,
+            'topic' => CourseTopic::OPTIONS_DERIVATIVES,
+            'published_at' => Carbon::now()->subDays(2),
+            'created_by' => $members[3]->id, // Hamza Sheikh
+        ]);
+
+        $islamicCourse = Course::create([
+            'title' => 'Islamic Investing & Shariah Screening Principles',
+            'slug' => 'islamic-investing-shariah-screening',
+            'description' => 'Understand KMI-30 screening criteria, debt-to-asset ratios, non-compliant income purification, and sovereign Sukuk certificates.',
+            'tier' => ContentTier::PAID,
+            'language' => Language::ENGLISH,
+            'skill_level' => SkillLevel::INTERMEDIATE,
+            'topic' => CourseTopic::ISLAMIC_FINANCE,
+            'published_at' => Carbon::now()->subHours(12),
+            'created_by' => $adminUser->id,
+        ]);
+
+        $techChapter = CourseChapter::create([
+            'course_id' => $techAnalysisCourse->id,
+            'title' => 'Candlestick Basics & Key Support Levels',
+            'order' => 1,
+        ]);
+
+        $mutualFundsChapter = CourseChapter::create([
+            'course_id' => $mutualFundsCourse->id,
+            'title' => 'Mutual Funds Selection & Asset Allocation',
+            'order' => 1,
+        ]);
+
+        $basicsChapter = CourseChapter::create([
+            'course_id' => $basicsCourse->id,
+            'title' => 'Emergency Funds and Budgeting',
+            'order' => 1,
+        ]);
+
+        CourseChapter::create([
+            'course_id' => $futuresCourse->id,
+            'title' => 'Understanding PSX Deliverable Futures',
+            'order' => 1,
+        ]);
+
+        CourseChapter::create([
+            'course_id' => $islamicCourse->id,
+            'title' => 'KMI-30 Index & Shariah Screens',
+            'order' => 1,
+        ]);
+
+        // Seed diverse progress counts to test Popular tab ordering:
+        // Bootcamp Course: 4 users
+        foreach ([$testUser, $members[0], $members[1], $members[2]] as $u) {
+            CourseProgress::firstOrCreate([
+                'user_id' => $u->id,
+                'chapter_id' => $chapter1->id,
+            ], [
+                'course_id' => $bootcampCourse->id,
+                'completed_at' => now(),
+            ]);
+        }
+
+        // Technical Analysis: 3 users
+        foreach ([$testUser, $members[1], $members[3]] as $u) {
+            CourseProgress::firstOrCreate([
+                'user_id' => $u->id,
+                'chapter_id' => $techChapter->id,
+            ], [
+                'course_id' => $techAnalysisCourse->id,
+                'completed_at' => now(),
+            ]);
+        }
+
+        // Mutual Funds: 2 users
+        foreach ([$members[0], $members[2]] as $u) {
+            CourseProgress::firstOrCreate([
+                'user_id' => $u->id,
+                'chapter_id' => $mutualFundsChapter->id,
+            ], [
+                'course_id' => $mutualFundsCourse->id,
+                'completed_at' => now(),
+            ]);
+        }
+
+        // Basics: 1 user
+        CourseProgress::firstOrCreate([
+            'user_id' => $testUser->id,
+            'chapter_id' => $basicsChapter->id,
+        ], [
+            'course_id' => $basicsCourse->id,
+            'completed_at' => now(),
+        ]);
+
+        // Futures & Islamic: 0 users (so enrollment count is hidden as requested)
     }
 }

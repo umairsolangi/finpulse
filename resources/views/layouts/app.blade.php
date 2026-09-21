@@ -21,7 +21,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
 </head>
 
-<body class="font-sans antialiased {{ request()->routeIs('dashboard') ? 'bg-[#050c2c] text-[#b6c0e7] selection:bg-[#4e5bff] selection:text-white' : 'bg-[#F8FAFE] text-[#4A5A72] selection:bg-[#0B1A33] selection:text-white' }} min-h-screen" x-data="{ sideOpen: false }">
+<body
+    class="font-sans antialiased {{ request()->routeIs('dashboard') ? 'bg-[#050c2c] text-[#b6c0e7] selection:bg-[#4e5bff] selection:text-white' : 'bg-[#F8FAFE] text-[#4A5A72] selection:bg-[#0B1A33] selection:text-white' }} min-h-screen"
+    x-data="{ sideOpen: false }">
     <div class="min-h-screen flex">
         <!-- Desktop Sidebar Navigation -->
         <aside class="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-[#0B1A33] text-white z-30 shadow-lg">
@@ -148,20 +150,24 @@
         </aside>
 
         <!-- Mobile Header -->
-        <div class="lg:hidden fixed top-0 inset-x-0 z-40 {{ request()->routeIs('dashboard') ? 'bg-[#07113d]/90 border-b border-[#889eff]/20 text-white' : 'fp-nav-glass text-[#0B1A33]' }}" id="mobile-nav">
+        <div class="lg:hidden fixed top-0 inset-x-0 z-40 {{ request()->routeIs('dashboard') ? 'bg-[#07113d]/90 border-b border-[#889eff]/20 text-white' : 'fp-nav-glass text-[#0B1A33]' }}"
+            id="mobile-nav">
             <div class="flex items-center justify-between h-14 px-4">
                 <a href="/" wire:navigate class="flex items-center gap-2">
                     <div class="h-8 w-8 rounded-full bg-[#0B1A33] flex items-center justify-center">
                         <span class="text-white font-black text-xs">FP</span>
                     </div>
-                    <span class="font-bold text-sm {{ request()->routeIs('dashboard') ? 'text-white' : 'text-[#0B1A33]' }}">Fin<span class="text-[#C89B3C]">Pulse</span></span>
+                    <span
+                        class="font-bold text-sm {{ request()->routeIs('dashboard') ? 'text-white' : 'text-[#0B1A33]' }}">Fin<span
+                            class="text-[#C89B3C]">Pulse</span></span>
                 </a>
                 <div class="flex items-center gap-2">
                     @auth
                         <livewire:notification-bell />
                     @endauth
                     <button @click="sideOpen = !sideOpen" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                        <svg class="w-5 h-5 {{ request()->routeIs('dashboard') ? 'text-white' : 'text-[#0B1A33]' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 {{ request()->routeIs('dashboard') ? 'text-white' : 'text-[#0B1A33]' }}"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path x-show="!sideOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                             <path x-show="sideOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -266,7 +272,8 @@
                     <div class="flex items-center gap-3 px-2 mb-3">
                         <div
                             class="w-9 h-9 rounded-full bg-[#C89B3C] text-[#0B1A33] flex items-center justify-center font-bold text-sm">
-                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
+                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                        </div>
                         <div class="min-w-0">
                             <p class="text-sm font-semibold text-white truncate">{{ auth()->user()->name }}</p>
                             <p class="text-xs text-white/40 truncate">{{ auth()->user()->email }}</p>
@@ -290,16 +297,19 @@
         <!-- Main Content -->
         <main class="flex-1 lg:ml-64 min-h-screen">
             <!-- Desktop Top Bar -->
-            <div class="hidden lg:block sticky top-0 z-20 {{ request()->routeIs('dashboard') ? 'bg-[#07113d]/80 border-b border-[#889eff]/20 backdrop-blur-xl text-[#f7f8ff]' : 'fp-nav-glass border-b border-gray-100/80' }}" id="top-bar">
+            <div class="hidden lg:block sticky top-0 z-20 {{ request()->routeIs('dashboard') ? 'bg-[#07113d]/80 border-b border-[#889eff]/20 backdrop-blur-xl text-[#f7f8ff]' : 'fp-nav-glass border-b border-gray-100/80' }}"
+                id="top-bar">
                 <div class="flex items-center justify-between h-14 px-8">
                     <div></div>
                     <div class="flex items-center gap-4">
                         @auth
                             <livewire:notification-bell />
                             @if(request()->routeIs('dashboard'))
-                                <span class="text-sm text-[#b6c0e7]">Welcome back, <strong class="text-[#6d80ff]">{{ auth()->user()->name }}</strong></span>
+                                <span class="text-sm text-[#b6c0e7]">Welcome back, <strong
+                                        class="text-[#6d80ff]">{{ auth()->user()->name }}</strong></span>
                             @else
-                                <span class="text-sm text-gray-500">Welcome back, <strong class="text-[#0B1A33]">{{ auth()->user()->name }}</strong></span>
+                                <span class="text-sm text-gray-500">Welcome back, <strong
+                                        class="text-[#0B1A33]">{{ auth()->user()->name }}</strong></span>
                             @endif
                         @endauth
                     </div>
@@ -308,7 +318,8 @@
 
             <div class="fp-page-enter pt-14 lg:pt-0">
                 @if (isset($header))
-                    <header class="{{ request()->routeIs('dashboard') ? 'bg-[#07113d]/60 border-b border-[#889eff]/20 backdrop-blur-xl text-white' : 'bg-white border-b border-gray-100' }}">
+                    <header
+                        class="{{ request()->routeIs('dashboard') ? 'bg-[#07113d]/60 border-b border-[#889eff]/20 backdrop-blur-xl text-white' : 'bg-white border-b border-gray-100' }}">
                         <div class="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
@@ -318,7 +329,8 @@
                 {{ $slot }}
 
                 <!-- Global Compliance & Legal Footer -->
-                <footer class="mt-16 border-t border-gray-200/80 bg-white/80 backdrop-blur-sm py-8 px-4 sm:px-6 lg:px-8 text-xs text-gray-500">
+                <footer
+                    class="mt-16 border-t border-gray-200/80 bg-white/80 backdrop-blur-sm py-8 px-4 sm:px-6 lg:px-8 text-xs text-gray-500">
                     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div class="flex items-center gap-2">
                             <span class="font-bold text-finpulse-navy">FinPulse</span>
@@ -326,14 +338,20 @@
                             <span>Financial Literacy & Research Platform</span>
                         </div>
                         <div class="flex items-center gap-4 flex-wrap">
-                            <a href="{{ route('pricing') }}" wire:navigate class="hover:text-finpulse-navy font-semibold transition-colors">Pricing</a>
-                            <a href="{{ route('terms') }}" wire:navigate class="hover:text-finpulse-navy transition-colors">Terms of Service</a>
-                            <a href="{{ route('privacy') }}" wire:navigate class="hover:text-finpulse-navy transition-colors">Privacy Policy</a>
-                            <a href="{{ route('refund-policy') }}" wire:navigate class="hover:text-finpulse-navy transition-colors">Refund & Cancellation</a>
+                            <a href="{{ route('pricing') }}" wire:navigate
+                                class="hover:text-finpulse-navy font-semibold transition-colors">Pricing</a>
+                            <a href="{{ route('terms') }}" wire:navigate
+                                class="hover:text-finpulse-navy transition-colors">Terms of Service</a>
+                            <a href="{{ route('privacy') }}" wire:navigate
+                                class="hover:text-finpulse-navy transition-colors">Privacy Policy</a>
+                            <a href="{{ route('refund-policy') }}" wire:navigate
+                                class="hover:text-finpulse-navy transition-colors">Refund & Cancellation</a>
                         </div>
                     </div>
-                    <div class="max-w-7xl mx-auto mt-4 pt-4 border-t border-gray-100 text-[11px] text-gray-400 text-center sm:text-left leading-relaxed">
-                        Disclaimer: FinPulse is an educational platform. Market analyses and valuation frameworks are provided solely for financial literacy and do not constitute registered investment advice.
+                    <div
+                        class="max-w-7xl mx-auto mt-4 pt-4 border-t border-gray-100 text-[11px] text-gray-400 text-center sm:text-left leading-relaxed">
+                        Disclaimer: FinPulse is an educational platform. Market analyses and valuation frameworks are
+                        provided solely for financial literacy and do not constitute registered investment advice.
                     </div>
                 </footer>
             </div>

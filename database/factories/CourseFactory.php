@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\ContentTier;
+use App\Enums\CourseTopic;
 use App\Enums\Language;
 use App\Enums\SkillLevel;
 use App\Models\Course;
@@ -28,6 +29,8 @@ class CourseFactory extends Factory
             'tier' => fake()->randomElement(ContentTier::cases()),
             'language' => Language::ENGLISH,
             'skill_level' => fake()->randomElement(SkillLevel::cases()),
+            'topic' => fake()->randomElement(CourseTopic::cases()),
+            'published_at' => fake()->dateTimeBetween('-6 months', 'now'),
             'created_by' => User::factory(),
         ];
     }
