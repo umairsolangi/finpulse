@@ -43,7 +43,7 @@
                     <button
                         wire:click="renew"
                         wire:loading.attr="disabled"
-                        class="px-4 py-2 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-xs sm:text-sm rounded-lg shadow-sm transition-all"
+                        class="px-4 py-2 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-xs sm:text-sm rounded-lg shadow-sm transition-all"
                     >
                         Extend 30 Days (Renew)
                     </button>
@@ -59,7 +59,7 @@
                     <a
                         href="{{ route('pricing') }}"
                         wire:navigate
-                        class="px-5 py-2.5 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg shadow-sm transition-all hover:-translate-y-0.5"
+                        class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg shadow-sm transition-all hover:-translate-y-0.5"
                     >
                         Upgrade to Paid Subscriber
                     </a>

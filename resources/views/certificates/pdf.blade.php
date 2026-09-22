@@ -24,7 +24,7 @@
             position: relative;
         }
         .inner-border {
-            border: 2px dashed #C89B3C;
+            border: 2px dashed #39E554;
             padding: 30px 40px;
             height: 90%;
             text-align: center;
@@ -38,7 +38,7 @@
             text-transform: uppercase;
         }
         .logo-gold {
-            color: #C89B3C;
+            color: #39E554;
         }
         .subtitle {
             font-size: 11px;
@@ -66,7 +66,7 @@
             font-size: 34px;
             font-weight: bold;
             color: #0B2545;
-            border-bottom: 2px solid #C89B3C;
+            border-bottom: 2px solid #39E554;
             display: inline-block;
             padding-bottom: 4px;
             margin-top: 8px;
@@ -83,7 +83,7 @@
         .course-title {
             font-size: 22px;
             font-weight: bold;
-            color: #C89B3C;
+            color: #39E554;
             margin-top: 6px;
             margin-bottom: 20px;
         }
@@ -110,7 +110,7 @@
         .seal-circle {
             width: 75px;
             height: 75px;
-            border: 3px solid #C89B3C;
+            border: 3px solid #39E554;
             border-radius: 50%;
             margin: 0 auto;
             background-color: #FDFBF7;
@@ -118,7 +118,7 @@
             line-height: 70px;
             font-size: 10px;
             font-weight: bold;
-            color: #C89B3C;
+            color: #39E554;
             text-transform: uppercase;
             letter-spacing: 1px;
         }

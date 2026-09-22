@@ -2,9 +2,9 @@
     <!-- Top Breadcrumb & Progress Banner -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-200 pb-4 fp-animate-in">
         <div class="flex items-center gap-2 text-xs sm:text-sm text-finpulse-gray flex-wrap">
-            <a href="{{ route('courses.index') }}" wire:navigate class="hover:text-[#C89B3C] font-semibold transition-colors">Courses</a>
+            <a href="{{ route('courses.index') }}" wire:navigate class="hover:text-[#39E554] font-semibold transition-colors">Courses</a>
             <span>/</span>
-            <a href="{{ route('courses.show', $course->slug) }}" wire:navigate class="hover:text-[#C89B3C] font-semibold transition-colors truncate max-w-xs">{{ $course->title }}</a>
+            <a href="{{ route('courses.show', $course->slug) }}" wire:navigate class="hover:text-[#39E554] font-semibold transition-colors truncate max-w-xs">{{ $course->title }}</a>
             <span>/</span>
             <span class="text-finpulse-navy font-bold">Chapter {{ $currentIndex }} of {{ $totalChapters }}</span>
         </div>
@@ -13,7 +13,7 @@
             <a
                 href="{{ route('courses.show', $course->slug) }}"
                 wire:navigate
-                class="inline-flex items-center gap-1 text-xs font-semibold text-finpulse-navy hover:text-[#C89B3C] transition-colors"
+                class="inline-flex items-center gap-1 text-xs font-semibold text-finpulse-navy hover:text-[#39E554] transition-colors"
             >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -51,7 +51,7 @@
                         <a
                             href="{{ route('login') }}"
                             wire:navigate
-                            class="px-5 py-2.5 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                            class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                         >
                             Log in to unlock
                         </a>
@@ -66,7 +66,7 @@
                         <a
                             href="{{ route('pricing') }}"
                             wire:navigate
-                            class="px-5 py-2.5 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                            class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                         >
                             Upgrade Membership
                         </a>
@@ -79,7 +79,7 @@
                 <!-- Chapter Header -->
                 <div class="border-b border-gray-100 pb-6 space-y-3">
                     <div class="flex items-center justify-between gap-4 flex-wrap">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#C89B3C] bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#39E554] bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
                             Chapter {{ $currentIndex }} of {{ $totalChapters }}
                         </span>
 
@@ -206,7 +206,7 @@
                                                         bg-white border-gray-200 text-gray-700 opacity-60
                                                     @endif
                                                 @else
-                                                    {{ $isSelected ? 'bg-amber-50 border-[#C89B3C] text-finpulse-navy font-semibold shadow-sm' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-100/60' }}
+                                                    {{ $isSelected ? 'bg-amber-50 border-[#39E554] text-finpulse-navy font-semibold shadow-sm' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-100/60' }}
                                                 @endif
                                             ">
                                                 <input
@@ -215,7 +215,7 @@
                                                     value="{{ $option->id }}"
                                                     wire:model="selectedAnswers.{{ $question->id }}"
                                                     @disabled($quizSubmitted && $hasPassedQuiz)
-                                                    class="text-[#C89B3C] focus:ring-finpulse-navy border-gray-300"
+                                                    class="text-[#39E554] focus:ring-finpulse-navy border-gray-300"
                                                 />
                                                 <span class="flex-1">{{ $option->option_text }}</span>
 
@@ -240,7 +240,7 @@
                                     type="button"
                                     wire:click="submitQuiz"
                                     wire:loading.attr="disabled"
-                                    class="px-6 py-3 rounded-lg font-bold text-sm bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                                    class="px-6 py-3 rounded-lg font-bold text-sm bg-[#39E554] hover:bg-amber-400 text-finpulse-navy transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                                 >
                                     <span wire:loading.remove>Submit Quiz</span>
                                     <span wire:loading>Evaluating...</span>
@@ -259,7 +259,7 @@
                                 <button
                                     type="button"
                                     wire:click="$set('showQuiz', true)"
-                                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm shadow-sm transition-all duration-300 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy hover:shadow-md hover:-translate-y-0.5"
+                                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm shadow-sm transition-all duration-300 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy hover:shadow-md hover:-translate-y-0.5"
                                 >
                                     <svg class="w-4 h-4 text-finpulse-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -274,7 +274,7 @@
                                     class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm shadow-sm transition-all duration-300
                                         {{ $isCompleted
                                             ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200'
-                                            : 'bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy hover:shadow-md hover:-translate-y-0.5' }}"
+                                            : 'bg-[#39E554] hover:bg-amber-400 text-finpulse-navy hover:shadow-md hover:-translate-y-0.5' }}"
                                 >
                                     <svg class="w-4 h-4 {{ $isCompleted ? 'text-emerald-700' : 'text-finpulse-navy' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -337,7 +337,7 @@
                                 <a
                                     href="{{ route('courses.chapter', [$course->slug, $nextChapter->id]) }}"
                                     wire:navigate
-                                    class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold text-white bg-finpulse-navy hover:bg-[#C89B3C] hover:text-finpulse-navy transition-all duration-300 group shadow-sm hover:shadow-md"
+                                    class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold text-white bg-finpulse-navy hover:bg-[#39E554] hover:bg-[#28a04a] transition-all duration-300 group shadow-sm hover:shadow-md"
                                 >
                                     <span class="hidden sm:inline">Next Chapter</span>
                                     <span class="sm:hidden">Next</span>
@@ -398,7 +398,7 @@
             class="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
         >
             <div class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-[#C89B3C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 text-[#39E554]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                 </svg>
                 <span class="text-sm font-bold text-finpulse-navy">Jump to Another Chapter ({{ $totalChapters }} Lessons)</span>
@@ -424,7 +424,7 @@
                     href="{{ route('courses.chapter', [$course->slug, $ch->id]) }}"
                     wire:navigate
                     class="p-3.5 sm:px-6 flex items-center justify-between gap-3 text-xs sm:text-sm transition-colors
-                        {{ $isCurrent ? 'bg-amber-50/80 font-bold text-finpulse-navy border-l-4 border-[#C89B3C]' : 'hover:bg-gray-50 text-gray-700' }}"
+                        {{ $isCurrent ? 'bg-amber-50/80 font-bold text-finpulse-navy border-l-4 border-[#39E554]' : 'hover:bg-gray-50 text-gray-700' }}"
                 >
                     <div class="flex items-center gap-3 min-w-0">
                         <span class="w-6 text-center text-xs font-semibold text-gray-400">#{{ $ch->order ?: $loop->iteration }}</span>
@@ -440,7 +440,7 @@
                             </span>
                         @endif
                         @if($isCurrent)
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-[#C89B3C] bg-amber-100 px-2 py-0.5 rounded">Now</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-[#39E554] bg-amber-100 px-2 py-0.5 rounded">Now</span>
                         @endif
                     </div>
                 </a>

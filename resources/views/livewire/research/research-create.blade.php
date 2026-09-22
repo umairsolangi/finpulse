@@ -11,7 +11,7 @@
 
     <div class="bg-white rounded-3xl border border-gray-200 shadow-sm p-8 sm:p-10">
         <div class="border-b border-gray-100 pb-6 mb-8">
-            <span class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider rounded bg-[#0B1A33] text-[#C89B3C]">Research Desk</span>
+            <span class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider rounded bg-[#0B1A33] text-[#39E554]">Research Desk</span>
             <h1 class="text-2xl sm:text-3xl font-bold font-serif text-[#0B1A33] mt-2">Publish Institutional Research</h1>
             <p class="text-sm text-gray-500 mt-1">Submit institutional market briefs, macro reports, and financial breakdowns.</p>
         </div>

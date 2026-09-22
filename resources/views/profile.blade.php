@@ -99,7 +99,7 @@
                                         <a
                                             href="{{ route('courses.show', $cert->course->slug) }}"
                                             wire:navigate
-                                            class="text-xs font-semibold text-finpulse-navy hover:text-[#C89B3C] transition-colors"
+                                            class="text-xs font-semibold text-finpulse-navy hover:text-[#39E554] transition-colors"
                                         >
                                             View Syllabus
                                         </a>
@@ -128,7 +128,7 @@
                                 <a
                                     href="{{ route('courses.index') }}"
                                     wire:navigate
-                                    class="inline-flex items-center gap-1.5 px-4 py-2 bg-finpulse-navy text-white text-xs font-bold rounded-lg hover:bg-[#C89B3C] hover:text-finpulse-navy transition-all"
+                                    class="inline-flex items-center gap-1.5 px-4 py-2 bg-finpulse-navy text-white text-xs font-bold rounded-lg hover:bg-[#39E554] hover:bg-[#28a04a] transition-all"
                                 >
                                     <span>Browse Courses</span>
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -31,7 +31,7 @@
             <div class="flex items-center gap-2">
                 <span class="font-bold text-sm text-[#0B1A33]">Notifications</span>
                 @if($unreadCount > 0)
-                    <span class="px-2 py-0.5 text-[10px] font-bold bg-[#0B1A33] text-[#C89B3C] rounded-full">
+                    <span class="px-2 py-0.5 text-[10px] font-bold bg-[#0B1A33] text-[#39E554] rounded-full">
                         {{ $unreadCount }} new
                     </span>
                 @endif
@@ -39,7 +39,7 @@
 
             @if($unreadCount > 0)
                 <button wire:click="markAllAsRead"
-                    class="text-xs font-semibold text-[#0B1A33] hover:text-[#C89B3C] transition-colors">
+                    class="text-xs font-semibold text-[#0B1A33] hover:text-[#39E554] transition-colors">
                     Mark all as read
                 </button>
             @endif
@@ -86,7 +86,7 @@
 
                     {{-- Unread Dot --}}
                     @if($isUnread)
-                        <span class="w-2 h-2 rounded-full bg-[#C89B3C] shrink-0 self-center"></span>
+                        <span class="w-2 h-2 rounded-full bg-[#39E554] shrink-0 self-center"></span>
                     @endif
                 </div>
             @empty

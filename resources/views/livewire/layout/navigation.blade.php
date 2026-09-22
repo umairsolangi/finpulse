@@ -78,10 +78,10 @@ new class extends Component
                     </x-dropdown>
                 @else
                     <div class="flex items-center gap-3">
-                        <a href="{{ route('login') }}" wire:navigate class="text-sm font-semibold text-finpulse-navy hover:text-[#C89B3C] transition-colors">
+                        <a href="{{ route('login') }}" wire:navigate class="text-sm font-semibold text-finpulse-navy hover:text-[#39E554] transition-colors">
                             Log in
                         </a>
-                        <a href="{{ route('register') }}" wire:navigate class="px-4 py-2 text-xs font-semibold text-white bg-finpulse-navy hover:bg-[#C89B3C] hover:text-finpulse-navy rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                        <a href="{{ route('register') }}" wire:navigate class="px-4 py-2 text-xs font-semibold text-white bg-finpulse-navy hover:bg-[#39E554] hover:bg-[#28a04a] rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
                             Get Started
                         </a>
                     </div>

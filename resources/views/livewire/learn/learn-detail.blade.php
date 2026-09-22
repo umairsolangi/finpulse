@@ -144,7 +144,7 @@
                         </svg>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-white">This Content is Reserved</h3>
+                    <h3 class="text-2xl font-bold text-white">This content is locked</h3>
                     <p class="text-sm text-emerald-100/70 max-w-md mx-auto leading-relaxed">
                         @if(($item->tier?->value ?? $item->tier) === 'registered')
                             Create a free FinPulse account to unlock this guide and save it to your personalized learning dashboard.
@@ -228,7 +228,7 @@
                                         <path d="M8 5v14l11-7z" />
                                     </svg>
                                 </div>
-                                <p class="text-sm font-bold text-white">Stream Explainer Player</p>
+                                <p class="text-sm font-bold text-white">Video Player Placeholder</p>
                                 <p class="text-xs text-slate-400">High-speed video playback with zero buffering</p>
                             </div>
                         </div>

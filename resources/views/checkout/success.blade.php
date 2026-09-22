@@ -48,7 +48,7 @@
                 <a
                     href="{{ route('courses.index') }}"
                     wire:navigate
-                    class="w-full sm:w-auto px-6 py-3 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold rounded-xl shadow-md transition-all hover:-translate-y-0.5"
+                    class="w-full sm:w-auto px-6 py-3 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold rounded-xl shadow-md transition-all hover:-translate-y-0.5"
                 >
                     Explore Courses & Masterclasses
                 </a>

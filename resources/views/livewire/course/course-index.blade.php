@@ -76,7 +76,7 @@
                 <button
                     type="button"
                     wire:click="resetFilters"
-                    class="text-xs font-semibold text-finpulse-navy hover:text-[#C89B3C] transition-colors"
+                    class="text-xs font-semibold text-finpulse-navy hover:text-[#39E554] transition-colors"
                 >
                     Reset Filters
                 </button>
@@ -122,7 +122,7 @@
                     </div>
 
                     <!-- Title -->
-                    <h2 class="text-lg font-bold text-finpulse-navy group-hover:text-[#C89B3C] transition-colors duration-200 line-clamp-2">
+                    <h2 class="text-lg font-bold text-finpulse-navy group-hover:text-[#39E554] transition-colors duration-200 line-clamp-2">
                         <a href="{{ route('courses.show', $course->slug) }}" wire:navigate>
                             {{ $course->title }}
                         </a>
@@ -138,11 +138,11 @@
                         <div class="pt-2 space-y-1.5">
                             <div class="flex items-center justify-between text-xs font-medium text-finpulse-navy">
                                 <span>{{ $completedCount }} of {{ $totalChapters }} {{ Str::plural('chapter', $totalChapters) }} complete</span>
-                                <span class="font-bold text-[#C89B3C]">{{ $progressPercent }}%</span>
+                                <span class="font-bold text-[#39E554]">{{ $progressPercent }}%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                                 <div
-                                    class="bg-gradient-to-r from-finpulse-navy to-[#C89B3C] h-2 rounded-full transition-all duration-500"
+                                    class="bg-gradient-to-r from-finpulse-navy to-[#39E554] h-2 rounded-full transition-all duration-500"
                                     style="width: {{ min(100, $progressPercent) }}%"
                                 ></div>
                             </div>
@@ -162,7 +162,7 @@
                     <a
                         href="{{ route('courses.show', $course->slug) }}"
                         wire:navigate
-                        class="font-semibold text-finpulse-navy group-hover:text-[#C89B3C] inline-flex items-center gap-1 transition-colors"
+                        class="font-semibold text-finpulse-navy group-hover:text-[#39E554] inline-flex items-center gap-1 transition-colors"
                     >
                         <span>{{ $hasStarted ? 'Continue' : 'View Course' }}</span>
                         <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +185,7 @@
                         <button
                             type="button"
                             wire:click="resetFilters"
-                            class="px-4 py-2 bg-finpulse-navy text-white text-xs font-semibold rounded-lg hover:bg-[#C89B3C] transition-all duration-300 hover:shadow-md"
+                            class="px-4 py-2 bg-finpulse-navy text-white text-xs font-semibold rounded-lg hover:bg-[#39E554] transition-all duration-300 hover:shadow-md"
                         >
                             Clear All Filters
                         </button>

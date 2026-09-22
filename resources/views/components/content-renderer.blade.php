@@ -6,7 +6,7 @@
         <div class="space-y-6">
             <div class="relative w-full aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-md flex items-center justify-center group border border-gray-800 fp-img-reveal">
                 <div class="text-center p-6 space-y-3">
-                    <div class="w-16 h-16 rounded-full bg-[#C89B3C] text-finpulse-navy flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <div class="w-16 h-16 rounded-full bg-[#39E554] text-finpulse-navy flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z" />
                         </svg>

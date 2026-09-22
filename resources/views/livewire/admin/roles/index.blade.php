@@ -5,7 +5,7 @@
             <a
                 href="{{ route('admin.users.index') }}"
                 wire:navigate
-                class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-finpulse-navy hover:text-[#C89B3C] transition-colors"
+                class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-finpulse-navy hover:text-[#39E554] transition-colors"
             >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />

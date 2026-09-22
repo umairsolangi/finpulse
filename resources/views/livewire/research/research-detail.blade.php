@@ -14,7 +14,7 @@
         <div class="p-8 sm:p-12 border-b border-gray-100 bg-gradient-to-b from-[#0B1A33]/[0.02] to-transparent">
             <div class="flex flex-wrap items-center gap-3 mb-4">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider
-                    {{ $isFree ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : ($isPaid ? 'bg-amber-50 text-[#C89B3C] border border-[#C89B3C]/30' : 'bg-blue-50 text-blue-700 border border-blue-200') }}">
+                    {{ $isFree ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : ($isPaid ? 'bg-amber-50 text-[#39E554] border border-[#39E554]/30' : 'bg-blue-50 text-blue-700 border border-blue-200') }}">
                     {{ ucfirst($item->tier->value) }} Tier
                 </span>
                 <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -30,7 +30,7 @@
 
             <div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-gray-100">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-[#0B1A33] text-[#C89B3C] flex items-center justify-center font-bold text-sm">
+                    <div class="w-10 h-10 rounded-full bg-[#0B1A33] text-[#39E554] flex items-center justify-center font-bold text-sm">
                         {{ strtoupper(substr($item->author->name ?? 'FP', 0, 1)) }}
                     </div>
                     <div>
@@ -50,7 +50,7 @@
             {{-- Executive Summary Box --}}
             <div class="mb-8 p-6 bg-slate-50 rounded-2xl border-l-4 border-[#0B1A33]">
                 <h2 class="text-xs font-bold text-[#0B1A33] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                    <svg class="w-4 h-4 text-[#C89B3C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-[#39E554]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Executive Summary & Takeaways
@@ -96,12 +96,12 @@
                                 <a href="{{ route('login') }}" class="px-4 py-2 text-xs font-semibold text-white bg-[#0B1A33] hover:bg-[#13274c] rounded-xl transition-all">
                                     Log In
                                 </a>
-                                <a href="{{ route('register') }}" class="px-4 py-2 text-xs font-semibold text-[#0B1A33] bg-[#C89B3C] hover:bg-[#d4a942] rounded-xl transition-all">
+                                <a href="{{ route('register') }}" class="px-4 py-2 text-xs font-semibold text-[#0B1A33] bg-[#39E554] hover:bg-[#d4a942] rounded-xl transition-all">
                                     Create Free Account
                                 </a>
                             </div>
                         @else
-                            <a href="{{ route('pricing') }}" wire:navigate class="px-5 py-2.5 text-xs font-bold text-finpulse-navy bg-[#C89B3C] hover:bg-amber-400 rounded-xl transition-all shadow-sm">
+                            <a href="{{ route('pricing') }}" wire:navigate class="px-5 py-2.5 text-xs font-bold text-finpulse-navy bg-[#39E554] hover:bg-amber-400 rounded-xl transition-all shadow-sm">
                                 Upgrade to Paid Subscriber
                             </a>
                         @endguest
@@ -112,7 +112,7 @@
             @if($canAccess)
                 <div class="mt-10 p-6 rounded-2xl bg-gradient-to-r from-[#0B1A33] to-[#12284d] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md border border-gray-800">
                     <div class="space-y-1.5">
-                        <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 bg-[#C89B3C]/20 text-amber-300 rounded-full border border-[#C89B3C]/40">
+                        <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 bg-[#39E554]/20 text-amber-300 rounded-full border border-[#39E554]/40">
                             Brokerage Partner Offer
                         </span>
                         <h4 class="font-bold text-base text-white">Ready to execute your investment thesis?</h4>
@@ -124,7 +124,7 @@
                         href="{{ route('referral.brokerage') }}"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="shrink-0 px-5 py-2.5 bg-[#C89B3C] hover:bg-amber-400 text-finpulse-navy font-bold text-xs rounded-xl shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-1.5"
+                        class="shrink-0 px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-xs rounded-xl shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-1.5"
                     >
                         <span>Open Trading Account</span>
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

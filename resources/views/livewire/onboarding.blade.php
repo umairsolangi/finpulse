@@ -43,7 +43,7 @@
 
                         <!-- Checkmark Indicator -->
                         <div
-                            class="w-6 h-6 rounded-full border flex items-center justify-center transition-all {{ $isSelected ? 'bg-[#0B1A33] border-[#0B1A33] text-white shadow-sm' : 'border-gray-300 bg-white text-transparent group-hover:border-gray-400' }}">
+                            class="w-6 h-6 rounded-full border flex items-center justify-center transition-all {{ $isSelected ? 'bg-[#0B1A33] border-[#0B1A33] text-white shadow-sm' : 'border-gray-300 bg-white group-hover:border-gray-400' }}">
                             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
                                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -62,7 +62,7 @@
                     </div>
 
                     @if($isSelected)
-                        <div class="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-[#C89B3C]">
+                        <div class="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-[#39E554]">
                             <span>Selected</span> ✓
                         </div>
                     @endif
@@ -83,7 +83,7 @@
             </div>
 
             <button type="submit"
-                class="w-full sm:w-auto px-8 py-3 bg-[#0B1A33] hover:bg-[#C89B3C] text-white hover:text-[#0B1A33] font-bold text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-2"
+                class="w-full sm:w-auto px-8 py-3 bg-[#0B1A33] hover:bg-[#39E554] text-white hover:text-[#0B1A33] font-bold text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-2"
                 {{ count($selectedInterests) < 2 ? 'disabled' : '' }}>
                 <span>Continue to Learning</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

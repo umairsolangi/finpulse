@@ -12,7 +12,7 @@ export default defineConfig({
     server: {
         host: '0.0.0.0',
         port: 5173,
-        origin: 'http://192.168.0.126:5173',
+        origin: 'http://192.168.0.125:5173',
     },
 });
 

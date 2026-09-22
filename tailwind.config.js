@@ -12,14 +12,14 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Plus Jakarta Sans', 'Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 finpulse: {
-                    navy: '#39e554',
-                    gold: '#ffff',
-                    cream: '#F5EFDF',
-                    gray: '#555555',
+                    navy:  '#39E554',   /* primary green — replaces old dark navy */
+                    gold:  '#28a04a',   /* secondary green — replaces old gold */
+                    cream: '#f0fdf4',   /* light mint background */
+                    gray:  '#64748b',   /* slate-500 for body text */
                 },
                 emerald: {
                     DEFAULT: '#00C48C',

@@ -28,7 +28,7 @@
                     <a href="/" wire:navigate class="inline-flex items-center gap-3 group">
                         <div class="h-12 w-12 rounded-full bg-finpulse-navy border-2 border-finpulse-gold flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-200 shrink-0">
                             <svg class="h-6 w-6" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 24H16L19 16L24 32L28 20L31 24H38" stroke="#C89B3C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 24H16L19 16L24 32L28 20L31 24H38" stroke="#39E554" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                         <div>

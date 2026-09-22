@@ -121,7 +121,7 @@
                                 <a
                                     href="{{ route('admin.users.show', $user->id) }}"
                                     wire:navigate
-                                    class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-finpulse-navy bg-gray-100 hover:bg-[#C89B3C] hover:text-finpulse-navy transition-all"
+                                    class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-finpulse-navy bg-gray-100 hover:bg-[#39E554] hover:bg-[#28a04a] transition-all"
                                 >
                                     <span>Manage</span>
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

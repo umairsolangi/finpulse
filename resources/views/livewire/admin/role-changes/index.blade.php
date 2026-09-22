@@ -113,7 +113,7 @@
                                         wire:navigate
                                         class="group block"
                                     >
-                                        <div class="font-bold text-finpulse-navy group-hover:text-[#C89B3C] transition-colors">
+                                        <div class="font-bold text-finpulse-navy group-hover:text-[#39E554] transition-colors">
                                             {{ $log->targetUser->name }}
                                         </div>
                                         <div class="text-[11px] text-gray-500">
