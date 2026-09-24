@@ -4,6 +4,8 @@ use App\Http\Controllers\BrokerageReferralController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\SafepayCallbackController;
 use App\Http\Controllers\SafepayWebhookController;
+use App\Livewire\Admin\Batches\Index as AdminBatchesIndex;
+use App\Livewire\Admin\Batches\Show as AdminBatchesShow;
 use App\Livewire\Admin\RoleChanges\Index as AdminRoleChangesIndex;
 use App\Livewire\Admin\Roles\Index as AdminRolesIndex;
 use App\Livewire\Admin\Settings\Index as AdminSettingsIndex;
@@ -113,6 +115,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'permission:users.ma
     Route::get('roles', AdminRolesIndex::class)->name('roles.index');
     Route::get('role-changes', AdminRoleChangesIndex::class)->name('role-changes.index');
     Route::get('settings', AdminSettingsIndex::class)->middleware('permission:settings.manage')->name('settings.index');
+});
+
+// Phase 5 — Batch Management (Admin: full access; Instructor: their courses only)
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::get('batches', AdminBatchesIndex::class)->name('batches.index');
+    Route::get('batches/{id}', AdminBatchesShow::class)->name('batches.show');
 });
 
 require __DIR__.'/auth.php';

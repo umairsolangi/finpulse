@@ -27,6 +27,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'users.manage',
             'payments.view',
             'settings.manage',
+            'batches.create',
+            'batches.manage-students',
         ];
 
         foreach ($permissions as $permission) {
@@ -54,6 +56,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'content.create',
                 'content.publish',
                 'content.gate',
+                'batches.manage-students',
             ],
             'Moderator' => [
                 'post.moderate',

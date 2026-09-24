@@ -153,4 +153,22 @@ class User extends Authenticatable
 
         return $this->hasRole(['Paid Subscriber', 'Instructor', 'Admin']);
     }
+
+    public function batchEnrollments(): HasMany
+    {
+        return $this->hasMany(BatchEnrollment::class, 'user_id');
+    }
+
+    /**
+     * Check if this user is enrolled in any active batch for the given course.
+     */
+    public function hasActiveBatchAccessTo(int $courseId): bool
+    {
+        return $this->batchEnrollments()
+            ->whereHas('batch', function ($query) use ($courseId) {
+                $query->where('course_id', $courseId)
+                    ->where('status', 'active');
+            })
+            ->exists();
+    }
 }

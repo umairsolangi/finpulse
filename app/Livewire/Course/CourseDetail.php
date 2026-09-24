@@ -77,7 +77,14 @@ class CourseDetail extends Component
         }
 
         $isFreeTier = ($this->course->tier?->value ?? $this->course->tier) === ContentTier::FREE->value;
-        $canAccess = $isFreeTier || (auth()->check() && auth()->user()->hasPaidAccess());
+
+        if ($this->course->restricted_to_batches) {
+            $canAccess = auth()->check() && auth()->user()->hasActiveBatchAccessTo($this->course->id);
+            $accessMessage = 'batch';
+        } else {
+            $canAccess = $isFreeTier || (auth()->check() && auth()->user()->hasPaidAccess());
+            $accessMessage = 'tier';
+        }
 
         return view('livewire.course.course-detail', [
             'course' => $this->course,
@@ -91,6 +98,7 @@ class CourseDetail extends Component
             'actionType' => $actionType,
             'isFreeTier' => $isFreeTier,
             'canAccess' => $canAccess,
+            'accessMessage' => $accessMessage,
             'certificate' => $certificate,
         ]);
     }

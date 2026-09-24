@@ -194,7 +194,14 @@ class ChapterViewer extends Component
         }
 
         $isFreeTier = ($this->course->tier?->value ?? $this->course->tier) === ContentTier::FREE->value;
-        $canAccess = $isFreeTier || (auth()->check() && auth()->user()->hasPaidAccess());
+
+        if ($this->course->restricted_to_batches) {
+            $canAccess = auth()->check() && auth()->user()->hasActiveBatchAccessTo($this->course->id);
+            $accessMessage = 'batch';
+        } else {
+            $canAccess = $isFreeTier || (auth()->check() && auth()->user()->hasPaidAccess());
+            $accessMessage = 'tier';
+        }
 
         return view('livewire.course.chapter-viewer', [
             'course' => $this->course,
@@ -209,6 +216,7 @@ class ChapterViewer extends Component
             'completedChapterIds' => $completedChapterIds,
             'isFreeTier' => $isFreeTier,
             'canAccess' => $canAccess,
+            'accessMessage' => $accessMessage,
         ]);
     }
 }

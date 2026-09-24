@@ -27,6 +27,7 @@ class Course extends Model
         'topic',
         'published_at',
         'created_by',
+        'restricted_to_batches',
     ];
 
     protected function casts(): array
@@ -37,6 +38,7 @@ class Course extends Model
             'skill_level' => SkillLevel::class,
             'topic' => CourseTopic::class,
             'published_at' => 'datetime',
+            'restricted_to_batches' => 'boolean',
         ];
     }
 
@@ -53,5 +55,10 @@ class Course extends Model
     public function progress(): HasMany
     {
         return $this->hasMany(CourseProgress::class, 'course_id');
+    }
+
+    public function batches(): HasMany
+    {
+        return $this->hasMany(Batch::class, 'course_id');
     }
 }

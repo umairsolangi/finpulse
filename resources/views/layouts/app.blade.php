@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -121,6 +121,36 @@
                         </svg>
                         Leaderboard
                     </a>
+
+                    @if(auth()->user()->can('batches.create') || auth()->user()->can('batches.manage-students') || auth()->user()->can('users.manage'))
+                        <p class="px-3 mt-4 mb-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/25">Management</p>
+
+                        @if(auth()->user()->can('batches.create') || auth()->user()->can('batches.manage-students'))
+                            <a href="{{ route('admin.batches.index') }}" wire:navigate
+                                class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('admin.batches.*') ? 'text-white' : 'text-white/50 hover:text-white hover:bg-white/5' }}"
+                                style="{{ request()->routeIs('admin.batches.*') ? 'background:linear-gradient(135deg,rgba(57,229,84,0.18),rgba(40,160,74,0.1));border:1px solid rgba(57,229,84,0.25);' : '' }}">
+                                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Batches
+                            </a>
+                        @endif
+
+                        @can('users.manage')
+                            <a href="{{ route('admin.users.index') }}" wire:navigate
+                                class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('admin.users.*', 'admin.roles.*', 'admin.role-changes.*', 'admin.settings.*') ? 'text-white' : 'text-white/50 hover:text-white hover:bg-white/5' }}"
+                                style="{{ request()->routeIs('admin.users.*', 'admin.roles.*', 'admin.role-changes.*', 'admin.settings.*') ? 'background:linear-gradient(135deg,rgba(57,229,84,0.18),rgba(40,160,74,0.1));border:1px solid rgba(57,229,84,0.25);' : '' }}">
+                                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                Admin Panel
+                            </a>
+                        @endcan
+                    @endif
                 @endauth
             </nav>
 
@@ -279,6 +309,34 @@
                         </svg>
                         Leaderboard
                     </a>
+
+                    @if(auth()->user()->can('batches.create') || auth()->user()->can('batches.manage-students') || auth()->user()->can('users.manage'))
+                        <p class="px-4 mt-4 mb-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/25">Management</p>
+
+                        @if(auth()->user()->can('batches.create') || auth()->user()->can('batches.manage-students'))
+                            <a href="{{ route('admin.batches.index') }}" wire:navigate @click="sideOpen = false"
+                                class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('admin.batches.*') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Batches
+                            </a>
+                        @endif
+
+                        @can('users.manage')
+                            <a href="{{ route('admin.users.index') }}" wire:navigate @click="sideOpen = false"
+                                class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('admin.users.*', 'admin.roles.*', 'admin.role-changes.*', 'admin.settings.*') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                Admin Panel
+                            </a>
+                        @endcan
+                    @endif
                 @endauth
             </nav>
             <div class="px-4 py-4 border-t border-white/10">

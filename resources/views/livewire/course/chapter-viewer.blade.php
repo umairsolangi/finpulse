@@ -39,7 +39,9 @@
                 </h3>
 
                 <p class="text-sm text-gray-300 max-w-md mx-auto leading-relaxed">
-                    @if(($course->tier?->value ?? $course->tier) === 'registered')
+                    @if(($accessMessage ?? 'tier') === 'batch')
+                        This course is only available to enrolled batch members. Please contact your instructor or administrator to be added to the relevant batch.
+                    @elseif(($course->tier?->value ?? $course->tier) === 'registered')
                         This chapter requires a registered account. Please log in or create a free FinPulse account to unlock full access.
                     @else
                         This lesson is part of our premium financial curriculum. Upgrade your subscription to Paid Subscriber to unlock all premium courses.
@@ -47,30 +49,42 @@
                 </p>
 
                 <div class="pt-3 flex items-center justify-center gap-3">
-                    @guest
-                        <a
-                            href="{{ route('login') }}"
-                            wire:navigate
-                            class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
-                        >
-                            Log in to unlock
-                        </a>
-                        <a
-                            href="{{ route('register') }}"
-                            wire:navigate
-                            class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm rounded-lg transition-all duration-300"
-                        >
-                            Create Account
-                        </a>
+                    @if(($accessMessage ?? 'tier') === 'batch')
+                        @guest
+                            <a
+                                href="{{ route('login') }}"
+                                wire:navigate
+                                class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                            >
+                                Log in
+                            </a>
+                        @endguest
                     @else
-                        <a
-                            href="{{ route('pricing') }}"
-                            wire:navigate
-                            class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
-                        >
-                            Upgrade Membership
-                        </a>
-                    @endguest
+                        @guest
+                            <a
+                                href="{{ route('login') }}"
+                                wire:navigate
+                                class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                            >
+                                Log in to unlock
+                            </a>
+                            <a
+                                href="{{ route('register') }}"
+                                wire:navigate
+                                class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm rounded-lg transition-all duration-300"
+                            >
+                                Create Account
+                            </a>
+                        @else
+                            <a
+                                href="{{ route('pricing') }}"
+                                wire:navigate
+                                class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                            >
+                                Upgrade Membership
+                            </a>
+                        @endguest
+                    @endif
                 </div>
             </div>
         @else
