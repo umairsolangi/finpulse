@@ -86,10 +86,19 @@ class Index extends Component
 
         $courses = Course::orderBy('title')->get();
 
+        $activeCount = $batches->filter(fn ($b) => ($b->status?->value ?? $b->status) === 'active')->count();
+        $upcomingCount = $batches->filter(fn ($b) => ($b->status?->value ?? $b->status) === 'upcoming')->count();
+        $totalEnrollments = (int) $batches->sum('enrollments_count');
+        $restrictedCoursesCount = Course::where('restricted_to_batches', true)->count();
+
         return view('livewire.admin.batches.index', [
             'batches' => $batches,
             'courses' => $courses,
             'statuses' => BatchStatus::cases(),
+            'activeCount' => $activeCount,
+            'upcomingCount' => $upcomingCount,
+            'totalEnrollments' => $totalEnrollments,
+            'restrictedCoursesCount' => $restrictedCoursesCount,
         ]);
     }
 }

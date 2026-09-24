@@ -35,7 +35,12 @@
                     {{ ($course->language?->value ?? $course->language) === 'en' ? 'English' : 'Urdu' }}
                 </span>
 
-                @if(!$isFreeTier)
+                @if($course->restricted_to_batches)
+                    <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-600 text-white uppercase tracking-wider shadow-sm flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        COHORT BATCH ONLY
+                    </span>
+                @elseif(!$isFreeTier)
                     <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500 text-white uppercase tracking-wider shadow-sm">
                         {{ strtoupper($course->tier?->value ?? $course->tier) }} ACCESS
                     </span>
@@ -86,18 +91,26 @@
 
         <!-- Locked Teaser Paywall Stub (when not accessible) -->
         @if(!$canAccess)
-            <div class="bg-gray-900 text-white rounded-xl p-8 text-center border border-gray-800 space-y-4 my-4 shadow-md fp-animate-in">
-                <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto fp-float">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="rounded-2xl p-8 sm:p-10 text-center text-white border shadow-xl relative overflow-hidden my-4 fp-animate-in"
+                 style="background: radial-gradient(130% 120% at 50% 10%, #0d2d22 0%, #061a14 70%, #040e0b 100%); border: 1px solid rgba(57, 229, 84, 0.25);">
+                
+                <div class="w-14 h-14 rounded-2xl bg-[#39E554]/10 text-[#39E554] border border-[#39E554]/30 flex items-center justify-center mx-auto mb-4 shadow-[0_0_20px_rgba(57,229,84,0.15)] fp-float">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                 </div>
 
-                <h3 class="text-xl font-bold text-white">
+                @if(($accessMessage ?? 'tier') === 'batch')
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-purple-300 bg-purple-950/60 border border-purple-500/30 mb-3">
+                        RESTRICTED FINANCIAL COHORT
+                    </div>
+                @endif
+
+                <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight">
                     This course is locked
                 </h3>
 
-                <p class="text-sm text-gray-300 max-w-md mx-auto leading-relaxed">
+                <p class="text-sm text-slate-300 max-w-lg mx-auto leading-relaxed mt-2">
                     @if(($accessMessage ?? 'tier') === 'batch')
                         This course is only available to enrolled batch members. Please contact your instructor or administrator to be added to the relevant batch.
                     @elseif(($course->tier?->value ?? $course->tier) === 'registered')
@@ -107,15 +120,23 @@
                     @endif
                 </p>
 
-                <div class="pt-3 flex items-center justify-center gap-3">
+                @if(($accessMessage ?? 'tier') === 'batch')
+                    @auth
+                        <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-slate-400">
+                            <span>Account: <strong class="text-white">{{ auth()->user()->email }}</strong> (Not enrolled in this batch)</span>
+                        </div>
+                    @endauth
+                @endif
+
+                <div class="pt-5 flex items-center justify-center gap-3">
                     @if(($accessMessage ?? 'tier') === 'batch')
                         @guest
                             <a
                                 href="{{ route('login') }}"
                                 wire:navigate
-                                class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                                class="px-6 py-2.5 bg-[#39E554] hover:bg-[#32d44b] text-slate-950 font-bold text-sm rounded-xl transition-all shadow-lg hover:shadow-[#39E554]/30"
                             >
-                                Log in
+                                Log in with Enrolled Account
                             </a>
                         @endguest
                     @else

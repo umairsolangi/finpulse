@@ -26,10 +26,10 @@
 </head>
 
 <body
-    class="antialiased bg-[#F2F6F3] text-slate-700 selection:bg-[#39E554] selection:text-slate-950 min-h-screen"
+    class="antialiased bg-[#F2F6F3] text-slate-700 selection:bg-[#39E554] selection:text-slate-950 min-h-screen overflow-x-hidden"
     style="font-family:'Plus Jakarta Sans',sans-serif;"
     x-data="{ sideOpen: false }">
-    <div class="min-h-screen flex">
+    <div class="min-h-screen flex w-full overflow-x-hidden">
         <!-- Desktop Sidebar Navigation -->
         <aside class="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 z-30 shadow-xl" style="background:#061a14;">
             <!-- Logo -->
@@ -367,7 +367,7 @@
         </div>
 
         <!-- Main Content -->
-        <main class="flex-1 lg:ml-64 min-h-screen">
+        <main class="flex-1 min-w-0 lg:ml-64 min-h-screen max-w-full overflow-x-hidden">
             <!-- Desktop Top Bar -->
             <div class="hidden lg:block sticky top-0 z-20 fp-nav-glass border-b border-slate-200/80"
                 id="top-bar">
@@ -383,7 +383,7 @@
                 </div>
             </div>
 
-            <div class="fp-page-enter pt-14 lg:pt-0">
+            <div class="fp-page-enter pt-14 lg:pt-0 w-full min-w-0 max-w-full">
                 @if (isset($header))
                     <header class="bg-white border-b border-slate-200/80">
                         <div class="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8">
