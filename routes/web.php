@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgoraTokenController;
 use App\Http\Controllers\BrokerageReferralController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\SafepayCallbackController;
@@ -20,6 +21,7 @@ use App\Livewire\Learn\LearnDetail;
 use App\Livewire\Learn\LearnIndex;
 use App\Livewire\LiveSessions\LiveSessionCreate;
 use App\Livewire\LiveSessions\LiveSessionIndex;
+use App\Livewire\LiveSessions\LiveSessionJoin;
 use App\Livewire\Onboarding;
 use App\Livewire\Pricing;
 use App\Livewire\Research\ResearchCreate;
@@ -98,6 +100,14 @@ Route::get('live-sessions', LiveSessionIndex::class)
 Route::get('live-sessions/create', LiveSessionCreate::class)
     ->middleware(['auth'])
     ->name('live-sessions.create');
+
+Route::get('live-sessions/{session}/join', LiveSessionJoin::class)
+    ->middleware(['auth'])
+    ->name('live-sessions.join');
+
+Route::match(['get', 'post'], 'live-sessions/{session}/token', [AgoraTokenController::class, 'token'])
+    ->middleware(['auth'])
+    ->name('live-sessions.token');
 
 // Phase 3 — Brokerage Referral
 Route::get('referral/brokerage', [BrokerageReferralController::class, 'redirect'])

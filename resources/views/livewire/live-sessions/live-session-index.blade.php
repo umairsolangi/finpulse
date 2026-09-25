@@ -28,14 +28,19 @@
         </div>
 
         @if($isInstructorOrAdmin)
-            <div class="shrink-0">
+            <div class="shrink-0 flex items-center gap-3">
+                <a href="{{ route('live-sessions.create', ['instant' => 1]) }}" wire:navigate
+                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs shadow-md transition-all hover:-translate-y-0.5 shadow-red-500/20">
+                    <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                    <span>⚡ Go Live Now</span>
+                </a>
                 <a href="{{ route('live-sessions.create') }}" wire:navigate
-                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-slate-950 font-bold text-sm shadow transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-slate-950 font-bold text-xs shadow transition-all hover:-translate-y-0.5 hover:shadow-lg"
                     style="background:linear-gradient(135deg,#39E554,#28a04a);">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
                     </svg>
-                    Schedule Live Session
+                    <span>Schedule Session</span>
                 </a>
             </div>
         @endif
@@ -74,16 +79,25 @@
                 $booking    = $isBooked ? $userBookings->get($session->id) : null;
                 $isPaid     = ($session->tier?->value ?? $session->tier) === 'paid';
                 $isJoinable = $session->isJoinable();
+                $isLiveNow  = $session->isLiveNow();
                 $isFull     = $session->isFull();
             @endphp
             <div class="fp-session-card rounded-2xl flex flex-col justify-between {{ $isBooked ? 'booked' : '' }}">
                 <div class="p-6 space-y-4">
                     {{-- Badges --}}
                     <div class="flex items-center justify-between gap-2 flex-wrap text-xs">
-                        <span class="px-2.5 py-1 rounded-lg font-bold uppercase tracking-wider
-                            {{ $session->type === 'webinar' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-purple-50 text-purple-700 border border-purple-200' }}">
-                            {{ $session->type === 'webinar' ? '📡 Group Webinar' : '👤 1-on-1 Mentoring' }}
-                        </span>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-1 rounded-lg font-bold uppercase tracking-wider
+                                {{ $session->type === 'webinar' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-purple-50 text-purple-700 border border-purple-200' }}">
+                                {{ $session->type === 'webinar' ? '📡 Group Webinar' : '👤 1-on-1 Mentoring' }}
+                            </span>
+                            @if($isLiveNow)
+                                <span class="px-2.5 py-1 rounded-lg font-black uppercase tracking-wider bg-red-50 text-red-600 border border-red-200 flex items-center gap-1.5 animate-pulse">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                                    Live Now
+                                </span>
+                            @endif
+                        </div>
                         @if($isPaid)
                             <span class="px-2.5 py-1 rounded-lg font-bold uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200">
                                 Paid Tier
@@ -134,7 +148,33 @@
                             Log in to Book Session
                         </a>
                     @else
-                        @if($isBooked)
+                        @php
+                            $isHostUser = auth()->check() && ((int)$session->host_id === (int)auth()->id() || auth()->user()->hasRole('Admin'));
+                        @endphp
+                        @if($isHostUser)
+                            <div class="space-y-2 text-center">
+                                <div class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
+                                    👑 {{ (int)$session->host_id === (int)auth()->id() ? 'Host of this Session' : 'Admin Manager' }}
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <a href="{{ route('live-sessions.join', $session) }}"
+                                        class="fp-join-btn flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-slate-950 font-extrabold text-xs shadow-md transition-all">
+                                        <span>{{ $isJoinable ? 'Enter Live Room' : 'Stage Room' }}</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                    </a>
+                                    @if($isLiveNow || $isJoinable)
+                                        <button wire:click="endSession({{ $session->id }})"
+                                            wire:confirm="Are you sure you want to end this live session for all participants?"
+                                            class="py-2.5 px-3 rounded-xl bg-red-100 hover:bg-red-200 text-red-700 font-bold text-xs border border-red-200 transition-colors shrink-0 cursor-pointer"
+                                            title="End Live Session">
+                                            End Session
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
+                        @elseif($isBooked)
                             <div class="space-y-2 text-center">
                                 <div class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full"
                                     style="background:rgba(57,229,84,0.12); color:#28a04a; border:1px solid rgba(57,229,84,0.3);">
@@ -143,16 +183,20 @@
                                     </svg>
                                     Seat Reserved
                                 </div>
-                                @if($isJoinable && $session->meeting_url)
-                                    <a href="{{ $session->meeting_url }}" target="_blank" rel="noopener noreferrer"
+                                @if($isJoinable)
+                                    <a href="{{ route('live-sessions.join', $session) }}"
                                         class="fp-join-btn w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-slate-950 font-extrabold text-xs shadow-md transition-all">
-                                        <span>Join Live Session Room</span>
+                                        <span>Join Live Video Room</span>
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                         </svg>
                                     </a>
                                 @else
-                                    <p class="text-[11px] text-slate-400 font-medium">Meeting link activates 10 minutes prior to scheduled start.</p>
+                                    <button disabled
+                                        class="w-full py-2.5 px-4 rounded-xl bg-slate-100 text-slate-400 font-semibold text-xs cursor-not-allowed">
+                                        Join Room (Opens 10m Prior)
+                                    </button>
+                                    <p class="text-[11px] text-slate-400 font-medium">Join button activates 10 minutes prior to scheduled start.</p>
                                 @endif
                                 <button wire:click="cancelBooking({{ $booking->id }})"
                                     wire:confirm="Are you sure you want to cancel this booking?"

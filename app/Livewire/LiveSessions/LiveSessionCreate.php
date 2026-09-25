@@ -4,53 +4,88 @@ namespace App\Livewire\LiveSessions;
 
 use App\Models\LiveSession;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
 class LiveSessionCreate extends Component
 {
-    #[Validate('required|string|min:5|max:255')]
     public string $title = '';
 
-    #[Validate('required|string|min:10')]
     public string $description = '';
 
-    #[Validate('required|in:webinar,one_on_one')]
     public string $type = 'webinar';
 
-    #[Validate('required|date|after:now')]
     public string $scheduled_at = '';
 
-    #[Validate('required|integer|min:15|max:240')]
     public int $duration_minutes = 60;
 
-    #[Validate('required|in:free,registered,paid')]
     public string $tier = 'paid';
 
-    #[Validate('required|url')]
-    public string $meeting_url = '';
+    public bool $is_instant = false;
 
-    #[Validate('nullable|integer|min:1')]
+    public ?string $meeting_url = null;
+
     public ?int $max_attendees = 50;
 
-    public function mount(): void
+    protected function rules(): array
+    {
+        return [
+            'title' => 'required|string|min:5|max:255',
+            'description' => 'required|string|min:10',
+            'type' => 'required|in:webinar,one_on_one',
+            'scheduled_at' => $this->is_instant ? 'nullable' : 'required|date|after:now - 2 minutes',
+            'duration_minutes' => 'required|integer|min:15|max:240',
+            'tier' => 'required|in:free,registered,paid',
+            'meeting_url' => 'nullable|url',
+            'max_attendees' => 'nullable|integer|min:1',
+        ];
+    }
+
+    protected function messages(): array
+    {
+        return [
+            'scheduled_at.after' => 'The session start time must be in the future or starting now.',
+            'meeting_url.url' => 'The custom meeting link must be a valid URL (or leave blank for built-in Agora room).',
+        ];
+    }
+
+    public function mount(?bool $instant = null): void
     {
         if (! auth()->check() || ! auth()->user()->hasRole(['Instructor', 'Admin'])) {
             abort(403, 'Only instructors and administrators can schedule live sessions.');
         }
 
-        // Set default scheduled time to tomorrow at 6 PM
-        $this->scheduled_at = now()->addDay()->setTime(18, 0)->format('Y-m-d\TH:i');
+        if ($instant || request()->boolean('instant')) {
+            $this->is_instant = true;
+            $this->title = 'Live Session — '.now()->format('M d, h:i A');
+            $this->description = 'Instant live session hosted by '.auth()->user()->name.'.';
+            $this->scheduled_at = now()->format('Y-m-d\TH:i');
+        } else {
+            $this->scheduled_at = now()->addDay()->setTime(18, 0)->format('Y-m-d\TH:i');
+        }
+    }
+
+    public function updatedIsInstant($value): void
+    {
+        if ($value) {
+            $this->scheduled_at = now()->format('Y-m-d\TH:i');
+            if (empty($this->title)) {
+                $this->title = 'Live Session — '.now()->format('M d, h:i A');
+            }
+            if (empty($this->description)) {
+                $this->description = 'Instant live session hosted by '.auth()->user()->name.'.';
+            }
+        } else {
+            $this->scheduled_at = now()->addDay()->setTime(18, 0)->format('Y-m-d\TH:i');
+        }
     }
 
     public function updatedType($value): void
     {
         if ($value === 'one_on_one') {
-            $this->max_attendees = 1;
-        } elseif ($this->max_attendees === 1) {
+            $this->max_attendees = 2;
+        } elseif ($this->max_attendees === 2 || $this->max_attendees === 1) {
             $this->max_attendees = 50;
         }
     }
@@ -63,34 +98,17 @@ class LiveSessionCreate extends Component
 
         $this->validate();
 
-        $start = Carbon::parse($this->scheduled_at);
-        $end = $start->copy()->addMinutes($this->duration_minutes);
+        $start = $this->is_instant ? now() : Carbon::parse($this->scheduled_at);
 
-        // Check for conflicting session for same host
-        $driver = DB::connection()->getDriverName();
-        $overlapRaw = $driver === 'sqlite'
-            ? "datetime(scheduled_at, '+' || duration_minutes || ' minutes') > ?"
-            : 'DATE_ADD(scheduled_at, INTERVAL duration_minutes MINUTE) > ?';
-
-        $hasOverlap = LiveSession::where('host_id', auth()->id())
-            ->where(function ($query) use ($start, $end, $overlapRaw) {
-                $query->where(function ($q) use ($start, $end) {
-                    $q->where('scheduled_at', '>=', $start)
-                        ->where('scheduled_at', '<', $end);
-                })->orWhere(function ($q) use ($start, $overlapRaw) {
-                    $q->where('scheduled_at', '<=', $start)
-                        ->whereRaw($overlapRaw, [$start]);
-                });
-            })
-            ->exists();
-
-        if ($hasOverlap) {
+        if (LiveSession::hostHasOverlap(auth()->id(), $start, $this->duration_minutes)) {
             $this->addError('scheduled_at', 'You already have another live session scheduled during this time window.');
 
             return;
         }
 
-        LiveSession::create([
+        $channelName = LiveSession::generateChannelName($this->title);
+
+        $session = LiveSession::create([
             'title' => $this->title,
             'description' => $this->description,
             'type' => $this->type,
@@ -98,9 +116,20 @@ class LiveSessionCreate extends Component
             'scheduled_at' => $start,
             'duration_minutes' => $this->duration_minutes,
             'tier' => $this->tier,
+            'agora_channel_name' => $channelName,
             'meeting_url' => $this->meeting_url,
-            'max_attendees' => $this->type === 'one_on_one' ? 1 : $this->max_attendees,
+            'max_attendees' => $this->type === 'one_on_one' ? 2 : $this->max_attendees,
         ]);
+
+        if (empty($session->meeting_url)) {
+            $session->forceFill(['meeting_url' => route('live-sessions.join', $session)])->saveQuietly();
+        }
+
+        if ($this->is_instant) {
+            session()->flash('success', 'Instant live session started! Entering video room...');
+
+            return redirect()->route('live-sessions.join', $session);
+        }
 
         session()->flash('success', 'Live session scheduled successfully!');
 

@@ -31,7 +31,7 @@ class SessionStartingSoonNotification extends Notification implements ShouldQueu
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $joinUrl = $this->session->meeting_url ?? route('live-sessions.index');
+        $joinUrl = route('live-sessions.join', $this->session);
         $sessionTime = $this->session->scheduled_at->format('h:i A (T)');
 
         return (new MailMessage)
@@ -54,8 +54,8 @@ class SessionStartingSoonNotification extends Notification implements ShouldQueu
             'live_session_id' => $this->session->id,
             'title' => $this->session->title,
             'scheduled_at' => $this->session->scheduled_at->toIso8601String(),
-            'meeting_url' => $this->session->meeting_url,
-            'url' => route('live-sessions.index'),
+            'meeting_url' => route('live-sessions.join', $this->session),
+            'url' => route('live-sessions.join', $this->session),
             'message' => 'Live session "'.$this->session->title.'" starts in 1 hour.',
             'type' => 'session_starting_soon',
         ];

@@ -4,6 +4,7 @@ namespace App\Livewire\LiveSessions;
 
 use App\Models\LiveSession;
 use App\Models\LiveSessionBooking;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -54,10 +55,15 @@ class LiveSessionIndex extends Component
         // For 1-on-1 sessions, verify user has no overlapping 1-on-1 booking
         if ($session->type === 'one_on_one') {
             $sessionEnd = $session->scheduled_at->copy()->addMinutes($session->duration_minutes);
+            $driver = DB::connection()->getDriverName();
+            $overlapRaw = $driver === 'sqlite'
+                ? "datetime(scheduled_at, '+' || duration_minutes || ' minutes') > ?"
+                : 'DATE_ADD(scheduled_at, INTERVAL duration_minutes MINUTE) > ?';
+
             $hasOverlap = LiveSessionBooking::where('user_id', $user->id)
-                ->whereHas('session', function ($query) use ($session, $sessionEnd) {
+                ->whereHas('session', function ($query) use ($session, $sessionEnd, $overlapRaw) {
                     $query->where('scheduled_at', '<', $sessionEnd)
-                        ->whereRaw('DATE_ADD(scheduled_at, INTERVAL duration_minutes MINUTE) > ?', [$session->scheduled_at]);
+                        ->whereRaw($overlapRaw, [$session->scheduled_at]);
                 })
                 ->exists();
 
@@ -90,6 +96,32 @@ class LiveSessionIndex extends Component
         $booking->delete();
 
         session()->flash('info', 'Your booking has been cancelled.');
+    }
+
+    public function endSession(int $sessionId): void
+    {
+        if (! auth()->check()) {
+            redirect()->guest(route('login'));
+
+            return;
+        }
+
+        $user = auth()->user();
+        $session = LiveSession::findOrFail($sessionId);
+
+        $isAuthorized = (int) $session->host_id === (int) $user->id || $user->hasRole('Admin');
+
+        if (! $isAuthorized) {
+            session()->flash('error', 'Unauthorized. Only the session host or an administrator can end this session.');
+
+            return;
+        }
+
+        $session->update([
+            'ended_at' => now(),
+        ]);
+
+        session()->flash('success', 'Live session "'.$session->title.'" has been ended successfully.');
     }
 
     public function render()

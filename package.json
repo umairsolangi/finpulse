@@ -20,6 +20,7 @@
         "@laravel/multiplex": "^0.4.1"
     },
     "dependencies": {
+        "agora-rtc-sdk-ng": "^4.24.8",
         "gsap": "^3.15.0",
         "lottie-web": "^5.13.0",
         "three": "^0.186.0"
