@@ -519,3 +519,99 @@ test('token request is rejected for an ended session', function () {
     $response->assertStatus(410);
     expect($response->json('error'))->toBe('session_ended');
 });
+
+test('host or admin can view registered users and add participant individually during live session', function () {
+    $host = User::factory()->create();
+    $student = User::factory()->create(['name' => 'Sara Ahmed', 'email' => 'sara@finpulse.test']);
+
+    $session = LiveSession::create([
+        'title' => 'Technical Analysis Live Room',
+        'description' => 'Real-time charts analysis.',
+        'type' => 'webinar',
+        'host_id' => $host->id,
+        'scheduled_at' => now(),
+        'duration_minutes' => 60,
+        'tier' => ContentTier::FREE,
+    ]);
+
+    expect(LiveSessionBooking::where('live_session_id', $session->id)->where('user_id', $student->id)->exists())->toBeFalse();
+
+    $this->actingAs($host);
+
+    Livewire::test(LiveSessionJoin::class, ['session' => $session])
+        ->call('openParticipantsModal')
+        ->assertSet('showParticipantsModal', true)
+        ->assertSee('Session Participants')
+        ->assertSee('Sara Ahmed')
+        ->call('addParticipant', $student->id)
+        ->assertSee('Added Sara Ahmed');
+
+    expect(LiveSessionBooking::where('live_session_id', $session->id)->where('user_id', $student->id)->exists())->toBeTrue();
+
+    // Now Sara can enter the live session room
+    $this->actingAs($student);
+    $this->get(route('live-sessions.join', $session))->assertStatus(200);
+});
+
+test('host or admin can remove participant from live session', function () {
+    $admin = User::factory()->create();
+    $admin->assignRole('Admin');
+    $student = User::factory()->create(['name' => 'Tariq Mehmood']);
+
+    $session = LiveSession::create([
+        'title' => 'Admin Managed Live Session',
+        'description' => 'Admin test.',
+        'type' => 'webinar',
+        'host_id' => User::factory()->create()->id,
+        'scheduled_at' => now(),
+        'duration_minutes' => 60,
+        'tier' => ContentTier::FREE,
+    ]);
+
+    $booking = LiveSessionBooking::create([
+        'live_session_id' => $session->id,
+        'user_id' => $student->id,
+        'booked_at' => now(),
+    ]);
+
+    $this->actingAs($admin);
+
+    Livewire::test(LiveSessionJoin::class, ['session' => $session])
+        ->call('openParticipantsModal')
+        ->call('setParticipantTab', 'booked')
+        ->assertSee('Tariq Mehmood')
+        ->call('removeParticipant', $booking->id)
+        ->assertSee('Removed Tariq Mehmood');
+
+    expect(LiveSessionBooking::where('id', $booking->id)->exists())->toBeFalse();
+});
+
+test('non-host non-admin attendee cannot add participants', function () {
+    $host = User::factory()->create();
+    $attendee = User::factory()->create();
+    $otherUser = User::factory()->create();
+
+    $session = LiveSession::create([
+        'title' => 'Participant Permission Test',
+        'description' => 'Security test.',
+        'type' => 'webinar',
+        'host_id' => $host->id,
+        'scheduled_at' => now(),
+        'duration_minutes' => 60,
+        'tier' => ContentTier::FREE,
+    ]);
+
+    LiveSessionBooking::create([
+        'live_session_id' => $session->id,
+        'user_id' => $attendee->id,
+        'booked_at' => now(),
+    ]);
+
+    $this->actingAs($attendee);
+
+    Livewire::test(LiveSessionJoin::class, ['session' => $session])
+        ->call('addParticipant', $otherUser->id)
+        ->assertForbidden();
+
+    expect(LiveSessionBooking::where('live_session_id', $session->id)->where('user_id', $otherUser->id)->exists())->toBeFalse();
+});

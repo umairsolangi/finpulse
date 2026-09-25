@@ -3,11 +3,13 @@
 namespace App\Livewire\LiveSessions;
 
 use App\Models\LiveSession;
+use App\Models\LiveSessionBooking;
+use App\Models\User;
 use App\Services\AgoraService;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('layouts.app')]
+#[Layout('layouts.live')]
 class LiveSessionJoin extends Component
 {
     public LiveSession $session;
@@ -19,6 +21,16 @@ class LiveSessionJoin extends Component
     public bool $isJoinable = false;
 
     public bool $isEnded = false;
+
+    public bool $showParticipantsModal = false;
+
+    public string $searchUser = '';
+
+    public string $participantTab = 'all';
+
+    public ?string $feedbackMessage = null;
+
+    public ?string $feedbackType = null;
 
     public ?string $appId = null;
 
@@ -113,8 +125,127 @@ class LiveSessionJoin extends Component
         }
     }
 
+    public function openParticipantsModal(): void
+    {
+        $user = auth()->user();
+        if (! $user || ! ((int) $this->session->host_id === (int) $user->id || $user->hasRole('Admin'))) {
+            abort(403, 'Unauthorized. Only session hosts and administrators can manage participants.');
+        }
+
+        $this->showParticipantsModal = true;
+        $this->feedbackMessage = null;
+        $this->feedbackType = null;
+    }
+
+    public function closeParticipantsModal(): void
+    {
+        $this->showParticipantsModal = false;
+        $this->searchUser = '';
+        $this->feedbackMessage = null;
+    }
+
+    public function setParticipantTab(string $tab): void
+    {
+        $this->participantTab = in_array($tab, ['all', 'booked']) ? $tab : 'all';
+    }
+
+    public function addParticipant(int $userId): void
+    {
+        if (! auth()->check()) {
+            return;
+        }
+
+        $user = auth()->user();
+        $isAuthorized = (int) $this->session->host_id === (int) $user->id || $user->hasRole('Admin');
+        if (! $isAuthorized) {
+            abort(403, 'Unauthorized. Only session hosts and administrators can add participants.');
+        }
+
+        if ($this->session->isEnded()) {
+            $this->feedbackType = 'error';
+            $this->feedbackMessage = 'Cannot add participants to an ended session.';
+
+            return;
+        }
+
+        $targetUser = User::find($userId);
+        if (! $targetUser) {
+            $this->feedbackType = 'error';
+            $this->feedbackMessage = 'User not found.';
+
+            return;
+        }
+
+        $alreadyBooked = $this->session->bookings()->where('user_id', $targetUser->id)->exists();
+        if ($alreadyBooked) {
+            $this->feedbackType = 'info';
+            $this->feedbackMessage = "{$targetUser->name} is already a participant in this session.";
+
+            return;
+        }
+
+        LiveSessionBooking::create([
+            'live_session_id' => $this->session->id,
+            'user_id' => $targetUser->id,
+            'booked_at' => now(),
+            'attended' => false,
+        ]);
+
+        $this->feedbackType = 'success';
+        $this->feedbackMessage = "Added {$targetUser->name} ({$targetUser->email}) to this live session.";
+    }
+
+    public function removeParticipant(int $bookingId): void
+    {
+        if (! auth()->check()) {
+            return;
+        }
+
+        $user = auth()->user();
+        $isAuthorized = (int) $this->session->host_id === (int) $user->id || $user->hasRole('Admin');
+        if (! $isAuthorized) {
+            abort(403, 'Unauthorized. Only session hosts and administrators can remove participants.');
+        }
+
+        $booking = $this->session->bookings()->with('user')->find($bookingId);
+        if ($booking) {
+            $name = $booking->user->name ?? 'User';
+            $booking->delete();
+            $this->feedbackType = 'info';
+            $this->feedbackMessage = "Removed {$name} from this live session.";
+        }
+    }
+
     public function render()
     {
-        return view('livewire.live-sessions.live-session-join');
+        $currentBookings = $this->session->bookings()
+            ->with(['user', 'user.roles'])
+            ->latest('id')
+            ->get();
+
+        $bookedUserIds = $currentBookings->pluck('user_id')->all();
+
+        $registeredUsers = collect();
+        if ($this->showParticipantsModal && $this->isHost) {
+            $registeredUsers = User::query()
+                ->when($this->searchUser !== '', function ($q) {
+                    $term = '%'.trim($this->searchUser).'%';
+                    $q->where(function ($sub) use ($term) {
+                        $sub->where('name', 'like', $term)
+                            ->orWhere('email', 'like', $term);
+                    });
+                })
+                ->where('id', '!=', $this->session->host_id)
+                ->with('roles')
+                ->orderBy('name')
+                ->limit(40)
+                ->get();
+        }
+
+        return view('livewire.live-sessions.live-session-join', [
+            'currentBookings' => $currentBookings,
+            'bookedUserIds' => $bookedUserIds,
+            'registeredUsers' => $registeredUsers,
+        ]);
     }
 }
