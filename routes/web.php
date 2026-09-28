@@ -12,6 +12,7 @@ use App\Livewire\Admin\Roles\Index as AdminRolesIndex;
 use App\Livewire\Admin\Settings\Index as AdminSettingsIndex;
 use App\Livewire\Admin\Users\Index as AdminUsersIndex;
 use App\Livewire\Admin\Users\Show as AdminUsersShow;
+use App\Livewire\Assistant;
 use App\Livewire\Course\ChapterViewer;
 use App\Livewire\Course\CourseDetail;
 use App\Livewire\Course\CourseIndex;
@@ -75,6 +76,10 @@ Route::get('leaderboard', Leaderboard::class)
 Route::get('onboarding', Onboarding::class)
     ->middleware(['auth'])
     ->name('onboarding');
+
+Route::get('assistant', Assistant::class)
+    ->middleware(['auth'])
+    ->name('assistant');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

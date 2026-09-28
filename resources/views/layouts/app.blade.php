@@ -121,6 +121,17 @@
                         </svg>
                         Leaderboard
                     </a>
+                    <a href="{{ route('assistant') }}" wire:navigate
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('assistant') ? 'text-white' : 'text-white/50 hover:text-white hover:bg-white/5' }}"
+                        style="{{ request()->routeIs('assistant') ? 'background:linear-gradient(135deg,rgba(57,229,84,0.18),rgba(40,160,74,0.1));border:1px solid rgba(57,229,84,0.25);' : '' }}">
+                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                        AI Assistant
+                        <span class="ml-auto text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full"
+                              style="background:rgba(57,229,84,0.2);color:#39E554;">New</span>
+                    </a>
 
                     @if(auth()->user()->can('batches.create') || auth()->user()->can('batches.manage-students') || auth()->user()->can('users.manage'))
                         <p class="px-3 mt-4 mb-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/25">Management</p>
@@ -308,6 +319,17 @@
                                 d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                         Leaderboard
+                    </a>
+                    <a href="{{ route('assistant') }}" wire:navigate @click="sideOpen = false"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('assistant') ? 'text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}"
+                        style="{{ request()->routeIs('assistant') ? 'background:rgba(57,229,84,0.18);border:1px solid rgba(57,229,84,0.3);' : '' }}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                        AI Assistant
+                        <span class="ml-auto text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full"
+                              style="background:rgba(57,229,84,0.2);color:#39E554;">New</span>
                     </a>
 
                     @if(auth()->user()->can('batches.create') || auth()->user()->can('batches.manage-students') || auth()->user()->can('users.manage'))

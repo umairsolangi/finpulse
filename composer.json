@@ -14,6 +14,7 @@
         "livewire/livewire": "^3.6.4",
         "livewire/volt": "^1.7.0",
         "peterujah/php-agora-tokens": "*",
+        "smalot/pdfparser": "^2.12",
         "spatie/laravel-permission": "^8.3"
     },
     "require-dev": {
