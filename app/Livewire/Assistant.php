@@ -60,8 +60,8 @@ PROMPT;
             return;
         }
 
-        // --- Rate limiting: 5 questions per minute per user ---
-        $rateLimitKey = 'assistant:'.auth()->id();
+        // --- Rate limiting: 5 questions per minute per user / guest ---
+        $rateLimitKey = 'assistant:'.(auth()->id() ?? request()->ip());
         if (RateLimiter::tooManyAttempts($rateLimitKey, maxAttempts: 5)) {
             $seconds = RateLimiter::availableIn($rateLimitKey);
             $this->appendAssistantMessage(

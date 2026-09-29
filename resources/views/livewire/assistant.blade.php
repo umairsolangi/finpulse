@@ -2,234 +2,134 @@
      style="font-family:'Plus Jakarta Sans',sans-serif;">
 
     <style>
-        /* ── Mesh gradient background ── */
         .dash-bg {
-            background-color: #f0fdf4;
+            background-color: #f8fafc;
             background-image:
                 radial-gradient(ellipse 80% 60% at 10% -10%, rgba(57,229,84,0.12) 0%, transparent 55%),
-                radial-gradient(ellipse 60% 50% at 90% 100%, rgba(40,160,74,0.08) 0%, transparent 55%),
-                radial-gradient(ellipse 50% 40% at 60% 40%, rgba(57,229,84,0.05) 0%, transparent 50%);
-        }
-
-        .fp-assistant-bg {
-            background: linear-gradient(165deg, #061A14 0%, #0B2A20 50%, #03100C 100%);
-            border: 1px solid rgba(0, 196, 140, 0.28);
-            box-shadow: 0 0 50px rgba(57, 229, 84, 0.08), 0 25px 60px -15px rgba(3, 16, 12, 0.7);
-        }
-        .fp-chat-header {
-            background: linear-gradient(135deg, rgba(6, 26, 20, 0.95), rgba(11, 42, 32, 0.85));
-            border-bottom: 1px solid rgba(0, 196, 140, 0.2);
-            backdrop-filter: blur(12px);
-        }
-        .fp-msg-user {
-            background: linear-gradient(135deg, #39E554 0%, #00C48C 50%, #28a04a 100%);
-            color: #03100C;
-            box-shadow: 0 4px 18px rgba(57, 229, 84, 0.25);
-        }
-        .fp-msg-ai {
-            background: rgba(11, 42, 32, 0.6);
-            border: 1px solid rgba(0, 196, 140, 0.22);
-            color: rgba(240, 253, 248, 0.95);
-            backdrop-filter: blur(8px);
-        }
-        .fp-msg-ai:hover { border-color: rgba(57, 229, 84, 0.4); }
-        .fp-thinking-dot {
-            animation: fp-bounce 1.2s ease-in-out infinite;
-        }
-        .fp-thinking-dot:nth-child(1) { background: #39E554; }
-        .fp-thinking-dot:nth-child(2) { animation-delay: 0.2s; background: #00C48C; }
-        .fp-thinking-dot:nth-child(3) { animation-delay: 0.4s; background: #34D399; }
-        @keyframes fp-bounce {
-            0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
-            40% { transform: translateY(-6px); opacity: 1; }
-        }
-        .fp-input-wrap {
-            background: rgba(3, 16, 12, 0.85);
-            border: 1.5px solid rgba(0, 196, 140, 0.28);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-        .fp-input-wrap:focus-within {
-            border-color: #39E554;
-            box-shadow: 0 0 0 3px rgba(57, 229, 84, 0.18), 0 0 25px rgba(57, 229, 84, 0.12);
-        }
-        .fp-send-btn {
-            background: linear-gradient(135deg, #39E554 0%, #00C48C 50%, #28a04a 100%);
-            color: #03100C;
-            box-shadow: 0 4px 14px rgba(57, 229, 84, 0.35);
-            transition: all 0.2s ease;
-        }
-        .fp-send-btn:hover:not(:disabled) {
-            opacity: 0.95;
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(57, 229, 84, 0.5);
-        }
-        .fp-send-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
-        .fp-source-tag {
-            background: rgba(0, 196, 140, 0.12);
-            border: 1px solid rgba(57, 229, 84, 0.3);
-            color: #34D399;
-            transition: all 0.2s ease;
-        }
-        .fp-source-tag:hover {
-            background: rgba(0, 196, 140, 0.22);
-            border-color: #39E554;
-            color: #ffffff;
-        }
-        .fp-disclaimer {
-            background: rgba(6, 26, 20, 0.7);
-            border: 1px solid rgba(0, 196, 140, 0.2);
-        }
-        .fp-clear-btn:hover {
-            background: rgba(0, 196, 140, 0.12);
-            border-color: rgba(57, 229, 84, 0.35);
-            color: #34D399;
-        }
-        .fp-msg-enter {
-            animation: fp-fade-up 0.3s ease-out;
-        }
-        @keyframes fp-fade-up {
-            from { opacity: 0; transform: translateY(10px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .fp-avatar-ai {
-            background: linear-gradient(135deg, #39E554 0%, #00C48C 50%, #28a04a 100%);
-            box-shadow: 0 4px 14px rgba(57, 229, 84, 0.35);
-        }
-        .fp-avatar-user {
-            background: #0B2A20;
-            border: 1.5px solid #39E554;
-            color: #39E554;
-        }
-        .fp-scroll-area::-webkit-scrollbar { width: 6px; }
-        .fp-scroll-area::-webkit-scrollbar-track { background: transparent; }
-        .fp-scroll-area::-webkit-scrollbar-thumb {
-            background: rgba(0, 196, 140, 0.25);
-            border-radius: 10px;
-        }
-        .fp-scroll-area::-webkit-scrollbar-thumb:hover {
-            background: rgba(57, 229, 84, 0.45);
+                radial-gradient(ellipse 60% 50% at 90% 100%, rgba(57,229,84,0.06) 0%, transparent 55%);
         }
     </style>
 
-    <div class="max-w-4xl mx-auto flex flex-col h-[calc(100vh-7rem)] max-h-[880px]"
+    <div class="max-w-3xl mx-auto flex flex-col h-[calc(100vh-7rem)] max-h-[850px]"
          x-data="assistantChat()"
          x-init="scrollToBottom()">
 
-        {{-- Page header --}}
+        {{-- Page Header --}}
         <div class="mb-4 shrink-0 flex items-center justify-between">
             <div>
                 <div class="inline-flex items-center gap-2 mb-1">
-                    <span class="w-2 h-2 rounded-full bg-[#39E554] shadow-[0_0_8px_#39E554]"></span>
-                    <p class="text-[10px] font-black uppercase tracking-[0.18em] text-[#28a04a]">AI Assistant</p>
+                    <span class="w-2 h-2 rounded-full bg-[#39e554] shadow-[0_0_8px_#39e554]"></span>
+                    <p class="text-[10px] font-black uppercase tracking-[0.18em] text-[#168a43]">AI Assistant</p>
                 </div>
                 <h1 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
                     FinPulse
-                    <span class="bg-clip-text text-transparent"
-                          style="background:linear-gradient(135deg,#00A86B 0%,#28a04a 50%,#065F46 100%);">Assistant</span>
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 border border-emerald-300 text-emerald-800 shadow-sm">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#39E554] animate-pulse"></span>
-                        Powered by Groq
+                    <span class="bg-clip-text text-transparent" style="background:linear-gradient(135deg,#0b542c 0%,#39e554 100%);">Assistant</span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#0b542c] text-white shadow-xs">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#39e554] animate-pulse"></span>
+                        Instant AI
                     </span>
                 </h1>
             </div>
         </div>
 
-        {{-- Chat window --}}
-        <div class="fp-assistant-bg rounded-3xl flex flex-col flex-1 overflow-hidden">
+        {{-- Main Chat Window (Matching Reference Design with #39e554) --}}
+        <div class="rounded-[28px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(0,0,0,0.15)] border border-slate-200/80 flex flex-col flex-1 bg-white">
 
-            {{-- Chat header --}}
-            <div class="fp-chat-header px-5 py-3.5 flex items-center justify-between shrink-0">
-                <div class="flex items-center gap-3">
-                    <div class="fp-avatar-ai w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
-                        <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-                                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <p class="text-sm font-bold text-white leading-tight">FinPulse AI</p>
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#39E554]"></span>
+            {{-- ── WAVY HEADER (Matching Reference) ── --}}
+            <div class="relative shrink-0 text-white pt-5 px-6 pb-7 overflow-hidden bg-gradient-to-r from-[#0b542c] via-[#168a43] to-[#39e554]">
+                <div class="flex items-center justify-between relative z-10 mb-2">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-12 h-12 rounded-full bg-white/25 p-0.5 ring-2 ring-white/95 shadow-md flex items-center justify-center overflow-hidden">
+                            <div class="w-full h-full rounded-full bg-gradient-to-br from-[#0b542c] to-[#39e554] flex items-center justify-center text-white">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </div>
                         </div>
-                        <p class="text-[11px] text-emerald-400/70 leading-tight">Answers from your knowledge base</p>
+                        <div>
+                            <p class="text-xs text-white/85 leading-tight">Chat with</p>
+                            <h2 class="text-lg font-bold text-white leading-tight tracking-tight">FinPulse AI</h2>
+                        </div>
                     </div>
+
+                    @if(count($messages) > 0)
+                        <button wire:click="clearChat"
+                                id="assistant-clear-btn"
+                                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-white/90 bg-white/15 hover:bg-white/25 transition-all cursor-pointer">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                            Clear
+                        </button>
+                    @endif
                 </div>
-                @if(count($messages) > 0)
-                    <button wire:click="clearChat"
-                            id="assistant-clear-btn"
-                            class="fp-clear-btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-emerald-300/70 border border-emerald-500/20 bg-emerald-500/5 transition-all duration-200">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                        </svg>
-                        Clear
-                    </button>
-                @endif
+
+                {{-- Status line --}}
+                <div class="flex items-center gap-1.5 text-xs text-white font-medium pl-0.5 relative z-10">
+                    <span class="w-2 h-2 rounded-full bg-[#39e554] shadow-[0_0_8px_#39e554]"></span>
+                    <span>We reply immediately</span>
+                </div>
+
+                {{-- Wave Curve into white background --}}
+                <div class="absolute -bottom-0.5 left-0 right-0 overflow-hidden leading-none pointer-events-none z-0">
+                    <svg class="w-full h-5 text-white fill-current block" viewBox="0 0 500 50" preserveAspectRatio="none">
+                        <path d="M0,20 C160,50 340,0 500,22 L500,50 L0,50 Z"></path>
+                    </svg>
+                </div>
             </div>
 
-            {{-- Messages area --}}
-            <div class="fp-scroll-area flex-1 overflow-y-auto px-4 sm:px-6 py-5 space-y-5"
+            {{-- ── SCROLLABLE MESSAGES CONTAINER (Pure White background) ── --}}
+            <div class="flex-1 overflow-y-auto px-6 py-6 space-y-4 bg-white"
                  id="assistant-messages"
                  x-ref="messagesArea"
-                 wire:poll.100ms="$refresh">
+                 wire:poll.100ms="$refresh"
+                 style="scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent;">
 
-                {{-- Empty state --}}
+                {{-- Empty State --}}
                 @if(count($messages) === 0 && !$isThinking)
                     <div class="flex flex-col items-center justify-center h-full py-12 text-center" id="assistant-empty-state">
-                        <div class="fp-avatar-ai w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-2xl">
-                            <svg class="w-8 h-8 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 bg-[#39e554]/15 text-[#0b542c]">
+                            <svg class="w-7 h-7 text-[#168a43]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                       d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
                             </svg>
                         </div>
-                        <h2 class="text-xl font-extrabold text-white mb-2">Ask anything about FinPulse</h2>
-                        <p class="text-sm text-emerald-100/70 max-w-sm leading-relaxed mb-6 font-medium">
-                            I'll answer strictly from our knowledge base — courses, economics, finance principles, community, and pricing.
+                        <h2 class="text-lg font-bold text-slate-900 mb-1.5">Ask anything about FinPulse</h2>
+                        <p class="text-sm text-slate-500 max-w-sm leading-relaxed mb-6 font-medium">
+                            I will answer strictly from our approved knowledge base — courses, finance principles, community, and platform features.
                         </p>
-                        {{-- Suggested questions --}}
                         <div class="flex flex-wrap gap-2.5 justify-center max-w-lg">
                             @foreach(['What courses are available?', 'How does the community work?', 'What are the pricing plans?'] as $suggestion)
                                 <button wire:click="$set('question', '{{ $suggestion }}')"
                                         id="assistant-suggest-{{ $loop->index }}"
-                                        class="text-xs px-4 py-2 rounded-full font-semibold transition-all duration-200 border border-emerald-500/30 bg-emerald-950/60 text-emerald-300 hover:bg-emerald-500/20 hover:border-[#39E554] hover:text-white shadow-sm hover:scale-[1.02]">
-                                    {{ $suggestion }}
+                                        class="text-xs px-4 py-2 rounded-full font-semibold transition-all border border-slate-200 bg-slate-50 text-slate-700 hover:border-[#39e554] hover:bg-[#39e554]/10 hover:text-[#0b542c] shadow-2xs hover:scale-[1.02] cursor-pointer">
+                                    💬 {{ $suggestion }}
                                 </button>
                             @endforeach
                         </div>
                     </div>
                 @endif
 
-                {{-- Chat messages --}}
+                {{-- Chat Messages --}}
                 @foreach($messages as $index => $message)
-                    <div class="fp-msg-enter flex gap-3 {{ $message['role'] === 'user' ? 'justify-end' : 'justify-start' }}"
+                    <div class="flex flex-col {{ $message['role'] === 'user' ? 'items-end' : 'items-start' }}"
                          id="assistant-msg-{{ $index }}">
-
-                        {{-- AI avatar (left side) --}}
-                        @if($message['role'] === 'assistant')
-                            <div class="fp-avatar-ai w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                                <svg class="w-3.5 h-3.5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-                                          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                                </svg>
+                        @if($message['role'] === 'user')
+                            {{-- User Bubble: #39e554 gradient pill with white text --}}
+                            <div class="max-w-[75%] px-5 py-3 rounded-2xl rounded-tr-xs text-sm font-normal leading-relaxed text-white shadow-xs bg-gradient-to-r from-[#0b542c] via-[#168a43] to-[#39e554]">
+                                {{ $message['content'] }}
                             </div>
-                        @endif
+                        @else
+                            {{-- Assistant Bubble: Soft grey card --}}
+                            <div class="max-w-[80%] px-5 py-3.5 rounded-2xl rounded-tl-xs text-sm leading-relaxed text-slate-800 bg-[#f3f5f4] border border-slate-200/60 shadow-2xs">
+                                {{ $message['content'] }}
 
-                        <div class="max-w-[80%]">
-                            {{-- Bubble --}}
-                            @if($message['role'] === 'user')
-                                <div class="fp-msg-user px-4 py-2.5 rounded-2xl rounded-tr-sm text-sm font-semibold leading-relaxed">
-                                    {{ $message['content'] }}
-                                </div>
-                            @else
-                                <div class="fp-msg-ai px-4 py-3 rounded-2xl rounded-tl-sm text-sm leading-relaxed">
-                                    {{ $message['content'] }}
-                                </div>
-
-                                {{-- Sources attribution (from DB, never from model) --}}
                                 @if(!empty($message['sources']))
-                                    <div class="mt-2 flex flex-wrap gap-1.5">
+                                    <div class="mt-2.5 pt-2.5 border-t border-slate-200/60 flex flex-wrap gap-1.5">
                                         @foreach($message['sources'] as $source)
-                                            <span class="fp-source-tag inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold">
+                                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium text-[#0b542c] bg-white border border-slate-200 shadow-2xs">
                                                 <svg class="w-3 h-3 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                           d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -242,79 +142,98 @@
                                         @endforeach
                                     </div>
                                 @endif
-                            @endif
-                        </div>
-
-                        {{-- User avatar (right side) --}}
-                        @if($message['role'] === 'user')
-                            <div class="fp-avatar-user w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                                <span class="text-xs font-black">
-                                    {{ substr(auth()->user()->name ?? 'U', 0, 1) }}
-                                </span>
                             </div>
                         @endif
                     </div>
                 @endforeach
 
-                {{-- Thinking indicator --}}
+                {{-- Thinking Indicator --}}
                 @if($isThinking)
-                    <div class="flex gap-3 justify-start" id="assistant-thinking">
-                        <div class="fp-avatar-ai w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                            <svg class="w-3.5 h-3.5 text-slate-950 animate-spin" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                            </svg>
-                        </div>
-                        <div class="fp-msg-ai px-4 py-3.5 rounded-2xl rounded-tl-sm flex items-center gap-1.5">
-                            <span class="fp-thinking-dot w-2 h-2 rounded-full"></span>
-                            <span class="fp-thinking-dot w-2 h-2 rounded-full"></span>
-                            <span class="fp-thinking-dot w-2 h-2 rounded-full"></span>
+                    <div class="flex items-start" id="assistant-thinking">
+                        <div class="px-5 py-3.5 rounded-2xl rounded-tl-xs bg-[#f3f5f4] border border-slate-200/60 flex items-center gap-2 shadow-2xs">
+                            <span class="w-2 h-2 rounded-full bg-[#39e554] animate-bounce"></span>
+                            <span class="w-2 h-2 rounded-full bg-[#39e554] animate-bounce" style="animation-delay: 0.15s"></span>
+                            <span class="w-2 h-2 rounded-full bg-[#39e554] animate-bounce" style="animation-delay: 0.3s"></span>
                         </div>
                     </div>
                 @endif
 
             </div>
 
-            {{-- Disclaimer --}}
-            <div class="fp-disclaimer mx-4 mb-3 mt-0 px-3.5 py-2.5 rounded-2xl flex items-center gap-2.5 shrink-0">
-                <svg class="w-4 h-4 shrink-0 text-[#39E554]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            {{-- Educational disclaimer --}}
+            <div class="px-6 py-2 bg-slate-50/80 border-t border-slate-100 flex items-center gap-2 text-[11px] text-slate-500">
+                <svg class="w-3.5 h-3.5 text-[#168a43] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <p class="text-[11px] font-medium text-emerald-200/80">
-                    Educational information only, not investment advice.
-                </p>
+                <span>Educational information only, not investment advice.</span>
             </div>
 
-            {{-- Input area --}}
-            <div class="px-4 pb-4 shrink-0">
+            {{-- ── FOOTER / INPUT AREA (Matching Reference Exactly) ── --}}
+            <div class="shrink-0 bg-white border-t border-slate-100 px-6 pt-3.5 pb-4 relative">
                 <form wire:submit.prevent="sendMessage" id="assistant-form">
-                    <div class="fp-input-wrap rounded-2xl flex items-end gap-2.5 px-4 py-3">
+                    {{-- Input textarea with placeholder --}}
+                    <div class="relative">
                         <textarea wire:model="question"
                                   id="assistant-input"
                                   rows="1"
-                                  placeholder="Ask something about FinPulse…"
-                                  class="flex-1 bg-transparent text-sm text-white placeholder-emerald-100/35 resize-none outline-none leading-relaxed max-h-28 overflow-y-auto"
+                                  placeholder="Enter your message..."
+                                  class="w-[calc(100%-3.5rem)] bg-transparent text-sm text-slate-800 placeholder-slate-400 resize-none outline-none leading-relaxed max-h-28"
                                   style="scrollbar-width: none;"
                                   x-ref="questionInput"
                                   @keydown.enter.prevent="if(!$event.shiftKey) { $wire.sendMessage(); }"
                                   @input="autoGrow($el)"
                                   :disabled="$wire.isThinking"></textarea>
+
+                        {{-- Floating Circular Send Button with #39e554 gradient --}}
                         <button type="submit"
                                 id="assistant-send-btn"
-                                class="fp-send-btn w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                                :disabled="$wire.isThinking || $wire.question.trim() === ''">
-                            <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-                                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                class="absolute right-0 bottom-0 w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-lg bg-gradient-to-r from-[#0b542c] to-[#39e554] text-white hover:scale-105 active:scale-95 transition-all disabled:opacity-40 disabled:scale-100 disabled:cursor-not-allowed cursor-pointer"
+                                :disabled="$wire.isThinking || $wire.question.trim() === ''"
+                                title="Send message">
+                            <svg class="w-5 h-5 text-white transform rotate-45 -translate-y-0.5 translate-x-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
                             </svg>
                         </button>
                     </div>
-                    <p class="text-[10px] text-emerald-300/40 text-center mt-2.5 font-medium">
-                        Press Enter to send · Shift+Enter for new line · 5 questions per minute
-                    </p>
+
+                    {{-- Bottom Action Row (Icons on Left | Powered by FinPulse in Center) --}}
+                    <div class="flex items-center justify-between mt-3 pt-1 text-slate-400 pr-16">
+                        <div class="flex items-center gap-3">
+                            <button type="button" class="hover:text-[#39e554] transition-colors cursor-pointer" title="AI Bot">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <rect x="3" y="8" width="18" height="12" rx="3" stroke-width="2"/>
+                                    <path stroke-linecap="round" stroke-width="2" d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/>
+                                    <circle cx="3" cy="14" r="1" fill="currentColor"/>
+                                    <circle cx="21" cy="14" r="1" fill="currentColor"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="hover:text-[#39e554] transition-colors cursor-pointer" title="Attach file">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="hover:text-[#39e554] transition-colors cursor-pointer" title="Add emoji">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center gap-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                            <span>POWERED BY</span>
+                            <div class="flex items-center gap-1 font-extrabold text-[#0b542c] tracking-normal">
+                                <svg class="w-3 h-3 text-[#39e554]" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                                <span>FinPulse</span>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
+
         </div>
     </div>
 </div>
@@ -333,7 +252,6 @@ function assistantChat() {
             el.style.height = Math.min(el.scrollHeight, 112) + 'px';
         },
         init() {
-            // Scroll on every Livewire update
             document.addEventListener('livewire:update', () => this.scrollToBottom());
             this.scrollToBottom();
         }

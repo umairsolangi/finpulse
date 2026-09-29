@@ -60,16 +60,30 @@
             </a>
 
             <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-700">
                 <a href="#about" class="hover:text-slate-950 transition-colors">About</a>
                 <a href="#how-it-works" class="hover:text-slate-950 transition-colors">How It Works</a>
                 <a href="#features" class="hover:text-slate-950 transition-colors">Features</a>
                 <a href="#pricing" class="hover:text-slate-950 transition-colors">Pricing</a>
                 <a href="#blog" class="hover:text-slate-950 transition-colors">Blog</a>
+                <button type="button" @click="window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))" class="flex items-center gap-1.5 hover:text-slate-950 transition-colors group cursor-pointer">
+                    <svg class="w-4 h-4 text-[#28a04a] group-hover:text-[#39E554] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    <span>AI Assistant</span>
+                    <span class="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-100 text-[#059669] border border-emerald-200">AI</span>
+                </button>
             </nav>
 
             <!-- Right Header CTA Button -->
-            <div class="hidden sm:flex items-center gap-3">
+            <div class="hidden sm:flex items-center gap-2.5">
+                <button type="button" @click="window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))"
+                    class="hidden lg:flex items-center gap-1.5 text-slate-700 hover:text-slate-950 font-bold px-3 py-2 rounded-full text-xs transition-all hover:bg-slate-100 cursor-pointer">
+                    <svg class="w-3.5 h-3.5 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    <span>Assistant</span>
+                </button>
                 <a href="{{ route('register') }}"
                     class="bg-[#39E554] hover:bg-[#32d44b] text-slate-950 font-bold px-5 py-2 rounded-full text-sm shadow-xs hover:shadow-md transition-all">
                     Get Started
@@ -103,6 +117,14 @@
                 class="text-sm font-semibold text-slate-800 hover:text-[#39E554]">Pricing</a>
             <a href="#blog" @click="heroNavOpen = false"
                 class="text-sm font-semibold text-slate-800 hover:text-[#39E554]">Blog</a>
+            <button type="button" @click="heroNavOpen = false; window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))"
+                class="flex items-center justify-center gap-2 text-sm font-semibold text-emerald-800 hover:text-[#28a04a] py-2 bg-emerald-50 rounded-xl cursor-pointer">
+                <svg class="w-4 h-4 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+                <span>AI Assistant</span>
+                <span class="text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full bg-emerald-200/70 text-[#059669]">New</span>
+            </button>
             <a href="{{ route('register') }}"
                 class="bg-[#39E554] text-slate-950 font-bold py-3 rounded-full text-sm shadow-md mt-2">Join Free</a>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Assistant;
+use App\Livewire\AssistantWidget;
 use App\Models\KnowledgeChunk;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
@@ -149,4 +150,20 @@ it('displays page number in source attribution', function () {
         ->call('sendMessage')
         ->assertSee('investment-basics.pdf')
         ->assertSee('p.7');
+});
+
+// --- AssistantWidget popup tests ---
+
+it('opens and closes the popup window in AssistantWidget', function () {
+    $component = Livewire::test(AssistantWidget::class);
+
+    $component->assertSet('isOpen', false);
+    $component->call('toggleAssistant')->assertSet('isOpen', true);
+    $component->call('closeAssistant')->assertSet('isOpen', false);
+});
+
+it('opens the popup when open-assistant event is dispatched', function () {
+    Livewire::test(AssistantWidget::class)
+        ->dispatch('open-assistant')
+        ->assertSet('isOpen', true);
 });

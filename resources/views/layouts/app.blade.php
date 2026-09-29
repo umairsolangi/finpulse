@@ -395,8 +395,21 @@
                 id="top-bar">
                 <div class="flex items-center justify-between h-14 px-8">
                     <div></div>
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
                         @auth
+                            <button type="button" @click="window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))"
+                                class="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-slate-950 bg-white/80 hover:bg-white border border-slate-200 hover:border-[#39E554]/50 transition-all shadow-xs group cursor-pointer"
+                                title="Ask FinPulse AI Assistant">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39E554] opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#39E554]"></span>
+                                </span>
+                                <svg class="w-4 h-4 text-[#28a04a] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                                <span>AI Assistant</span>
+                                <span class="text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full bg-emerald-100 text-[#059669]">AI</span>
+                            </button>
                             <livewire:notification-bell />
                             <span class="text-sm text-slate-500">Welcome back, <strong
                                     class="text-slate-900">{{ auth()->user()->name }}</strong></span>
@@ -804,6 +817,11 @@
             });
         })();
     </script>
+
+    @unless(request()->routeIs('assistant'))
+        <!-- Floating Livewire Assistant Widget -->
+        <livewire:assistant-widget />
+    @endunless
 </body>
 
 </html>

@@ -167,6 +167,16 @@
                         </svg>
                         Start Learning
                     </a>
+                    <button type="button" @click="window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))"
+                        class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl font-bold text-sm text-slate-800 bg-white/90 border border-emerald-300/80 hover:border-[#39E554] hover:bg-emerald-50 hover:text-slate-950 transition-all duration-200 hover:-translate-y-0.5 shadow-sm group cursor-pointer">
+                        <div class="w-5 h-5 rounded-lg bg-emerald-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-3.5 h-3.5 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        AI Assistant
+                        <span class="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-100 text-[#059669]">AI</span>
+                    </button>
                     <a href="{{ route('feed') }}" wire:navigate
                         class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl font-bold text-sm text-slate-700 bg-white/70 border border-slate-200 hover:border-[#39E554]/40 hover:text-[#28a04a] hover:bg-white transition-all duration-200 hover:-translate-y-0.5 shadow-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -252,6 +262,24 @@
         <div>
             <p class="section-label mb-4 px-1">Quick Actions</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 fp-animate-in">
+
+                {{-- AI Assistant --}}
+                <button type="button" @click="window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))" class="action-card fp-tilt-card rounded-2xl p-6 text-left block group border-emerald-200/80 hover:border-[#39E554]/60 w-full cursor-pointer">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="icon-wrap w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-tr from-[#39E554]/15 to-[#28a04a]/10 border border-[#39E554]/25">
+                            <svg class="w-6 h-6 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-[#059669] border border-emerald-300">
+                            AI Powered
+                        </span>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-1.5 group-hover:text-[#28a04a] transition-colors" style="font-family:'Plus Jakarta Sans',sans-serif;">
+                        FinPulse AI Assistant
+                    </h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Ask anything about market principles, finance, economics, and FinPulse courses.</p>
+                </button>
 
                 {{-- Continue Learning --}}
                 <a href="{{ route('learn.index') }}" wire:navigate class="action-card fp-tilt-card rounded-2xl p-6 block group">
