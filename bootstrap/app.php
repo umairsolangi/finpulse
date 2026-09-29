@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RecordLoginStreak;
 use App\Http\Middleware\RequiresPaidAccess;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -16,6 +17,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->web(append: [
+            RecordLoginStreak::class,
+        ]);
+
         $middleware->alias([
             'permission' => PermissionMiddleware::class,
             'role' => RoleMiddleware::class,

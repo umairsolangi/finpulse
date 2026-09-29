@@ -19,6 +19,13 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Dark mode FOUC prevention -->
+    <script>
+        if (localStorage.getItem('finpulse_dark_mode') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
     <!-- GSAP for app animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -26,7 +33,7 @@
 </head>
 
 <body
-    class="antialiased bg-[#F2F6F3] text-slate-700 selection:bg-[#39E554] selection:text-slate-950 min-h-screen overflow-x-hidden"
+    class="antialiased bg-[#F2F6F3] dark:bg-[#0c1a14] text-slate-700 dark:text-slate-300 selection:bg-[#39E554] selection:text-slate-950 min-h-screen overflow-x-hidden transition-colors duration-300"
     style="font-family:'Plus Jakarta Sans',sans-serif;"
     x-data="{ sideOpen: false }">
     <div class="min-h-screen flex w-full overflow-x-hidden">
@@ -132,6 +139,15 @@
                         <span class="ml-auto text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full"
                               style="background:rgba(57,229,84,0.2);color:#39E554;">New</span>
                     </a>
+                    <a href="{{ route('my-library') }}" wire:navigate
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 {{ request()->routeIs('my-library') ? 'text-white' : 'text-white/50 hover:text-white hover:bg-white/5' }}"
+                        style="{{ request()->routeIs('my-library') ? 'background:linear-gradient(135deg,rgba(57,229,84,0.18),rgba(40,160,74,0.1));border:1px solid rgba(57,229,84,0.25);' : '' }}">
+                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                        My Library
+                    </a>
 
                     @if(auth()->user()->can('batches.create') || auth()->user()->can('batches.manage-students') || auth()->user()->can('users.manage'))
                         <p class="px-3 mt-4 mb-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/25">Management</p>
@@ -207,7 +223,7 @@
         </aside>
 
         <!-- Mobile Header -->
-        <div class="lg:hidden fixed top-0 inset-x-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 text-slate-900"
+        <div class="lg:hidden fixed top-0 inset-x-0 z-40 bg-white/90 dark:bg-[#0c1a14]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 text-slate-900 dark:text-white"
             id="mobile-nav">
             <div class="flex items-center justify-between h-14 px-4">
                 <a href="/" wire:navigate class="flex items-center gap-2">
@@ -217,6 +233,7 @@
                     <span class="font-bold text-sm text-slate-900">Fin<span class="text-[#28a04a]">Pulse</span></span>
                 </a>
                 <div class="flex items-center gap-2">
+                    <x-dark-mode-toggle />
                     @auth
                         <livewire:notification-bell />
                     @endauth
@@ -331,6 +348,14 @@
                         <span class="ml-auto text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full"
                               style="background:rgba(57,229,84,0.2);color:#39E554;">New</span>
                     </a>
+                    <a href="{{ route('my-library') }}" wire:navigate @click="sideOpen = false"
+                        class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('my-library') ? 'bg-white/15 text-white' : 'text-white/60 hover:text-white hover:bg-white/5' }}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                        My Library
+                    </a>
 
                     @if(auth()->user()->can('batches.create') || auth()->user()->can('batches.manage-students') || auth()->user()->can('users.manage'))
                         <p class="px-4 mt-4 mb-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/25">Management</p>
@@ -391,11 +416,12 @@
         <!-- Main Content -->
         <main class="flex-1 min-w-0 lg:ml-64 min-h-screen max-w-full overflow-x-hidden">
             <!-- Desktop Top Bar -->
-            <div class="hidden lg:block sticky top-0 z-20 fp-nav-glass border-b border-slate-200/80"
+            <div class="hidden lg:block sticky top-0 z-20 fp-nav-glass dark:bg-[#0c1a14]/90 dark:border-slate-800 border-b border-slate-200/80"
                 id="top-bar">
                 <div class="flex items-center justify-between h-14 px-8">
                     <div></div>
                     <div class="flex items-center gap-3">
+                        <x-dark-mode-toggle />
                         @auth
                             <button type="button" @click="window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))"
                                 class="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-slate-950 bg-white/80 hover:bg-white border border-slate-200 hover:border-[#39E554]/50 transition-all shadow-xs group cursor-pointer"
@@ -411,8 +437,8 @@
                                 <span class="text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full bg-emerald-100 text-[#059669]">AI</span>
                             </button>
                             <livewire:notification-bell />
-                            <span class="text-sm text-slate-500">Welcome back, <strong
-                                    class="text-slate-900">{{ auth()->user()->name }}</strong></span>
+                            <span class="text-sm text-slate-500 dark:text-slate-400">Welcome back, <strong
+                                    class="text-slate-900 dark:text-white">{{ auth()->user()->name }}</strong></span>
                         @endauth
                     </div>
                 </div>
@@ -430,7 +456,7 @@
                 {{ $slot }}
 
                 <!-- Global Compliance & Legal Footer -->
-                <footer class="mt-16 border-t border-slate-200/60 bg-white/80 backdrop-blur-sm py-8 px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
+                <footer class="mt-16 border-t border-slate-200/60 dark:border-slate-800 bg-white/80 dark:bg-[#0c1a14]/80 backdrop-blur-sm py-8 px-4 sm:px-6 lg:px-8 text-xs text-slate-500 dark:text-slate-400">
                     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div class="flex items-center gap-2">
                             <span class="font-bold text-slate-900">Fin<span class="text-[#28a04a]">Pulse</span></span>

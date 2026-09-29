@@ -154,6 +154,11 @@ class User extends Authenticatable
         return $this->hasRole(['Paid Subscriber', 'Instructor', 'Admin']);
     }
 
+    public function loginStreaks(): HasMany
+    {
+        return $this->hasMany(LoginStreak::class, 'user_id')->latest('login_date');
+    }
+
     public function batchEnrollments(): HasMany
     {
         return $this->hasMany(BatchEnrollment::class, 'user_id');

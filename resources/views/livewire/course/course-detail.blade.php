@@ -61,31 +61,35 @@
             </p>
 
             <!-- Metadata Row -->
-            <div class="flex items-center gap-6 text-xs sm:text-sm text-finpulse-gray border-y border-gray-100 py-3">
-                <span class="flex items-center gap-1.5 font-medium">
-                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                    {{ $totalChapters }} {{ Str::plural('Chapter', $totalChapters) }}
-                </span>
-
-                @php
-                    $totalMinutes = $chapters->sum(fn ($ch) => $ch->contentItem?->duration_minutes ?? 0);
-                @endphp
-                @if($totalMinutes > 0)
+            <div class="flex items-center justify-between flex-wrap gap-4 text-xs sm:text-sm text-finpulse-gray border-y border-gray-100 py-3">
+                <div class="flex items-center gap-6 flex-wrap">
                     <span class="flex items-center gap-1.5 font-medium">
                         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
-                        ~{{ $totalMinutes }} mins total
+                        {{ $totalChapters }} {{ Str::plural('Chapter', $totalChapters) }}
                     </span>
-                @endif
 
-                @if($course->author)
-                    <span class="flex items-center gap-1.5 text-gray-500">
-                        Instructor: <strong class="text-finpulse-navy">{{ $course->author->name }}</strong>
-                    </span>
-                @endif
+                    @php
+                        $totalMinutes = $chapters->sum(fn ($ch) => $ch->contentItem?->duration_minutes ?? 0);
+                    @endphp
+                    @if($totalMinutes > 0)
+                        <span class="flex items-center gap-1.5 font-medium">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            ~{{ $totalMinutes }} mins total
+                        </span>
+                    @endif
+
+                    @if($course->author)
+                        <span class="flex items-center gap-1.5 text-gray-500">
+                            Instructor: <strong class="text-finpulse-navy">{{ $course->author->name }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <x-share-buttons :url="route('courses.show', $course->slug)" :title="$course->title" />
             </div>
         </div>
 

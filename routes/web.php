@@ -23,6 +23,7 @@ use App\Livewire\Learn\LearnIndex;
 use App\Livewire\LiveSessions\LiveSessionCreate;
 use App\Livewire\LiveSessions\LiveSessionIndex;
 use App\Livewire\LiveSessions\LiveSessionJoin;
+use App\Livewire\MyLibrary;
 use App\Livewire\Onboarding;
 use App\Livewire\Pricing;
 use App\Livewire\Research\ResearchCreate;
@@ -84,6 +85,10 @@ Route::get('assistant', Assistant::class)
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::get('my-library', MyLibrary::class)
+    ->middleware(['auth'])
+    ->name('my-library');
 
 // Phase 3 — Subscriptions & Payments
 Route::get('pricing', Pricing::class)

@@ -57,6 +57,9 @@
                         <span>Mark as Read (+3 XP)</span>
                     @endif
                 </button>
+
+                <!-- Share Buttons -->
+                <x-share-buttons :url="route('learn.show', $item->slug)" :title="$item->title" />
             </div>
         </div>
 

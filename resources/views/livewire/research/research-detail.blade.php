@@ -39,8 +39,9 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-2 text-xs text-gray-500">
+                <div class="flex items-center gap-3 text-xs text-gray-500">
                     <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full font-medium">Research ID #{{ $item->id }}</span>
+                    <x-share-buttons :url="route('research.show', $item->slug)" :title="$item->title" />
                 </div>
             </div>
         </div>

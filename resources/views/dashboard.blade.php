@@ -68,6 +68,10 @@
         transform: translateY(-5px);
         box-shadow: 0 16px 45px rgba(57,229,84,0.25);
     }
+    .dark .upgrade-card {
+        background: linear-gradient(135deg, #132a1f 0%, #0d2319 60%, #081710 100%);
+        border-color: rgba(57,229,84,0.3);
+    }
 
     /* ── Green icon container ── */
     .icon-wrap {
@@ -119,13 +123,17 @@
     }
 </style>
 
-<div class="dash-bg min-h-screen dash-font">
+@php
+    $streakData = auth()->check() ? app(\App\Services\StreakService::class)->getStreakData(auth()->user()) : ['current_streak' => 0, 'longest_streak' => 0, 'last_7_days' => []];
+@endphp
+
+<div class="dash-bg dark:!bg-[#0c1a14] min-h-screen dash-font">
     <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-7">
 
         {{-- ══════════════════════════════════════
              WELCOME BANNER
         ══════════════════════════════════════ --}}
-        <div class="welcome-card rounded-3xl p-7 sm:p-10 relative overflow-hidden fp-animate-in">
+        <div class="welcome-card dark:!bg-gradient-to-br dark:!from-[#132a1f] dark:!to-[#0c1a14] dark:!border-emerald-900/30 rounded-3xl p-7 sm:p-10 relative overflow-hidden fp-animate-in">
 
             {{-- Decorative blobs --}}
             <div class="absolute -top-12 -right-12 w-56 h-56 rounded-full bg-[#39E554]/12 blur-3xl pointer-events-none fp-parallax-blob-1"></div>
@@ -146,14 +154,14 @@
                         <span class="section-label text-[#28a04a]">Live Dashboard</span>
                     </div>
 
-                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;">
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-2" style="font-family:'Plus Jakarta Sans',sans-serif;">
                         Welcome back,<br>
                         <span class="relative inline-block">
                             <span class=" bg-clip-text" style="background:linear-gradient(135deg,#39E554,#28a04a);">{{ auth()->user()->name }}</span>
                             <span class="ml-2">👋</span>
                         </span>
                     </h1>
-                    <p class="text-slate-500 text-sm sm:text-base max-w-md leading-relaxed font-medium">
+                    <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base max-w-md leading-relaxed font-medium">
                         Continue your financial learning journey. Your next milestone is just one lesson away.
                     </p>
                 </div>
@@ -189,6 +197,49 @@
         </div>
 
         {{-- ══════════════════════════════════════
+             STREAK TRACKER
+        ══════════════════════════════════════ --}}
+        <div class="fp-animate-in">
+            <div class="bg-white dark:bg-[#132a1f] rounded-2xl border border-slate-200/80 dark:border-emerald-900/20 shadow-sm p-5 sm:p-6 stat-card">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 relative"
+                            style="background:linear-gradient(135deg,rgba(57,229,84,0.18),rgba(255,165,0,0.12));border:1px solid rgba(57,229,84,0.25);">
+                            <span class="text-2xl {{ $streakData['current_streak'] >= 7 ? 'animate-bounce' : '' }}">🔥</span>
+                            @if($streakData['current_streak'] >= 3)
+                                <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amber-500 text-white text-[9px] font-black flex items-center justify-center shadow-md">{{ $streakData['current_streak'] }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-3xl font-black text-slate-900 dark:text-white tracking-tight" style="font-family:'Plus Jakarta Sans',sans-serif;">{{ $streakData['current_streak'] }}</span>
+                                <span class="text-sm font-bold text-slate-500 dark:text-slate-400">day{{ $streakData['current_streak'] !== 1 ? 's' : '' }}</span>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                                Current streak · Best: <span class="text-[#28a04a] font-bold">{{ $streakData['longest_streak'] }} days</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        @foreach($streakData['last_7_days'] as $date => $active)
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all
+                                    {{ $active
+                                        ? 'bg-gradient-to-br from-[#39E554] to-[#28a04a] text-white shadow-sm shadow-emerald-500/30'
+                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500' }}">
+                                    {{ \Carbon\Carbon::parse($date)->format('D')[0] }}
+                                </div>
+                                <span class="text-[9px] font-semibold {{ $active ? 'text-[#28a04a]' : 'text-slate-400 dark:text-slate-500' }}">
+                                    {{ \Carbon\Carbon::parse($date)->format('d') }}
+                                </span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- ══════════════════════════════════════
              QUICK STATS
         ══════════════════════════════════════ --}}
         <div>
@@ -196,49 +247,49 @@
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 fp-stagger-grid">
 
                 {{-- Courses --}}
-                <div class="stat-card fp-tilt-card rounded-2xl p-5 stat-num delay-1">
+                <div class="stat-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-5 stat-num delay-1">
                     <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-5 h-5 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
-                    <div class="text-3xl font-black text-slate-900 tracking-tight leading-none mb-1" style="font-family:'Plus Jakarta Sans',sans-serif;">0</div>
-                    <div class="text-xs font-semibold text-slate-500">Courses In Progress</div>
+                    <div class="text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-1" style="font-family:'Plus Jakarta Sans',sans-serif;">0</div>
+                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">Courses In Progress</div>
                     <div class="mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                         <div class="h-full w-0 rounded-full" style="background:linear-gradient(90deg,#39E554,#28a04a);"></div>
                     </div>
                 </div>
 
                 {{-- Certificates --}}
-                <div class="stat-card fp-tilt-card rounded-2xl p-5 stat-num delay-2">
+                <div class="stat-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-5 stat-num delay-2">
                     <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-5 h-5 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
                         </svg>
                     </div>
-                    <div class="text-3xl font-black text-slate-900 tracking-tight leading-none mb-1" style="font-family:'Plus Jakarta Sans',sans-serif;">0</div>
-                    <div class="text-xs font-semibold text-slate-500">Certificates Earned</div>
+                    <div class="text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-1" style="font-family:'Plus Jakarta Sans',sans-serif;">0</div>
+                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">Certificates Earned</div>
                     <div class="mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                         <div class="h-full w-0 rounded-full" style="background:linear-gradient(90deg,#39E554,#28a04a);"></div>
                     </div>
                 </div>
 
                 {{-- Posts --}}
-                <div class="stat-card fp-tilt-card rounded-2xl p-5 stat-num delay-3">
+                <div class="stat-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-5 stat-num delay-3">
                     <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-5 h-5 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                         </svg>
                     </div>
-                    <div class="text-3xl font-black text-slate-900 tracking-tight leading-none mb-1" style="font-family:'Plus Jakarta Sans',sans-serif;">0</div>
-                    <div class="text-xs font-semibold text-slate-500">Community Posts</div>
+                    <div class="text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-1" style="font-family:'Plus Jakarta Sans',sans-serif;">0</div>
+                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">Community Posts</div>
                     <div class="mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                         <div class="h-full w-0 rounded-full" style="background:linear-gradient(90deg,#39E554,#28a04a);"></div>
                     </div>
                 </div>
 
                 {{-- Plan --}}
-                <div class="stat-card fp-tilt-card rounded-2xl p-5 stat-num delay-4">
+                <div class="stat-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-5 stat-num delay-4">
                     <div class="icon-wrap w-11 h-11 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-5 h-5 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
@@ -264,7 +315,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 fp-animate-in">
 
                 {{-- AI Assistant --}}
-                <button type="button" @click="window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))" class="action-card fp-tilt-card rounded-2xl p-6 text-left block group border-emerald-200/80 hover:border-[#39E554]/60 w-full cursor-pointer">
+                <button type="button" @click="window.dispatchEvent(new CustomEvent('open-assistant'))" onclick="window.dispatchEvent(new CustomEvent('open-assistant'))" class="action-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-6 text-left block group border-emerald-200/80 hover:border-[#39E554]/60 w-full cursor-pointer">
                     <div class="flex items-start justify-between mb-4">
                         <div class="icon-wrap w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-tr from-[#39E554]/15 to-[#28a04a]/10 border border-[#39E554]/25">
                             <svg class="w-6 h-6 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -275,14 +326,14 @@
                             AI Powered
                         </span>
                     </div>
-                    <h3 class="text-base font-bold text-slate-900 mb-1.5 group-hover:text-[#28a04a] transition-colors" style="font-family:'Plus Jakarta Sans',sans-serif;">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1.5 group-hover:text-[#28a04a] transition-colors" style="font-family:'Plus Jakarta Sans',sans-serif;">
                         FinPulse AI Assistant
                     </h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Ask anything about market principles, finance, economics, and FinPulse courses.</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Ask anything about market principles, finance, economics, and FinPulse courses.</p>
                 </button>
 
                 {{-- Continue Learning --}}
-                <a href="{{ route('learn.index') }}" wire:navigate class="action-card fp-tilt-card rounded-2xl p-6 block group">
+                <a href="{{ route('learn.index') }}" wire:navigate class="action-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-6 block group">
                     <div class="flex items-start justify-between mb-4">
                         <div class="icon-wrap w-12 h-12 rounded-xl flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,7 +351,7 @@
                 </a>
 
                 {{-- Research Hub --}}
-                <a href="{{ route('research.index') }}" wire:navigate class="action-card fp-tilt-card rounded-2xl p-6 block group">
+                <a href="{{ route('research.index') }}" wire:navigate class="action-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-6 block group">
                     <div class="flex items-start justify-between mb-4">
                         <div class="icon-wrap w-12 h-12 rounded-xl flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -318,7 +369,7 @@
                 </a>
 
                 {{-- Live Sessions --}}
-                <a href="{{ route('live-sessions.index') }}" wire:navigate class="action-card fp-tilt-card rounded-2xl p-6 block group">
+                <a href="{{ route('live-sessions.index') }}" wire:navigate class="action-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-6 block group">
                     <div class="flex items-start justify-between mb-4">
                         <div class="icon-wrap w-12 h-12 rounded-xl flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -336,7 +387,7 @@
                 </a>
 
                 {{-- Community Feed --}}
-                <a href="{{ route('feed') }}" wire:navigate class="action-card fp-tilt-card rounded-2xl p-6 block group">
+                <a href="{{ route('feed') }}" wire:navigate class="action-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-6 block group">
                     <div class="flex items-start justify-between mb-4">
                         <div class="icon-wrap w-12 h-12 rounded-xl flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -354,7 +405,7 @@
                 </a>
 
                 {{-- Leaderboard --}}
-                <a href="{{ route('leaderboard') }}" wire:navigate class="action-card fp-tilt-card rounded-2xl p-6 block group">
+                <a href="{{ route('leaderboard') }}" wire:navigate class="action-card dark:!bg-[#132a1f] dark:!border-emerald-900/20 fp-tilt-card rounded-2xl p-6 block group">
                     <div class="flex items-start justify-between mb-4">
                         <div class="icon-wrap w-12 h-12 rounded-xl flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -382,14 +433,14 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-[#28a04a] bg-white/60 border border-[#39E554]/30 px-2.5 py-1 rounded-full">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-[#28a04a] bg-white/60 dark:bg-emerald-950/60 border border-[#39E554]/30 px-2.5 py-1 rounded-full">
                             Recommended
                         </span>
                     </div>
-                    <h3 class="text-base font-black text-slate-900 mb-1.5" style="font-family:'Plus Jakarta Sans',sans-serif;">
+                    <h3 class="text-base font-black text-slate-900 dark:text-white mb-1.5" style="font-family:'Plus Jakarta Sans',sans-serif;">
                         Upgrade to Pro
                     </h3>
-                    <p class="text-sm text-slate-600 leading-relaxed mb-3">Unlock live sessions, premium courses, and 1-on-1 expert mentorship.</p>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Unlock live sessions, premium courses, and 1-on-1 expert mentorship.</p>
                     <span class="inline-flex items-center gap-1.5 text-sm font-bold text-[#28a04a] group-hover:gap-3 transition-all duration-300">
                         View Plans
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
