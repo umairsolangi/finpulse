@@ -4,7 +4,7 @@
         <a
             href="{{ route('courses.index') }}"
             wire:navigate
-            class="inline-flex items-center gap-1 text-sm font-semibold text-finpulse-navy hover:text-[#39E554] transition-colors group"
+            class="inline-flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-black transition-colors group"
         >
             <svg class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -18,7 +18,7 @@
         @php
             $skillBadgeClass = match($course->skill_level?->value ?? $course->skill_level) {
                 'beginner' => 'bg-amber-100 text-amber-900 border-amber-300',
-                'intermediate' => 'bg-blue-100 text-finpulse-navy border-blue-200',
+                'intermediate' => 'bg-blue-100 text-blue-900 border-blue-200',
                 'advanced' => 'bg-gray-100 text-gray-900 border-gray-300',
                 default => 'bg-gray-100 text-gray-800 border-gray-200',
             };
@@ -31,7 +31,7 @@
                     {{ ucfirst($course->skill_level?->value ?? $course->skill_level ?? 'General') }}
                 </span>
 
-                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-finpulse-cream text-finpulse-navy border border-amber-200 uppercase tracking-wider">
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200 uppercase tracking-wider">
                     {{ ($course->language?->value ?? $course->language) === 'en' ? 'English' : 'Urdu' }}
                 </span>
 
@@ -52,7 +52,7 @@
             </div>
 
             <!-- Title & Description -->
-            <h1 class="text-2xl sm:text-4xl font-extrabold text-finpulse-navy tracking-tight leading-tight">
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 {{ $course->title }}
             </h1>
 
@@ -84,7 +84,7 @@
 
                     @if($course->author)
                         <span class="flex items-center gap-1.5 text-gray-500">
-                            Instructor: <strong class="text-finpulse-navy">{{ $course->author->name }}</strong>
+                            Instructor: <strong class="text-slate-900">{{ $course->author->name }}</strong>
                         </span>
                     @endif
                 </div>
@@ -148,7 +148,7 @@
                             <a
                                 href="{{ route('login') }}"
                                 wire:navigate
-                                class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                                class="px-5 py-2.5 bg-[#39E554] hover:bg-[#28a04a] text-slate-950 font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                             >
                                 Log in to unlock
                             </a>
@@ -163,7 +163,7 @@
                             <a
                                 href="{{ route('pricing') }}"
                                 wire:navigate
-                                class="px-5 py-2.5 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                                class="px-5 py-2.5 bg-[#39E554] hover:bg-[#28a04a] text-slate-950 font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                             >
                                 Upgrade Membership
                             </a>
@@ -177,7 +177,7 @@
         @if($canAccess && $totalChapters > 0)
             <div class="bg-gray-50 rounded-xl p-5 border border-gray-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div class="flex-1 w-full sm:w-auto space-y-2">
-                    <div class="flex items-center justify-between text-xs font-semibold text-finpulse-navy">
+                    <div class="flex items-center justify-between text-xs font-semibold text-slate-900">
                         <span>Course Progress</span>
                         @if(auth()->check())
                             <span class="text-[#39E554]">{{ $completedCount }} of {{ $totalChapters }} completed ({{ $progressPercent }}%)</span>
@@ -187,7 +187,7 @@
                     </div>
                     <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
                         <div
-                            class="bg-gradient-to-r from-finpulse-navy to-[#39E554] h-2.5 rounded-full transition-all duration-500"
+                            class="bg-gradient-to-r from-slate-900 to-[#39E554] h-2.5 rounded-full transition-all duration-500"
                             style="width: {{ min(100, $progressPercent) }}%"
                         ></div>
                     </div>
@@ -214,7 +214,7 @@
                                 href="{{ route('courses.chapter', [$course->slug, $targetChapter->id]) }}"
                                 wire:navigate
                                 class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-bold text-sm shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5
-                                    {{ $actionType === 'review' ? 'bg-finpulse-navy text-white hover:bg-slate-800' : 'bg-[#39E554] hover:bg-amber-400 text-finpulse-navy' }}"
+                                    {{ $actionType === 'review' ? 'bg-slate-900 text-white hover:bg-black' : 'bg-[#39E554] hover:bg-[#28a04a] text-slate-950 font-bold' }}"
                             >
                                 @if($actionType === 'review')
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,7 +244,7 @@
     <!-- Chapter List Section -->
     <div class="space-y-4 fp-animate-in">
         <div class="flex items-center justify-between">
-            <h2 class="text-xl font-bold text-finpulse-navy tracking-tight">Course Syllabus & Chapters</h2>
+            <h2 class="text-xl font-bold text-slate-900 tracking-tight">Course Syllabus & Chapters</h2>
             <span class="text-xs font-semibold text-finpulse-gray uppercase tracking-wider">{{ $totalChapters }} {{ Str::plural('Lesson', $totalChapters) }}</span>
         </div>
 
@@ -273,12 +273,12 @@
 
                         <!-- Chapter Title & Info -->
                         <div class="min-w-0">
-                            <h3 class="text-sm sm:text-base font-semibold text-finpulse-navy truncate">
+                            <h3 class="text-sm sm:text-base font-semibold text-slate-900 truncate">
                                 @if($canOpen)
                                     <a
                                         href="{{ route('courses.chapter', [$course->slug, $chapter->id]) }}"
                                         wire:navigate
-                                        class="hover:text-[#39E554] transition-colors"
+                                        class="hover:text-emerald-600 transition-colors"
                                     >
                                         {{ $chapter->title }}
                                     </a>
@@ -324,7 +324,7 @@
                                 href="{{ route('courses.chapter', [$course->slug, $chapter->id]) }}"
                                 wire:navigate
                                 class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all
-                                    {{ $isDone ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-finpulse-navy text-white hover:bg-[#39E554] hover:bg-[#28a04a]' }}"
+                                    {{ $isDone ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-slate-900 text-white hover:bg-black' }}"
                             >
                                 <span>{{ $isDone ? 'Review' : 'Start' }}</span>
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -2,18 +2,18 @@
     <!-- Top Breadcrumb & Progress Banner -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-200 pb-4 fp-animate-in">
         <div class="flex items-center gap-2 text-xs sm:text-sm text-finpulse-gray flex-wrap">
-            <a href="{{ route('courses.index') }}" wire:navigate class="hover:text-[#39E554] font-semibold transition-colors">Courses</a>
+            <a href="{{ route('courses.index') }}" wire:navigate class="hover:text-black font-semibold transition-colors">Courses</a>
             <span>/</span>
-            <a href="{{ route('courses.show', $course->slug) }}" wire:navigate class="hover:text-[#39E554] font-semibold transition-colors truncate max-w-xs">{{ $course->title }}</a>
+            <a href="{{ route('courses.show', $course->slug) }}" wire:navigate class="hover:text-black font-semibold transition-colors truncate max-w-xs">{{ $course->title }}</a>
             <span>/</span>
-            <span class="text-finpulse-navy font-bold">Chapter {{ $currentIndex }} of {{ $totalChapters }}</span>
+            <span class="text-slate-900 font-bold">Chapter {{ $currentIndex }} of {{ $totalChapters }}</span>
         </div>
 
         <div class="flex items-center gap-3 self-end sm:self-auto">
             <a
                 href="{{ route('courses.show', $course->slug) }}"
                 wire:navigate
-                class="inline-flex items-center gap-1 text-xs font-semibold text-finpulse-navy hover:text-[#39E554] transition-colors"
+                class="inline-flex items-center gap-1 text-xs font-semibold text-slate-800 hover:text-black transition-colors"
             >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -120,7 +120,7 @@
                         @endif
                     </div>
 
-                    <h1 class="text-2xl sm:text-3xl font-extrabold text-finpulse-navy tracking-tight leading-tight">
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
                         {{ $chapter->title }}
                     </h1>
 
@@ -151,7 +151,7 @@
                     <div id="chapter-quiz" class="mt-10 pt-8 border-t-2 border-dashed border-gray-200 space-y-6 fp-animate-in">
                         <div class="flex items-center justify-between gap-4 flex-wrap">
                             <div>
-                                <h3 class="text-xl font-bold text-finpulse-navy flex items-center gap-2">
+                                <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
                                     <span>Chapter Assessment Quiz</span>
                                     <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-300">
                                         Pass: 70%
@@ -193,7 +193,7 @@
                                         <button
                                             type="button"
                                             wire:click="retakeQuiz"
-                                            class="px-4 py-2 bg-finpulse-navy text-white text-xs font-bold rounded-lg hover:bg-slate-800 transition-colors shadow-sm"
+                                            class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-black transition-colors shadow-sm"
                                         >
                                             Retake Quiz
                                         </button>
@@ -207,10 +207,10 @@
                             @foreach($quiz->questions as $qIndex => $question)
                                 <div class="bg-gray-50/70 rounded-xl p-5 border border-gray-200 space-y-4">
                                     <div class="flex items-start gap-3">
-                                        <span class="w-6 h-6 rounded-full bg-finpulse-navy text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                                        <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
                                             {{ $qIndex + 1 }}
                                         </span>
-                                        <h4 class="text-sm sm:text-base font-bold text-finpulse-navy">
+                                        <h4 class="text-sm sm:text-base font-bold text-slate-900">
                                             {{ $question->question }}
                                         </h4>
                                     </div>
@@ -286,9 +286,9 @@
                                 <button
                                     type="button"
                                     wire:click="$set('showQuiz', true)"
-                                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm shadow-sm transition-all duration-300 bg-[#39E554] hover:bg-amber-400 text-finpulse-navy hover:shadow-md hover:-translate-y-0.5"
+                                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm shadow-sm transition-all duration-300 bg-[#39E554] hover:bg-[#28a04a] text-slate-950 hover:shadow-md hover:-translate-y-0.5"
                                 >
-                                    <svg class="w-4 h-4 text-finpulse-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                     </svg>
                                     <span>Take Chapter Quiz</span>
@@ -301,9 +301,9 @@
                                     class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm shadow-sm transition-all duration-300
                                         {{ $isCompleted
                                             ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200'
-                                            : 'bg-[#39E554] hover:bg-amber-400 text-finpulse-navy hover:shadow-md hover:-translate-y-0.5' }}"
+                                            : 'bg-[#39E554] hover:bg-[#28a04a] text-slate-950 hover:shadow-md hover:-translate-y-0.5' }}"
                                 >
-                                    <svg class="w-4 h-4 {{ $isCompleted ? 'text-emerald-700' : 'text-finpulse-navy' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 {{ $isCompleted ? 'text-emerald-700' : 'text-slate-950' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                     <span wire:loading.remove>{{ $isCompleted ? 'Completed' : 'Mark as Complete' }}</span>
@@ -339,7 +339,7 @@
                                 <a
                                     href="{{ route('courses.chapter', [$course->slug, $prevChapter->id]) }}"
                                     wire:navigate
-                                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-finpulse-navy bg-gray-100 hover:bg-gray-200 transition-colors group"
+                                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-800 bg-gray-100 hover:bg-gray-200 transition-colors group"
                                 >
                                     <svg class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -364,7 +364,7 @@
                                 <a
                                     href="{{ route('courses.chapter', [$course->slug, $nextChapter->id]) }}"
                                     wire:navigate
-                                    class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold text-white bg-finpulse-navy hover:bg-[#39E554] hover:bg-[#28a04a] transition-all duration-300 group shadow-sm hover:shadow-md"
+                                    class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold text-white bg-slate-900 hover:bg-black transition-all duration-300 group shadow-sm hover:shadow-md"
                                 >
                                     <span class="hidden sm:inline">Next Chapter</span>
                                     <span class="sm:hidden">Next</span>
@@ -396,7 +396,7 @@
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <h3 class="text-base font-bold text-finpulse-navy">Congratulations! You've reached the end of this course.</h3>
+                            <h3 class="text-base font-bold text-slate-900">Congratulations! You've reached the end of this course.</h3>
                             <p class="text-xs text-gray-600 max-w-md mx-auto">You have reviewed all chapters in this curriculum. Head back to the course overview to review lessons anytime.</p>
                             <div class="pt-2">
                                 <a
@@ -428,7 +428,7 @@
                 <svg class="w-4 h-4 text-[#39E554]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                 </svg>
-                <span class="text-sm font-bold text-finpulse-navy">Jump to Another Chapter ({{ $totalChapters }} Lessons)</span>
+                <span class="text-sm font-bold text-slate-900">Jump to Another Chapter ({{ $totalChapters }} Lessons)</span>
             </div>
             <svg
                 class="w-4 h-4 text-gray-500 transition-transform duration-200"
@@ -451,7 +451,7 @@
                     href="{{ route('courses.chapter', [$course->slug, $ch->id]) }}"
                     wire:navigate
                     class="p-3.5 sm:px-6 flex items-center justify-between gap-3 text-xs sm:text-sm transition-colors
-                        {{ $isCurrent ? 'bg-amber-50/80 font-bold text-finpulse-navy border-l-4 border-[#39E554]' : 'hover:bg-gray-50 text-gray-700' }}"
+                        {{ $isCurrent ? 'bg-amber-50/80 font-bold text-slate-900 border-l-4 border-[#39E554]' : 'hover:bg-gray-50 text-gray-700' }}"
                 >
                     <div class="flex items-center gap-3 min-w-0">
                         <span class="w-6 text-center text-xs font-semibold text-gray-400">#{{ $ch->order ?: $loop->iteration }}</span>

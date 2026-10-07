@@ -40,43 +40,29 @@
                     </a>
                 </div>
 
-                <!-- Middle Content / Tagline & Value Props (Desktop only) -->
-                <div class="hidden lg:block relative z-10 my-auto py-10">
-                    
+                <!-- Middle Content / Minimalist Punchy Tagline (Desktop only) -->
+                <div class="hidden lg:block relative z-10 my-auto py-8">
                     <h1 class="text-3xl xl:text-4xl font-black text-white leading-tight tracking-tight mb-4">
-                        Master Your Money.<br/>
-                        <span class="text-[#39E554]">Build Real Wealth.</span>
+                        Invest with clarity.<br/>
+                        <span class="text-[#39E554]">Grow with conviction.</span>
                     </h1>
-                    <p class="text-slate-300 text-sm xl:text-base font-normal mb-8 max-w-md leading-relaxed">
-                        Structured PSX market courses, fundamental analysis frameworks, and intelligent financial tools tailored for Pakistani investors.
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-8 font-medium">
+                        Pakistan's dedicated capital markets education and investment intelligence platform.
                     </p>
 
-                    <div class="space-y-4 text-sm font-medium">
-                        <div class="flex items-center gap-3 text-slate-200">
-                            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#39E554]/15 text-[#39E554] border border-[#39E554]/30">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            </span>
-                            <span><strong class="text-white font-semibold">Learn:</strong> Expert PSX &amp; mutual funds modules</span>
-                        </div>
-                        <div class="flex items-center gap-3 text-slate-200">
-                            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#39E554]/15 text-[#39E554] border border-[#39E554]/30">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            </span>
-                            <span><strong class="text-white font-semibold">Track:</strong> Calculators, portfolios &amp; activity streaks</span>
-                        </div>
-                        <div class="flex items-center gap-3 text-slate-200">
-                            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#39E554]/15 text-[#39E554] border border-[#39E554]/30">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            </span>
-                            <span><strong class="text-white font-semibold">Invest:</strong> Real strategies with deep conviction</span>
-                        </div>
+                    <!-- Minimalist Trust Pill -->
+                    <div class="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
+                        <span class="w-2 h-2 rounded-full bg-[#39E554] shadow-[0_0_8px_#39E554]"></span>
+                        <span class="text-xs text-slate-300 font-medium">
+                            <strong class="text-white font-bold">30,000+</strong> active retail learners
+                        </span>
                     </div>
                 </div>
 
                 <!-- Footer Tagline Banner -->
-                <div class="relative z-10 pt-4 lg:pt-0 border-t border-white/10 lg:border-t-0 mt-4 lg:mt-0 flex items-center justify-between text-xs text-slate-400">
-                    <span class="tracking-widest uppercase text-[#39E554] font-bold">Learn &middot; Track &middot; Invest</span>
-                    <span class="text-white/40">&copy; {{ date('Y') }} FinPulse</span>
+                <div class="relative z-10 pt-4 lg:pt-0 border-t border-white/10 lg:border-t-0 mt-4 lg:mt-0 flex items-center justify-between text-xs text-slate-500">
+                    <span class="tracking-wider uppercase text-[#39E554] font-bold text-[11px]">Learn &middot; Track &middot; Invest</span>
+                    <span class="text-slate-500 text-[11px]">&copy; {{ date('Y') }} FinPulse</span>
                 </div>
             </div>
 

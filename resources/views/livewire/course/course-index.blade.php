@@ -1,7 +1,7 @@
 <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
     <!-- Header Section -->
     <div class="text-center max-w-3xl mx-auto space-y-3 fp-animate-in">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-finpulse-navy tracking-tight">Financial Education Courses</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Financial Education Courses</h1>
         <p class="text-base sm:text-lg text-finpulse-gray">Structured, comprehensive learning paths designed to take you from market basics to advanced wealth building.</p>
     </div>
 
@@ -76,7 +76,7 @@
                 <button
                     type="button"
                     wire:click="resetFilters"
-                    class="text-xs font-semibold text-finpulse-navy hover:text-[#39E554] transition-colors"
+                    class="text-xs font-semibold text-slate-700 hover:text-black transition-colors"
                 >
                     Reset Filters
                 </button>
@@ -90,7 +90,7 @@
             @php
                 $skillBadgeClass = match($course->skill_level?->value ?? $course->skill_level) {
                     'beginner' => 'bg-amber-100 text-amber-900 border-amber-300',
-                    'intermediate' => 'bg-blue-100 text-finpulse-navy border-blue-200',
+                    'intermediate' => 'bg-blue-100 text-blue-900 border-blue-200',
                     'advanced' => 'bg-gray-100 text-gray-900 border-gray-300',
                     default => 'bg-gray-100 text-gray-800 border-gray-200',
                 };
@@ -127,7 +127,7 @@
                     </div>
 
                     <!-- Title -->
-                    <h2 class="text-lg font-bold text-finpulse-navy group-hover:text-[#39E554] transition-colors duration-200 line-clamp-2">
+                    <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors duration-200 line-clamp-2">
                         <a href="{{ route('courses.show', $course->slug) }}" wire:navigate>
                             {{ $course->title }}
                         </a>
@@ -141,13 +141,13 @@
                     <!-- Progress Indicator IF logged in and user has started the course -->
                     @if($hasStarted)
                         <div class="pt-2 space-y-1.5">
-                            <div class="flex items-center justify-between text-xs font-medium text-finpulse-navy">
+                            <div class="flex items-center justify-between text-xs font-medium text-slate-700">
                                 <span>{{ $completedCount }} of {{ $totalChapters }} {{ Str::plural('chapter', $totalChapters) }} complete</span>
                                 <span class="font-bold text-[#39E554]">{{ $progressPercent }}%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                                 <div
-                                    class="bg-gradient-to-r from-finpulse-navy to-[#39E554] h-2 rounded-full transition-all duration-500"
+                                    class="bg-gradient-to-r from-slate-900 to-[#39E554] h-2 rounded-full transition-all duration-500"
                                     style="width: {{ min(100, $progressPercent) }}%"
                                 ></div>
                             </div>
@@ -167,7 +167,7 @@
                     <a
                         href="{{ route('courses.show', $course->slug) }}"
                         wire:navigate
-                        class="font-semibold text-finpulse-navy group-hover:text-[#39E554] inline-flex items-center gap-1 transition-colors"
+                        class="font-semibold text-slate-900 group-hover:text-emerald-600 inline-flex items-center gap-1 transition-colors"
                     >
                         <span>{{ $hasStarted ? 'Continue' : 'View Course' }}</span>
                         <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -183,14 +183,14 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                 </div>
-                <h3 class="text-lg font-bold text-finpulse-navy">No Courses Found</h3>
+                <h3 class="text-lg font-bold text-slate-900">No Courses Found</h3>
                 <p class="text-sm text-gray-500 max-w-md mx-auto">No courses match your selected filter criteria. Try resetting filters or adjusting search terms.</p>
                 @if($skillLevel !== 'all' || $language !== 'all' || $tier !== 'all' || $search !== '')
                     <div class="pt-2">
                         <button
                             type="button"
                             wire:click="resetFilters"
-                            class="px-4 py-2 bg-finpulse-navy text-white text-xs font-semibold rounded-lg hover:bg-[#39E554] transition-all duration-300 hover:shadow-md"
+                            class="px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-black transition-all duration-300 hover:shadow-md"
                         >
                             Clear All Filters
                         </button>
