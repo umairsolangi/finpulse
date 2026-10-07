@@ -37,30 +37,30 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <div class="mb-6">
-        <h2 class="text-2xl font-bold text-finpulse-navy">Create an Account</h2>
-        <p class="text-sm text-finpulse-gray mt-1">Start your journey to financial independence today.</p>
+    <div class="mb-7">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Create an Account</h2>
+        <p class="text-sm text-slate-500 mt-1.5 font-medium">Start your journey to financial independence today.</p>
     </div>
 
     <form wire:submit="register" class="space-y-4">
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Full Name')" />
-            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" placeholder="John Doe" />
+            <x-input-label for="name" :value="__('Full Name')" class="text-slate-700 font-bold text-xs" />
+            <x-text-input wire:model="name" id="name" class="block mt-1.5 w-full rounded-xl border-slate-200 text-sm focus:border-[#39E554] focus:ring-[#39E554]" type="text" name="name" required autofocus autocomplete="name" placeholder="John Doe" />
             <x-input-error :messages="$errors->get('name')" class="mt-1" />
         </div>
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email Address')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" placeholder="name@example.com" />
+            <x-input-label for="email" :value="__('Email Address')" class="text-slate-700 font-bold text-xs" />
+            <x-text-input wire:model="email" id="email" class="block mt-1.5 w-full rounded-xl border-slate-200 text-sm focus:border-[#39E554] focus:ring-[#39E554]" type="email" name="email" required autocomplete="username" placeholder="name@example.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
 
         <!-- Password -->
         <div>
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
+            <x-input-label for="password" :value="__('Password')" class="text-slate-700 font-bold text-xs" />
+            <x-text-input wire:model="password" id="password" class="block mt-1.5 w-full rounded-xl border-slate-200 text-sm focus:border-[#39E554] focus:ring-[#39E554]"
                             type="password"
                             name="password"
                             required autocomplete="new-password" placeholder="••••••••" />
@@ -69,23 +69,23 @@ new #[Layout('layouts.guest')] class extends Component
 
         <!-- Confirm Password -->
         <div>
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="text-slate-700 font-bold text-xs" />
+            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1.5 w-full rounded-xl border-slate-200 text-sm focus:border-[#39E554] focus:ring-[#39E554]"
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" placeholder="••••••••" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1" />
         </div>
 
-        <div class="pt-2">
+        <div class="pt-3">
             <x-primary-button class="w-full justify-center">
                 {{ __('Create Account') }}
             </x-primary-button>
         </div>
 
-        <div class="pt-4 text-center border-t border-gray-100">
-            <p class="text-sm text-finpulse-gray">
+        <div class="pt-5 text-center border-t border-slate-100 mt-6">
+            <p class="text-xs sm:text-sm text-slate-500 font-medium">
                 Already registered?
-                <a href="{{ route('login') }}" wire:navigate class="font-semibold text-finpulse-navy hover:text-finpulse-gold transition-colors duration-150 ms-1">
+                <a href="{{ route('login') }}" wire:navigate class="font-bold text-[#168a43] hover:text-[#0b542c] transition-colors duration-150 ms-1 underline decoration-[#39E554]/50 decoration-2 underline-offset-2">
                     Log in instead
                 </a>
             </p>

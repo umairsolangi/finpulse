@@ -81,7 +81,7 @@
         text-transform: uppercase;
         background-color: #F0FDF8;
         color: #28a04a;
-        border: 1px solid rgba(0, 196, 140, 0.28);
+        border: 1px solid rgba(57, 229, 84, 0.28);
     }
 
     .fin-btn-primary {
@@ -95,13 +95,13 @@
         font-size: 0.95rem;
         background: linear-gradient(135deg, #39E554, #28a04a);
         color: #FFFFFF;
-        box-shadow: 0 10px 25px -4px rgba(0, 196, 140, 0.4);
+        box-shadow: 0 10px 25px -4px rgba(57, 229, 84, 0.4);
         transition: all 0.25s ease;
     }
     .fin-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 16px 32px -4px rgba(0, 196, 140, 0.55);
-        background: linear-gradient(135deg, #05DF8E, #00B875);
+        box-shadow: 0 16px 32px -4px rgba(57, 229, 84, 0.55);
+        background: linear-gradient(135deg, #4df068, #28a04a);
     }
 
     .glass-card {

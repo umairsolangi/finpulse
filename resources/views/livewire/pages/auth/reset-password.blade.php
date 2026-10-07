@@ -71,8 +71,8 @@ new #[Layout('layouts.guest')] class extends Component
 
 <div>
     <div class="mb-6">
-        <h2 class="text-2xl font-bold text-finpulse-navy">Reset Password</h2>
-        <p class="text-sm text-finpulse-gray mt-1">Set a new password for your FinPulse account.</p>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Reset Password</h2>
+        <p class="text-sm text-slate-500 mt-1.5 font-medium">Set a new password for your FinPulse account.</p>
     </div>
 
     <form wire:submit="resetPassword" class="space-y-4">

@@ -8,7 +8,7 @@
 
     <!-- Top Reading Progress Indicator -->
     <div class="fixed top-0 left-0 right-0 h-1 bg-slate-200 z-50">
-        <div class="h-full bg-gradient-to-r from-[#00C48C] to-[#00A86B] transition-all duration-150"
+        <div class="h-full bg-gradient-to-r from-[#39E554] to-[#28a04a] transition-all duration-150"
             :style="`width: ${scrollPercent}%`"></div>
     </div>
 
@@ -17,8 +17,8 @@
         <!-- Top Navigation & Action Controls Bar -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white px-5 py-3.5 rounded-2xl border border-slate-200/80 shadow-xs">
             <a href="{{ route('learn.index') }}" wire:navigate
-                class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-[#00A86B] transition-colors group">
-                <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform text-[#00C48C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-[#28a04a] transition-colors group">
+                <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform text-[#39E554]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
                 </svg>
                 <span>Back to Library</span>
@@ -47,9 +47,9 @@
 
                 <!-- Mark as Completed Button -->
                 <button type="button" wire:click="markAsCompleted"
-                    class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 shadow-xs {{ $isCompleted ? 'bg-emerald-100 text-[#008f62] border border-emerald-300' : 'bg-[#00C48C] hover:bg-[#00A86B] text-slate-950 hover:text-white' }}">
+                    class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 shadow-xs {{ $isCompleted ? 'bg-emerald-100 text-[#008f62] border border-emerald-300' : 'bg-[#39E554] hover:bg-[#28a04a] text-slate-950 hover:text-white' }}">
                     @if($isCompleted)
-                        <svg class="w-4 h-4 text-[#00A86B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-[#28a04a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                         </svg>
                         <span>Completed (+3 XP)</span>
@@ -83,7 +83,7 @@
             <!-- Article Header & Meta -->
             @php
                 $skillBadge = match($item->skill_level?->value ?? $item->skill_level) {
-                    'beginner' => ['bg' => 'bg-emerald-50 text-[#00A86B] border-emerald-200', 'label' => 'Beginner Friendly'],
+                    'beginner' => ['bg' => 'bg-emerald-50 text-[#28a04a] border-emerald-200', 'label' => 'Beginner Friendly'],
                     'intermediate' => ['bg' => 'bg-blue-50 text-blue-700 border-blue-200', 'label' => 'Intermediate PSX'],
                     'advanced' => ['bg' => 'bg-purple-50 text-purple-700 border-purple-200', 'label' => 'Advanced Valuation'],
                     default => ['bg' => 'bg-slate-100 text-slate-700 border-slate-200', 'label' => 'General Financial Literacy'],
@@ -121,7 +121,7 @@
                 <div class="flex items-center gap-5 text-xs text-slate-500 font-medium flex-wrap pt-1">
                     @if($item->duration_minutes)
                         <span class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-[#00C48C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 text-[#39E554]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <span>{{ $item->duration_minutes }} min read</span>
@@ -140,8 +140,8 @@
             <!-- Access Control Gating -->
             @if(!$canAccess)
                 <!-- Locked Paywall Teaser -->
-                <div class="bg-gradient-to-br from-[#061A14] to-[#0F172A] text-white rounded-2xl p-8 text-center border border-[#00C48C]/30 space-y-4 shadow-xl">
-                    <div class="w-14 h-14 rounded-2xl bg-[#00C48C]/20 text-[#00C48C] flex items-center justify-center mx-auto">
+                <div class="bg-gradient-to-br from-[#061A14] to-[#0F172A] text-white rounded-2xl p-8 text-center border border-[#39E554]/30 space-y-4 shadow-xl">
+                    <div class="w-14 h-14 rounded-2xl bg-[#39E554]/20 text-[#39E554] flex items-center justify-center mx-auto">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
@@ -159,7 +159,7 @@
                     <div class="pt-2 flex items-center justify-center gap-3">
                         @guest
                             <a href="{{ route('login') }}" wire:navigate
-                                class="px-6 py-2.5 bg-[#00C48C] hover:bg-[#00D084] text-slate-950 font-bold text-sm rounded-xl transition-all shadow-md">
+                                class="px-6 py-2.5 bg-[#39E554] hover:bg-[#32d44b] text-slate-950 font-bold text-sm rounded-xl transition-all shadow-md">
                                 Log in to unlock
                             </a>
                             <a href="{{ route('register') }}" wire:navigate
@@ -168,7 +168,7 @@
                             </a>
                         @else
                             <a href="{{ route('pricing') }}" wire:navigate
-                                class="px-6 py-2.5 bg-[#00C48C] hover:bg-[#00D084] text-slate-950 font-bold text-sm rounded-xl transition-all shadow-md">
+                                class="px-6 py-2.5 bg-[#39E554] hover:bg-[#32d44b] text-slate-950 font-bold text-sm rounded-xl transition-all shadow-md">
                                 Upgrade to Paid Tier
                             </a>
                         @endguest
@@ -179,15 +179,15 @@
 
                 <!-- Key Takeaways (TL;DR) Card -->
                 @if($item->key_takeaways && count($item->key_takeaways) > 0)
-                    <div class="bg-gradient-to-br from-emerald-50 via-teal-50/40 to-white border border-[#00C48C]/30 rounded-2xl p-5 sm:p-6 shadow-2xs">
-                        <div class="flex items-center gap-2.5 mb-3 text-xs font-black uppercase tracking-wider text-[#00A86B]">
+                    <div class="bg-gradient-to-br from-emerald-50 via-teal-50/40 to-white border border-[#39E554]/30 rounded-2xl p-5 sm:p-6 shadow-2xs">
+                        <div class="flex items-center gap-2.5 mb-3 text-xs font-black uppercase tracking-wider text-[#28a04a]">
                             <span>📌</span>
                             <span>Key Takeaways (Quick Cheat Sheet)</span>
                         </div>
                         <ul class="space-y-2.5">
                             @foreach($item->key_takeaways as $takeaway)
                                 <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                                    <span class="w-4 h-4 rounded-full bg-[#00C48C]/20 text-[#00A86B] flex items-center justify-center shrink-0 mt-0.5 font-black text-[10px]">
+                                    <span class="w-4 h-4 rounded-full bg-[#39E554]/20 text-[#28a04a] flex items-center justify-center shrink-0 mt-0.5 font-black text-[10px]">
                                         ✓
                                     </span>
                                     <span>{{ $takeaway }}</span>
@@ -226,7 +226,7 @@
                     <div class="mt-6">
                         <div class="relative w-full aspect-video bg-[#0F172A] rounded-2xl overflow-hidden shadow-xl flex items-center justify-center border border-slate-800 group">
                             <div class="text-center p-6 space-y-3">
-                                <div class="w-16 h-16 rounded-2xl bg-[#00C48C] text-slate-950 flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
+                                <div class="w-16 h-16 rounded-2xl bg-[#39E554] text-slate-950 flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
                                     <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24">
                                         <path d="M8 5v14l11-7z" />
                                     </svg>
@@ -244,7 +244,7 @@
                         <div class="bg-[#F8FAFC] border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-xs space-y-5">
                             <div class="flex items-center justify-between gap-4">
                                 <div class="flex items-center gap-2">
-                                    <span class="w-7 h-7 rounded-lg bg-[#00C48C]/15 text-[#00A86B] flex items-center justify-center font-bold text-sm">🧠</span>
+                                    <span class="w-7 h-7 rounded-lg bg-[#39E554]/15 text-[#28a04a] flex items-center justify-center font-bold text-sm">🧠</span>
                                     <h3 class="text-base sm:text-lg font-bold text-[#0F172A]">Quick Concept Check</h3>
                                 </div>
                                 <span class="text-xs font-semibold px-2.5 py-1 bg-white text-slate-600 rounded-md border border-slate-200">
@@ -259,8 +259,8 @@
                             <!-- Options List -->
                             <div class="space-y-2.5">
                                 @foreach($item->quiz_data['options'] ?? [] as $optIdx => $optionText)
-                                    <label class="flex items-center gap-3 p-3.5 rounded-xl border transition-all cursor-pointer {{ $selectedOption === $optIdx ? 'bg-emerald-50 border-[#00C48C] text-slate-900 font-semibold' : 'bg-white border-slate-200 hover:border-slate-300 text-slate-700' }}">
-                                        <input type="radio" wire:model="selectedOption" value="{{ $optIdx }}" class="text-[#00C48C] focus:ring-[#00C48C]">
+                                    <label class="flex items-center gap-3 p-3.5 rounded-xl border transition-all cursor-pointer {{ $selectedOption === $optIdx ? 'bg-emerald-50 border-[#39E554] text-slate-900 font-semibold' : 'bg-white border-slate-200 hover:border-slate-300 text-slate-700' }}">
+                                        <input type="radio" wire:model="selectedOption" value="{{ $optIdx }}" class="text-[#39E554] focus:ring-[#39E554]">
                                         <span class="text-xs sm:text-sm">{{ $optionText }}</span>
                                     </label>
                                 @endforeach
@@ -306,7 +306,7 @@
                     </div>
 
                     <button type="button" wire:click="markAsCompleted"
-                        class="px-5 py-2 rounded-xl text-xs font-bold transition-all {{ $isCompleted ? 'bg-slate-100 text-slate-700 hover:bg-slate-200' : 'bg-[#00C48C] hover:bg-[#00A86B] text-slate-950 font-extrabold shadow-sm' }}">
+                        class="px-5 py-2 rounded-xl text-xs font-bold transition-all {{ $isCompleted ? 'bg-slate-100 text-slate-700 hover:bg-slate-200' : 'bg-[#39E554] hover:bg-[#28a04a] text-slate-950 font-extrabold shadow-sm' }}">
                         {{ $isCompleted ? 'Mark as Unread' : 'Mark as Read (+3 XP)' }}
                     </button>
                 </div>
@@ -331,7 +331,7 @@
                 <form wire:submit.prevent="postComment" class="space-y-3">
                     <textarea wire:model="newComment" rows="3"
                         placeholder="Have a question about this concept or want to share your perspective? Ask here..."
-                        class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 p-3.5 focus:border-[#00C48C] focus:ring-[#00C48C] resize-none"></textarea>
+                        class="w-full text-xs sm:text-sm rounded-xl border border-slate-200 p-3.5 focus:border-[#39E554] focus:ring-[#39E554] resize-none"></textarea>
                     
                     @error('newComment')
                         <span class="text-xs text-red-500 font-semibold">{{ $message }}</span>
@@ -339,7 +339,7 @@
 
                     <div class="flex justify-end">
                         <button type="submit"
-                            class="px-5 py-2 bg-[#00C48C] hover:bg-[#00A86B] text-slate-950 font-bold text-xs rounded-xl shadow-xs transition-all">
+                            class="px-5 py-2 bg-[#39E554] hover:bg-[#28a04a] text-slate-950 font-bold text-xs rounded-xl shadow-xs transition-all">
                             Post to Community
                         </button>
                     </div>
@@ -352,7 +352,7 @@
                 @endif
             @else
                 <div class="bg-slate-50 rounded-2xl p-5 text-center text-xs text-slate-600 border border-slate-200">
-                    <a href="{{ route('login') }}" wire:navigate class="font-bold text-[#00A86B] hover:underline">Log in</a>
+                    <a href="{{ route('login') }}" wire:navigate class="font-bold text-[#28a04a] hover:underline">Log in</a>
                     to ask a question or join the conversation on this lesson.
                 </div>
             @endauth
@@ -363,7 +363,7 @@
                     <div class="p-4 rounded-2xl bg-slate-50/70 border border-slate-100 space-y-2">
                         <div class="flex items-center justify-between text-xs">
                             <div class="flex items-center gap-2 font-bold text-[#0F172A]">
-                                <div class="w-6 h-6 rounded-full bg-[#00C48C]/15 text-[#00A86B] flex items-center justify-center text-[10px] font-black">
+                                <div class="w-6 h-6 rounded-full bg-[#39E554]/15 text-[#28a04a] flex items-center justify-center text-[10px] font-black">
                                     {{ strtoupper(substr($comment->user->name, 0, 1)) }}
                                 </div>
                                 <span>{{ $comment->user->name }}</span>
@@ -387,18 +387,18 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     @foreach($relatedItems as $rel)
                         <a href="{{ route('learn.show', $rel->slug) }}" wire:navigate
-                            class="group bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:border-[#00C48C]/50 hover:shadow-md transition-all flex flex-col justify-between">
+                            class="group bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:border-[#39E554]/50 hover:shadow-md transition-all flex flex-col justify-between">
                             <div>
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-[#00A86B] block mb-1">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-[#28a04a] block mb-1">
                                     {{ $rel->skill_level?->value ?? 'Module' }}
                                 </span>
-                                <h4 class="text-xs sm:text-sm font-bold text-[#0F172A] group-hover:text-[#00A86B] transition-colors line-clamp-2">
+                                <h4 class="text-xs sm:text-sm font-bold text-[#0F172A] group-hover:text-[#28a04a] transition-colors line-clamp-2">
                                     {{ $rel->title }}
                                 </h4>
                             </div>
                             <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
                                 <span>{{ $rel->duration_minutes }} mins</span>
-                                <span class="group-hover:translate-x-1 transition-transform text-[#00C48C]">Read →</span>
+                                <span class="group-hover:translate-x-1 transition-transform text-[#39E554]">Read →</span>
                             </div>
                         </a>
                     @endforeach

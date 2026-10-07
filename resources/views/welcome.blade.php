@@ -32,7 +32,7 @@
             mobileOpen: false,
             activeMockup: 0,
         }" @scroll.window="scrolled = (window.pageYOffset > 80)"
-    class="font-sans antialiased text-[#0B132B] bg-white min-h-screen selection:bg-[#00C48C] selection:text-white relative overflow-x-hidden"
+    class="font-sans antialiased text-[#0B132B] bg-white min-h-screen selection:bg-[#39E554] selection:text-white relative overflow-x-hidden"
     id="page-top">
     <!-- =====================================================
              SECTION 1 — HERO COMPONENT
@@ -63,7 +63,7 @@
                         <div class="absolute -top-6 sm:-top-8 right-1 sm:right-4 z-30 bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-[0_20px_45px_rgba(15,23,42,0.1)] border border-slate-100/90 w-52 sm:w-64 transform hover:-translate-y-1 transition-transform duration-300">
                             <div class="flex items-center justify-between">
                                 <span class="text-xl sm:text-2xl font-black text-[#0F172A] tracking-tight">30,000+</span>
-                                <span class="w-6 h-6 rounded-full bg-emerald-50 text-[#00C48C] flex items-center justify-center font-bold text-sm">
+                                <span class="w-6 h-6 rounded-full bg-emerald-50 text-[#39E554] flex items-center justify-center font-bold text-sm">
                                     ↗
                                 </span>
                             </div>
@@ -76,7 +76,7 @@
                                 <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" alt="Learner">
                                 <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" alt="Learner">
                                 <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80" alt="Learner">
-                                <span class="inline-flex items-center justify-center h-6 w-6 rounded-full ring-2 ring-white bg-emerald-100 text-[9px] font-bold text-[#00A86B]">
+                                <span class="inline-flex items-center justify-center h-6 w-6 rounded-full ring-2 ring-white bg-emerald-100 text-[9px] font-bold text-[#28a04a]">
                                     +8k
                                 </span>
                             </div>
@@ -115,7 +115,7 @@
                                 <span title="Great">😊</span>
                                 <span class="relative inline-block" title="Loved it">
                                     <span class="text-lg">🤩</span>
-                                    <span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#00C48C] ring-2 ring-white"></span>
+                                    <span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#39E554] ring-2 ring-white"></span>
                                 </span>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                 <!-- Right Column: Editorial Text Content (6 cols) -->
                 <div class="lg:col-span-6 flex flex-col justify-center pl-0 lg:pl-8 reveal-item">
                     <!-- Eyebrow: "A  B  I  T" -->
-                    <div class="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-[#00A86B] mb-2">
+                    <div class="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-[#28a04a] mb-2">
                         A &nbsp;B &nbsp;I &nbsp;T
                     </div>
 
@@ -148,7 +148,7 @@
                     <!-- Unique Stylized Button: "EXPLORE MORE" with angular cut -->
                     <div>
                         <a href="#how-it-works"
-                           class="inline-flex items-center justify-center text-white font-bold text-xs sm:text-sm uppercase tracking-wider px-8 py-4 bg-gradient-to-r from-[#00C48C] to-[#00A86B] hover:from-[#00D084] hover:to-[#00B875] shadow-[0_12px_28px_rgba(0,196,140,0.35)] hover:shadow-[0_16px_36px_rgba(0,196,140,0.5)] transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                           class="inline-flex items-center justify-center text-white font-bold text-xs sm:text-sm uppercase tracking-wider px-8 py-4 bg-gradient-to-r from-[#39E554] to-[#28a04a] hover:from-[#32d44b] hover:to-[#28a04a] shadow-[0_12px_28px_rgba(57,229,84,0.35)] hover:shadow-[0_16px_36px_rgba(57,229,84,0.5)] transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
                            style="border-radius: 10px; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 0 100%);">
                             EXPLORE MORE
                         </a>
@@ -167,10 +167,10 @@
             <div class="text-center max-w-3xl mx-auto mb-10 reveal-item">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                     Three Steps. One Goal: <br class="sm:hidden" /><em
-                        class="not-italic text-[#00C48C] [text-shadow:0_0_28px_rgba(0,196,140,0.35)]">A Smarter
+                        class="not-italic text-[#39E554] [text-shadow:0_0_28px_rgba(57,229,84,0.35)]">A Smarter
                         Investor.</em>
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mt-4"></div>
                 <p class="mt-4 text-base text-emerald-100/80 max-w-xl mx-auto">
                     A structured path designed to take you from market beginner to confident investor.
                 </p>
@@ -178,21 +178,21 @@
 
             <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
                 <!-- Desktop connecting line -->
-                <div class="hidden md:block absolute top-[64px] left-[calc(16.67%+20px)] right-[calc(16.67%+20px)] h-0.5 bg-[#00C48C]/20 z-0 pointer-events-none"
+                <div class="hidden md:block absolute top-[64px] left-[calc(16.67%+20px)] right-[calc(16.67%+20px)] h-0.5 bg-[#39E554]/20 z-0 pointer-events-none"
                     aria-hidden="true">
                     <div id="step-progress-line"
-                        class="h-full bg-gradient-to-r from-[#00C48C] to-[#00A86B] transition-all duration-1000 ease-out"
+                        class="h-full bg-gradient-to-r from-[#39E554] to-[#28a04a] transition-all duration-1000 ease-out"
                         style="width:0%"></div>
                 </div>
 
                 <!-- Step 01 -->
-                <div class="reveal-item rounded-2xl p-8 relative z-10 flex flex-col items-center text-center shadow-xl bg-[#0B2A20]/60 border border-[#00C48C]/20 backdrop-blur-xl hover:border-[#00C48C]/60 transition-all duration-300 h-full"
+                <div class="reveal-item rounded-2xl p-8 relative z-10 flex flex-col items-center text-center shadow-xl bg-[#0B2A20]/60 border border-[#39E554]/20 backdrop-blur-xl hover:border-[#39E554]/60 transition-all duration-300 h-full"
                     style="--stagger:1;">
                     <div
-                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00C48C] to-[#00A86B] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,196,140,0.4)] shrink-0">
+                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#39E554] to-[#28a04a] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(57,229,84,0.4)] shrink-0">
                         <span class="text-white text-2xl font-black">1</span>
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-[#00C48C] mb-2">Step 01</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#39E554] mb-2">Step 01</span>
                     <h3 class="text-xl font-bold text-white mb-3">Join the Community</h3>
                     <p class="text-sm text-emerald-100/70 leading-relaxed flex-1">
                         Ask questions, follow market discussions, and learn from others — completely free.
@@ -200,13 +200,13 @@
                 </div>
 
                 <!-- Step 02 -->
-                <div class="reveal-item rounded-2xl p-8 relative z-10 flex flex-col items-center text-center shadow-xl bg-[#0B2A20]/60 border border-[#00C48C]/20 backdrop-blur-xl hover:border-[#00C48C]/60 transition-all duration-300 h-full"
+                <div class="reveal-item rounded-2xl p-8 relative z-10 flex flex-col items-center text-center shadow-xl bg-[#0B2A20]/60 border border-[#39E554]/20 backdrop-blur-xl hover:border-[#39E554]/60 transition-all duration-300 h-full"
                     style="--stagger:2;">
                     <div
-                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00C48C] to-[#00A86B] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,196,140,0.4)] shrink-0">
+                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#39E554] to-[#28a04a] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(57,229,84,0.4)] shrink-0">
                         <span class="text-white text-2xl font-black">2</span>
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-[#00C48C] mb-2">Step 02</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#39E554] mb-2">Step 02</span>
                     <h3 class="text-xl font-bold text-white mb-3">Learn with Structure</h3>
                     <p class="text-sm text-emerald-100/70 leading-relaxed flex-1">
                         Work through courses built for beginners to advanced investors, at your own pace.
@@ -214,13 +214,13 @@
                 </div>
 
                 <!-- Step 03 -->
-                <div class="reveal-item rounded-2xl p-8 relative z-10 flex flex-col items-center text-center shadow-xl bg-[#0B2A20]/60 border border-[#00C48C]/20 backdrop-blur-xl hover:border-[#00C48C]/60 transition-all duration-300 h-full"
+                <div class="reveal-item rounded-2xl p-8 relative z-10 flex flex-col items-center text-center shadow-xl bg-[#0B2A20]/60 border border-[#39E554]/20 backdrop-blur-xl hover:border-[#39E554]/60 transition-all duration-300 h-full"
                     style="--stagger:3;">
                     <div
-                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00C48C] to-[#00A86B] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,196,140,0.4)] shrink-0">
+                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#39E554] to-[#28a04a] flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(57,229,84,0.4)] shrink-0">
                         <span class="text-white text-2xl font-black">3</span>
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-[#00C48C] mb-2">Step 03</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#39E554] mb-2">Step 03</span>
                     <h3 class="text-xl font-bold text-white mb-3">Grow with Confidence</h3>
                     <p class="text-sm text-emerald-100/70 leading-relaxed flex-1">
                         Unlock premium research, live sessions, and a guided path to your first investment.
@@ -243,9 +243,9 @@
             <div class="text-center max-w-3xl mx-auto mb-16 reveal-item">
 
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-                    Everything You Need, <em class="not-italic text-[#00C48C]">In One Place.</em>
+                    Everything You Need, <em class="not-italic text-[#39E554]">In One Place.</em>
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mt-4"></div>
                 <p class="mt-5 text-base text-[#475569]">
                     Tools and resources tailored specifically for retail financial education.
                 </p>
@@ -254,18 +254,18 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Large Tile: Community Feed -->
                 <div class="reveal-item group relative bg-white rounded-2xl p-8 border border-slate-200/90 shadow-md overflow-hidden
-                                transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#00C48C]/50 md:hover:shadow-xl
+                                transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#39E554]/50 md:hover:shadow-xl
                                 sm:col-span-2 lg:col-span-2 lg:row-span-2">
                     <div class="absolute top-6 right-6 flex gap-1.5" aria-hidden="true">
-                        <div class="w-7 h-7 rounded-full bg-[#00C48C]/15 border border-[#00C48C]/30 animate-badge-pulse"
+                        <div class="w-7 h-7 rounded-full bg-[#39E554]/15 border border-[#39E554]/30 animate-badge-pulse"
                             style="animation-delay:0s;"></div>
-                        <div class="w-7 h-7 rounded-full bg-[#00A86B]/15 border border-[#00A86B]/30 animate-badge-pulse"
+                        <div class="w-7 h-7 rounded-full bg-[#28a04a]/15 border border-[#28a04a]/30 animate-badge-pulse"
                             style="animation-delay:0.4s;"></div>
-                        <div class="w-7 h-7 rounded-full bg-[#00C48C]/10 border border-[#00C48C]/20 animate-badge-pulse"
+                        <div class="w-7 h-7 rounded-full bg-[#39E554]/10 border border-[#39E554]/20 animate-badge-pulse"
                             style="animation-delay:0.8s;"></div>
                     </div>
                     <div
-                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00C48C] to-[#00A86B] flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-200">
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#39E554] to-[#28a04a] flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-200">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -302,16 +302,16 @@
                 <!-- Tile: Courses & Certificates -->
                 <div
                     class="reveal-item group relative bg-white rounded-2xl p-7 border border-slate-200/90 shadow-md overflow-hidden
-                                transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#00C48C]/50 md:hover:shadow-xl">
+                                transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#39E554]/50 md:hover:shadow-xl">
                     <div class="absolute top-5 right-5" aria-hidden="true">
                         <svg class="w-12 h-12 opacity-30 group-hover:opacity-60 transition-opacity duration-200"
                             viewBox="0 0 36 36" fill="none">
-                            <circle cx="18" cy="18" r="15.9" stroke="#00C48C" stroke-width="3" stroke-dasharray="75 25"
+                            <circle cx="18" cy="18" r="15.9" stroke="#39E554" stroke-width="3" stroke-dasharray="75 25"
                                 stroke-dashoffset="25" transform="rotate(-90 18 18)" />
                         </svg>
                     </div>
                     <div
-                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00C48C] to-[#00A86B] flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform duration-200">
+                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#39E554] to-[#28a04a] flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform duration-200">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -324,13 +324,13 @@
                 <!-- Tile: Live Sessions -->
                 <div
                     class="reveal-item group relative bg-white rounded-2xl p-7 border border-slate-200/90 shadow-md overflow-hidden
-                                transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#00C48C]/50 md:hover:shadow-xl">
+                                transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#39E554]/50 md:hover:shadow-xl">
                     <div class="absolute top-5 right-5 flex items-center gap-1.5" aria-hidden="true">
-                        <span class="live-dot w-2.5 h-2.5 rounded-full bg-[#00C48C] block animate-pulse"></span>
-                        <span class="text-xs font-bold text-[#00C48C] uppercase tracking-wider">Live</span>
+                        <span class="live-dot w-2.5 h-2.5 rounded-full bg-[#39E554] block animate-pulse"></span>
+                        <span class="text-xs font-bold text-[#39E554] uppercase tracking-wider">Live</span>
                     </div>
                     <div
-                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00C48C] to-[#00A86B] flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform duration-200">
+                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#39E554] to-[#28a04a] flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform duration-200">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -342,10 +342,10 @@
 
                 <!-- Tile: Premium Research -->
                 <div class="reveal-item group relative bg-white rounded-2xl p-7 border border-slate-200/90 shadow-md overflow-hidden
-                                transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#00C48C]/50 md:hover:shadow-xl
+                                transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#39E554]/50 md:hover:shadow-xl
                                 sm:col-span-2 lg:col-span-3">
                     <div class="absolute top-5 right-6" aria-hidden="true">
-                        <svg class="w-8 h-8 text-slate-300 group-hover:text-[#00C48C] transition-colors duration-200"
+                        <svg class="w-8 h-8 text-slate-300 group-hover:text-[#39E554] transition-colors duration-200"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                 d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -353,7 +353,7 @@
                     </div>
                     <div class="flex items-start gap-6">
                         <div
-                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00C48C] to-[#00A86B] flex items-center justify-center mb-0 shadow-md shrink-0 group-hover:scale-110 transition-transform duration-200">
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#39E554] to-[#28a04a] flex items-center justify-center mb-0 shadow-md shrink-0 group-hover:scale-110 transition-transform duration-200">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2" />
@@ -386,9 +386,9 @@
             <div class="mb-14 text-center max-w-2xl mx-auto reveal-item">
 
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight">
-                    Browse the Community <em class="not-italic text-[#00C48C]">by Topic.</em>
+                    Browse the Community <em class="not-italic text-[#39E554]">by Topic.</em>
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mt-4"></div>
                 <p class="mt-4 text-base sm:text-lg text-[#475569] leading-relaxed">
                     Jump straight into the discussions that matter to you.
                 </p>
@@ -399,21 +399,21 @@
 
                 <!-- Stocks Card -->
                 <a href="{{ route('feed', ['category' => 'stocks']) }}" wire:navigate
-                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#39E554]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
                         <img alt="Stocks - Candlestick chart and market trading data"
                             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             src="{{ asset('images/topics/stocks.jpg') }}">
                         <div class="absolute top-3 right-3">
                             <span
-                                class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#00A86B] shadow-sm border border-slate-200/80">
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#28a04a] shadow-sm border border-slate-200/80">
                                 Equities
                             </span>
                         </div>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors">
+                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#39E554] transition-colors">
                                 Stocks
                             </h3>
                             <p class="mt-1 text-xs text-[#64748B] leading-relaxed">
@@ -421,7 +421,7 @@
                             </p>
                         </div>
                         <div
-                            class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#00C48C]">
+                            class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#39E554]">
                             <span>Explore Discussions</span>
                             <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
                         </div>
@@ -430,21 +430,21 @@
 
                 <!-- Mutual Funds Card -->
                 <a href="{{ route('feed', ['category' => 'mutual_funds']) }}" wire:navigate
-                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#39E554]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
                         <img alt="Mutual Funds - Wealth management and portfolio allocation"
                             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             src="{{ asset('images/topics/mutual_funds.jpg') }}">
                         <div class="absolute top-3 right-3">
                             <span
-                                class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#00A86B] shadow-sm border border-slate-200/80">
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#28a04a] shadow-sm border border-slate-200/80">
                                 Funds &amp; Wealth
                             </span>
                         </div>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors">
+                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#39E554] transition-colors">
                                 Mutual Funds
                             </h3>
                             <p class="mt-1 text-xs text-[#64748B] leading-relaxed">
@@ -452,7 +452,7 @@
                             </p>
                         </div>
                         <div
-                            class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#00C48C]">
+                            class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#39E554]">
                             <span>Explore Discussions</span>
                             <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
                         </div>
@@ -461,21 +461,21 @@
 
                 <!-- Basics Card -->
                 <a href="{{ route('feed', ['category' => 'basics']) }}" wire:navigate
-                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/60 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#39E554]/60 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
                         <img alt="Basics - Investment literacy and beginner fundamentals"
                             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             src="{{ asset('images/topics/basics.jpg') }}">
                         <div class="absolute top-3 right-3">
                             <span
-                                class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#00A86B] shadow-sm border border-slate-200/80">
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#28a04a] shadow-sm border border-slate-200/80">
                                 Beginner
                             </span>
                         </div>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors">
+                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#39E554] transition-colors">
                                 Basics
                             </h3>
                             <p class="mt-1 text-xs text-[#64748B] leading-relaxed">
@@ -483,7 +483,7 @@
                             </p>
                         </div>
                         <div
-                            class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#00C48C]">
+                            class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#39E554]">
                             <span>Explore Discussions</span>
                             <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
                         </div>
@@ -492,21 +492,21 @@
 
                 <!-- News Card -->
                 <a href="{{ route('feed', ['category' => 'news']) }}" wire:navigate
-                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#39E554]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
                         <img alt="News - Financial market press and economic updates"
                             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             src="{{ asset('images/topics/news.jpg') }}">
                         <div class="absolute top-3 right-3">
                             <span
-                                class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#00A86B] shadow-sm border border-slate-200/80">
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 backdrop-blur-md text-[#28a04a] shadow-sm border border-slate-200/80">
                                 Market News
                             </span>
                         </div>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors">
+                            <h3 class="text-base font-bold text-[#0F172A] group-hover:text-[#39E554] transition-colors">
                                 News
                             </h3>
                             <p class="mt-1 text-xs text-[#64748B] leading-relaxed">
@@ -514,7 +514,7 @@
                             </p>
                         </div>
                         <div
-                            class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#00C48C]">
+                            class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#39E554]">
                             <span>Explore Discussions</span>
                             <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
                         </div>
@@ -533,10 +533,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-16 reveal-item">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                    A Taste of <em class="not-italic text-[#00C48C] [text-shadow:0_0_28px_rgba(0,196,140,0.35)]">What
+                    A Taste of <em class="not-italic text-[#39E554] [text-shadow:0_0_28px_rgba(57,229,84,0.35)]">What
                         You'll Learn.</em>
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mt-4"></div>
                 <p class="mt-5 text-base text-emerald-100/80">
                     Explore sample topics from our fundamental investment curriculum.
                 </p>
@@ -545,64 +545,64 @@
             <div
                 class="flex overflow-x-auto gap-5 pb-4 sm:pb-0 md:grid md:grid-cols-2 lg:grid-cols-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0">
                 <div
-                    class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#0B2A20]/60 rounded-2xl p-6 border border-[#00C48C]/20 backdrop-blur-xl shadow-lg hover:border-[#00C48C]/60 hover:shadow-[0_0_30px_rgba(0,196,140,0.25)] transition-all duration-200 flex flex-col justify-between">
+                    class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#0B2A20]/60 rounded-2xl p-6 border border-[#39E554]/20 backdrop-blur-xl shadow-lg hover:border-[#39E554]/60 hover:shadow-[0_0_30px_rgba(57,229,84,0.25)] transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <span
-                            class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#00C48C]/20 text-[#00C48C] border border-[#00C48C]/30 mb-4">Beginner</span>
+                            class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#39E554]/20 text-[#39E554] border border-[#39E554]/30 mb-4">Beginner</span>
                         <h3 class="text-lg font-bold text-white mb-2">What is a P/E Ratio?</h3>
                         <p class="text-xs text-emerald-100/70 leading-relaxed">Learn how price-to-earnings ratios help
                             evaluate stock valuations.</p>
                     </div>
                     <div
-                        class="mt-6 pt-4 border-t border-[#00C48C]/20 flex items-center justify-between text-xs font-semibold text-[#00C48C]">
+                        class="mt-6 pt-4 border-t border-[#39E554]/20 flex items-center justify-between text-xs font-semibold text-[#39E554]">
                         <span>Module 01</span>
                         <span class="text-emerald-100/60 font-medium">15 mins</span>
                     </div>
                 </div>
 
                 <div
-                    class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#0B2A20]/60 rounded-2xl p-6 border border-[#00C48C]/20 backdrop-blur-xl shadow-lg hover:border-[#00C48C]/60 hover:shadow-[0_0_30px_rgba(0,196,140,0.25)] transition-all duration-200 flex flex-col justify-between">
+                    class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#0B2A20]/60 rounded-2xl p-6 border border-[#39E554]/20 backdrop-blur-xl shadow-lg hover:border-[#39E554]/60 hover:shadow-[0_0_30px_rgba(57,229,84,0.25)] transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <span
-                            class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#00A86B]/20 text-[#00C48C] border border-[#00C48C]/30 mb-4">Intermediate</span>
+                            class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#28a04a]/20 text-[#39E554] border border-[#39E554]/30 mb-4">Intermediate</span>
                         <h3 class="text-lg font-bold text-white mb-2">Reading a Candlestick Chart</h3>
                         <p class="text-xs text-emerald-100/70 leading-relaxed">Understand price action patterns, bullish
                             engulfing lines, and trends.</p>
                     </div>
                     <div
-                        class="mt-6 pt-4 border-t border-[#00C48C]/20 flex items-center justify-between text-xs font-semibold text-[#00C48C]">
+                        class="mt-6 pt-4 border-t border-[#39E554]/20 flex items-center justify-between text-xs font-semibold text-[#39E554]">
                         <span>Module 04</span>
                         <span class="text-emerald-100/60 font-medium">25 mins</span>
                     </div>
                 </div>
 
                 <div
-                    class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#0B2A20]/60 rounded-2xl p-6 border border-[#00C48C]/20 backdrop-blur-xl shadow-lg hover:border-[#00C48C]/60 hover:shadow-[0_0_30px_rgba(0,196,140,0.25)] transition-all duration-200 flex flex-col justify-between">
+                    class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#0B2A20]/60 rounded-2xl p-6 border border-[#39E554]/20 backdrop-blur-xl shadow-lg hover:border-[#39E554]/60 hover:shadow-[0_0_30px_rgba(57,229,84,0.25)] transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <span
-                            class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#00A86B]/20 text-[#00C48C] border border-[#00C48C]/30 mb-4">Intermediate</span>
+                            class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#28a04a]/20 text-[#39E554] border border-[#39E554]/30 mb-4">Intermediate</span>
                         <h3 class="text-lg font-bold text-white mb-2">How the KSE-100 Works</h3>
                         <p class="text-xs text-emerald-100/70 leading-relaxed">A comprehensive breakdown of Pakistan
                             stock exchange index weighting.</p>
                     </div>
                     <div
-                        class="mt-6 pt-4 border-t border-[#00C48C]/20 flex items-center justify-between text-xs font-semibold text-[#00C48C]">
+                        class="mt-6 pt-4 border-t border-[#39E554]/20 flex items-center justify-between text-xs font-semibold text-[#39E554]">
                         <span>Module 07</span>
                         <span class="text-emerald-100/60 font-medium">20 mins</span>
                     </div>
                 </div>
 
                 <div
-                    class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#0B2A20]/60 rounded-2xl p-6 border border-[#00C48C]/20 backdrop-blur-xl shadow-lg hover:border-[#00C48C]/60 hover:shadow-[0_0_30px_rgba(0,196,140,0.25)] transition-all duration-200 flex flex-col justify-between">
+                    class="tilt-card snap-center shrink-0 w-[82vw] max-w-xs sm:w-auto bg-[#0B2A20]/60 rounded-2xl p-6 border border-[#39E554]/20 backdrop-blur-xl shadow-lg hover:border-[#39E554]/60 hover:shadow-[0_0_30px_rgba(57,229,84,0.25)] transition-all duration-200 flex flex-col justify-between">
                     <div>
                         <span
-                            class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#00C48C]/30 text-[#00C48C] border border-[#00C48C]/30 mb-4">Advanced</span>
+                            class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#39E554]/30 text-[#39E554] border border-[#39E554]/30 mb-4">Advanced</span>
                         <h3 class="text-lg font-bold text-white mb-2">Building Your First Watchlist</h3>
                         <p class="text-xs text-emerald-100/70 leading-relaxed">Filter companies using cash flow, debt
                             ratios, and growth metrics.</p>
                     </div>
                     <div
-                        class="mt-6 pt-4 border-t border-[#00C48C]/20 flex items-center justify-between text-xs font-semibold text-[#00C48C]">
+                        class="mt-6 pt-4 border-t border-[#39E554]/20 flex items-center justify-between text-xs font-semibold text-[#39E554]">
                         <span>Module 12</span>
                         <span class="text-emerald-100/60 font-medium">30 mins</span>
                     </div>
@@ -617,7 +617,7 @@
              ===================================================== -->
     <section id="stats-section" class="py-20 relative overflow-hidden bg-white border-y border-slate-200/90 shadow-sm">
         <div class="absolute inset-0 pointer-events-none opacity-10" aria-hidden="true"
-            style="background-image: radial-gradient(circle at 50% 50%, rgba(0,196,140,0.2), transparent 70%);"></div>
+            style="background-image: radial-gradient(circle at 50% 50%, rgba(57,229,84,0.2), transparent 70%);"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
@@ -626,7 +626,7 @@
                         data-target="10000" data-suffix="+">
                         <span class="stat-number">0</span>
                     </div>
-                    <div class="w-12 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mb-3 stat-underline"
+                    <div class="w-12 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mb-3 stat-underline"
                         aria-hidden="true"></div>
                     <p class="text-xs font-bold tracking-widest text-[#64748B] uppercase">Active Learners</p>
                 </div>
@@ -635,7 +635,7 @@
                         data-suffix="+">
                         <span class="stat-number">0</span>
                     </div>
-                    <div class="w-12 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mb-3 stat-underline"
+                    <div class="w-12 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mb-3 stat-underline"
                         aria-hidden="true"></div>
                     <p class="text-xs font-bold tracking-widest text-[#64748B] uppercase">Courses</p>
                 </div>
@@ -644,7 +644,7 @@
                         data-suffix="+">
                         <span class="stat-number">0</span>
                     </div>
-                    <div class="w-12 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mb-3 stat-underline"
+                    <div class="w-12 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mb-3 stat-underline"
                         aria-hidden="true"></div>
                     <p class="text-xs font-bold tracking-widest text-[#64748B] uppercase">Live Sessions</p>
                 </div>
@@ -664,12 +664,12 @@
 
                 <div class="text-center max-w-3xl mx-auto mb-12 reveal-item">
                     <span
-                        class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-4">PSX
+                        class="inline-block px-4 py-1.5 rounded-full bg-[#39E554]/10 text-[#28a04a] text-xs font-bold uppercase tracking-wider mb-4">PSX
                         Market</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-                        Explore <em class="not-italic text-[#00C48C]">PSX Stocks.</em>
+                        Explore <em class="not-italic text-[#39E554]">PSX Stocks.</em>
                     </h2>
-                    <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mt-4"></div>
                     <p class="mt-4 text-base text-[#475569]">Search Pakistan's top listed companies and view their
                         interactive chart below.</p>
                 </div>
@@ -684,7 +684,7 @@
                         </svg>
                         <input type="text" x-model="query" @input="filterResults()" @focus="searchOpen = true"
                             placeholder="Search ticker or company... e.g. MCB, OGDC, HBL"
-                            class="w-full pl-12 pr-10 py-4 rounded-2xl border border-slate-200 bg-white shadow-md text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#00C48C]/40 focus:border-[#00C48C] transition-all" />
+                            class="w-full pl-12 pr-10 py-4 rounded-2xl border border-slate-200 bg-white shadow-md text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#39E554]/40 focus:border-[#39E554] transition-all" />
                         <button x-show="query.length > 0" @click="query = ''; filterResults()"
                             class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -704,8 +704,8 @@
                                 class="w-full px-5 py-3.5 flex items-center justify-between hover:bg-slate-50 border-b border-slate-100 last:border-0 transition-colors">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="w-9 h-9 rounded-xl bg-[#00C48C]/10 flex items-center justify-center shrink-0">
-                                        <span class="text-[9px] font-black text-[#00A86B]" x-text="s.ticker"></span>
+                                        class="w-9 h-9 rounded-xl bg-[#39E554]/10 flex items-center justify-center shrink-0">
+                                        <span class="text-[9px] font-black text-[#28a04a]" x-text="s.ticker"></span>
                                     </div>
                                     <div class="text-left">
                                         <p class="text-sm font-bold text-slate-900" x-text="s.name"></p>
@@ -716,7 +716,7 @@
                                     <p class="text-sm font-bold text-slate-800"
                                         x-text="'PKR ' + s.price.toLocaleString()"></p>
                                     <p class="text-xs font-bold"
-                                        :class="s.change >= 0 ? 'text-[#00C48C]' : 'text-red-500'"
+                                        :class="s.change >= 0 ? 'text-[#39E554]' : 'text-red-500'"
                                         x-text="(s.change >= 0 ? '+' : '') + s.change + '%'"></p>
                                 </div>
                             </button>
@@ -730,7 +730,7 @@
                     <template x-for="t in ['MCB', 'OGDC', 'ENGRO', 'TRG', 'LUCK', 'HBL']" :key="t">
                         <button @click="selectByTicker(t)"
                             class="px-3 py-1.5 rounded-full text-xs font-bold border transition-all duration-200"
-                            :class="selected && selected.ticker === t ? 'bg-[#00C48C] text-white border-[#00C48C]' : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-[#00C48C]/60 hover:text-[#00A86B]'"
+                            :class="selected && selected.ticker === t ? 'bg-[#39E554] text-white border-[#39E554]' : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-[#39E554]/60 hover:text-[#28a04a]'"
                             x-text="t"></button>
                     </template>
                 </div>
@@ -740,12 +740,12 @@
                     <template x-for="s in stocks.slice(0, 4)" :key="s.ticker + '_snap'">
                         <button @click="selectStock(s)"
                             class="rounded-2xl border p-4 text-left transition-all duration-200"
-                            :class="selected && selected.ticker === s.ticker ? 'border-[#00C48C]/60 bg-[#00C48C]/5 shadow-md' : 'border-slate-200 bg-white hover:border-[#00C48C]/40 hover:shadow-sm'">
+                            :class="selected && selected.ticker === s.ticker ? 'border-[#39E554]/60 bg-[#39E554]/5 shadow-md' : 'border-slate-200 bg-white hover:border-[#39E554]/40 hover:shadow-sm'">
                             <div class="flex items-center justify-between mb-2">
                                 <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest"
                                     x-text="s.ticker"></span>
                                 <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-                                    :class="s.change >= 0 ? 'text-[#00C48C] bg-[#00C48C]/10' : 'text-red-500 bg-red-50'"
+                                    :class="s.change >= 0 ? 'text-[#39E554] bg-[#39E554]/10' : 'text-red-500 bg-red-50'"
                                     x-text="(s.change >= 0 ? '+' : '') + s.change + '%'"></span>
                             </div>
                             <p class="text-sm font-extrabold text-slate-900" x-text="'PKR ' + s.price.toLocaleString()">
@@ -759,7 +759,7 @@
 
         <!-- ── Interactive Chart ── -->
         <section id="stock-chart" class="py-20 bg-[#061A14] font-['DM_Sans',sans-serif] relative overflow-hidden">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00C48C]/5 rounded-full blur-[100px] pointer-events-none"
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#39E554]/5 rounded-full blur-[100px] pointer-events-none"
                 aria-hidden="true"></div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -769,7 +769,7 @@
                         <div class="flex items-center gap-3 flex-wrap mb-1">
                             <span class="text-lg sm:text-2xl font-black text-white"
                                 x-text="selected ? selected.name : ''"></span>
-                            <span class="px-2 py-0.5 rounded-full bg-[#00C48C]/20 text-[#00C48C] text-xs font-bold"
+                            <span class="px-2 py-0.5 rounded-full bg-[#39E554]/20 text-[#39E554] text-xs font-bold"
                                 x-text="selected ? selected.ticker : ''"></span>
                             <span class="px-2 py-0.5 rounded-full bg-white/5 text-slate-400 text-xs"
                                 x-text="selected ? selected.sector : ''"></span>
@@ -778,7 +778,7 @@
                             <span class="text-3xl font-black text-white"
                                 x-text="selected ? 'PKR ' + selected.price.toLocaleString() : ''"></span>
                             <span class="text-sm font-bold px-2.5 py-1 rounded-full"
-                                :class="selected && selected.change >= 0 ? 'text-[#00C48C] bg-[#00C48C]/15' : 'text-red-400 bg-red-500/15'"
+                                :class="selected && selected.change >= 0 ? 'text-[#39E554] bg-[#39E554]/15' : 'text-red-400 bg-red-500/15'"
                                 x-text="selected ? (selected.change >= 0 ? '▲ +' : '▼ ') + selected.change + '%' : ''"></span>
                         </div>
                     </div>
@@ -787,7 +787,7 @@
                         <template x-for="p in ['1W','1M','3M','1Y']" :key="p">
                             <button @click="setTimePeriod(p)"
                                 class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200"
-                                :class="timePeriod === p ? 'bg-[#00C48C] text-white shadow-sm' : 'text-slate-400 hover:text-white'"
+                                :class="timePeriod === p ? 'bg-[#39E554] text-white shadow-sm' : 'text-slate-400 hover:text-white'"
                                 x-text="p"></button>
                         </template>
                     </div>
@@ -816,7 +816,7 @@
 
                 <!-- Chart container -->
                 <div
-                    class="bg-[#0B2A20]/40 border border-[#00C48C]/15 rounded-2xl p-4 sm:p-6 backdrop-blur-sm reveal-item">
+                    class="bg-[#0B2A20]/40 border border-[#39E554]/15 rounded-2xl p-4 sm:p-6 backdrop-blur-sm reveal-item">
                     <div x-ref="chartEl" style="min-height:280px;"></div>
                 </div>
                 <p class="text-center text-xs text-slate-600 mt-4">* Simulated price data for educational purposes only.
@@ -879,7 +879,7 @@
                 updateChart: function () { if (this.chart) this.chart.updateOptions(this.buildOptions(), true, true); },
                 buildOptions: function () {
                     var s = this.selected, p = this.timePeriod;
-                    var color = s && s.change >= 0 ? '#00C48C' : '#ef4444';
+                    var color = s && s.change >= 0 ? '#39E554' : '#ef4444';
                     var data = cache[s.ticker][p];
                     return {
                         series: [{ name: s.ticker, data: data }],
@@ -1013,13 +1013,13 @@
             <!-- Header -->
             <div class="text-center max-w-3xl mx-auto mb-10 reveal-item">
                 <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-4">
+                    class="inline-block px-4 py-1.5 rounded-full bg-[#39E554]/10 text-[#28a04a] text-xs font-bold uppercase tracking-wider mb-4">
                     Pakistani Investor Toolkit
                 </span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-                    Smart Financial <em class="not-italic text-[#00C48C]">Decision Calculators.</em>
+                    Smart Financial <em class="not-italic text-[#39E554]">Decision Calculators.</em>
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mt-4"></div>
                 <p class="mt-4 text-base text-[#475569]">
                     Select any tool below to simulate your investments, trade costs, and wealth goals in real time.
                 </p>
@@ -1032,7 +1032,7 @@
                         <!-- 1: SIP Planner -->
                         <button type="button" @click="activeTool = 'sip'"
                             :class="activeTool === 'sip' 
-                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                ? 'bg-[#28a04a] text-white shadow-sm font-bold' 
                                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
                             class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
                             SIP Planner
@@ -1041,7 +1041,7 @@
                         <!-- 2: Lump-Sum -->
                         <button type="button" @click="activeTool = 'lump'"
                             :class="activeTool === 'lump' 
-                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                ? 'bg-[#28a04a] text-white shadow-sm font-bold' 
                                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
                             class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
                             Lump-Sum
@@ -1050,7 +1050,7 @@
                         <!-- 3: PSX Trade -->
                         <button type="button" @click="activeTool = 'trade'"
                             :class="activeTool === 'trade' 
-                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                ? 'bg-[#28a04a] text-white shadow-sm font-bold' 
                                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
                             class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
                             PSX Trade
@@ -1059,7 +1059,7 @@
                         <!-- 4: Dividend -->
                         <button type="button" @click="activeTool = 'dividend'"
                             :class="activeTool === 'dividend' 
-                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                ? 'bg-[#28a04a] text-white shadow-sm font-bold' 
                                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
                             class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
                             Dividend
@@ -1068,7 +1068,7 @@
                         <!-- 5: Target Goal -->
                         <button type="button" @click="activeTool = 'goal'"
                             :class="activeTool === 'goal' 
-                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                ? 'bg-[#28a04a] text-white shadow-sm font-bold' 
                                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
                             class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
                             Target Goal
@@ -1077,7 +1077,7 @@
                         <!-- 6: Inflation -->
                         <button type="button" @click="activeTool = 'inflation'"
                             :class="activeTool === 'inflation' 
-                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                ? 'bg-[#28a04a] text-white shadow-sm font-bold' 
                                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
                             class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
                             Inflation
@@ -1086,7 +1086,7 @@
                         <!-- 7: Rule of 72 -->
                         <button type="button" @click="activeTool = 'rule72'"
                             :class="activeTool === 'rule72' 
-                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                ? 'bg-[#28a04a] text-white shadow-sm font-bold' 
                                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
                             class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
                             Rule of 72
@@ -1095,7 +1095,7 @@
                         <!-- 8: Emergency -->
                         <button type="button" @click="activeTool = 'emergency'"
                             :class="activeTool === 'emergency' 
-                                ? 'bg-[#00A86B] text-white shadow-sm font-bold' 
+                                ? 'bg-[#28a04a] text-white shadow-sm font-bold' 
                                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'"
                             class="py-2.5 px-2 text-xs sm:text-[13px] rounded-xl transition-all duration-150 text-center whitespace-nowrap cursor-pointer">
                             Emergency
@@ -1115,43 +1115,43 @@
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Initial Investment</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(sipInitial)"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="fmt(sipInitial)"></span>
                         </div>
                         <input type="range" x-model.number="sipInitial" min="0" max="1000000" step="5000"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 0</span><span>PKR 10L</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Monthly SIP Amount</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(sipMonthly)"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="fmt(sipMonthly)"></span>
                         </div>
                         <input type="range" x-model.number="sipMonthly" min="1000" max="200000" step="1000"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 1K</span><span>PKR 2L</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Annual Return</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="sipRate + '% p.a.'"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="sipRate + '% p.a.'"></span>
                         </div>
                         <input type="range" x-model.number="sipRate" min="5" max="30" step="0.5"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>5%</span><span>30%</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Investment Period</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="sipYears + (sipYears == 1 ? ' Year' : ' Years')"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="sipYears + (sipYears == 1 ? ' Year' : ' Years')"></span>
                         </div>
                         <input type="range" x-model.number="sipYears" min="1" max="30" step="1"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>1 Year</span><span>30 Years</span></div>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-4 sm:gap-5">
-                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                    <div class="bg-gradient-to-br from-[#32d44b] to-[#28a04a] rounded-3xl p-7 text-center shadow-xl shadow-[#39E554]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
                         <div class="absolute -top-8 -right-8 w-44 h-44 bg-white/10 rounded-full blur-2xl"></div>
                         <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Estimated Final Corpus</p>
                         <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(sipFinalValue)"></p>
@@ -1164,19 +1164,19 @@
                         </div>
                         <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
                             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Est. Profit</p>
-                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(sipReturns)"></p>
+                            <p class="text-base font-extrabold text-[#28a04a]" x-text="fmt(sipReturns)"></p>
                         </div>
                     </div>
                     <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 sm:p-5">
                         <div class="flex justify-between text-xs font-bold text-slate-500 mb-2">
                             <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-slate-300 inline-block"></span>Invested</span>
-                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#00C48C] inline-block"></span>Returns</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#39E554] inline-block"></span>Returns</span>
                         </div>
                         <div class="flex h-3.5 rounded-full overflow-hidden bg-slate-200">
                             <div class="bg-slate-400 h-full transition-all duration-500" :style="'width:' + (100 - sipReturnsPct) + '%'"></div>
-                            <div class="bg-gradient-to-r from-[#00C48C] to-[#00A86B] h-full transition-all duration-500" :style="'width:' + sipReturnsPct + '%'"></div>
+                            <div class="bg-gradient-to-r from-[#39E554] to-[#28a04a] h-full transition-all duration-500" :style="'width:' + sipReturnsPct + '%'"></div>
                         </div>
-                        <p class="text-[10px] text-center text-slate-500 mt-2">Your corpus is <span class="font-bold text-[#00A86B]" x-text="(sipFinalValue > 0 ? Math.round((sipFinalValue / Math.max(1, sipTotalInvested) - 1) * 100) : 0) + '% larger'"></span> than total invested.</p>
+                        <p class="text-[10px] text-center text-slate-500 mt-2">Your corpus is <span class="font-bold text-[#28a04a]" x-text="(sipFinalValue > 0 ? Math.round((sipFinalValue / Math.max(1, sipTotalInvested) - 1) * 100) : 0) + '% larger'"></span> than total invested.</p>
                     </div>
                 </div>
             </div>
@@ -1192,34 +1192,34 @@
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Initial Deposit Amount</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(lumpPrincipal)"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="fmt(lumpPrincipal)"></span>
                         </div>
                         <input type="range" x-model.number="lumpPrincipal" min="10000" max="5000000" step="25000"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 10K</span><span>PKR 50 Lakh</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Annual Return</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="lumpRate + '% p.a.'"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="lumpRate + '% p.a.'"></span>
                         </div>
                         <input type="range" x-model.number="lumpRate" min="5" max="30" step="0.5"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>5%</span><span>30%</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Time Horizon</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="lumpYears + (lumpYears == 1 ? ' Year' : ' Years')"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="lumpYears + (lumpYears == 1 ? ' Year' : ' Years')"></span>
                         </div>
                         <input type="range" x-model.number="lumpYears" min="1" max="25" step="1"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>1 Year</span><span>25 Years</span></div>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-4 sm:gap-5">
-                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                    <div class="bg-gradient-to-br from-[#32d44b] to-[#28a04a] rounded-3xl p-7 text-center shadow-xl shadow-[#39E554]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
                         <div class="absolute -top-8 -right-8 w-44 h-44 bg-white/10 rounded-full blur-2xl"></div>
                         <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Total Maturity Value</p>
                         <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(lumpTotalValue)"></p>
@@ -1232,7 +1232,7 @@
                         </div>
                         <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
                             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Pure Profit Gain</p>
-                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(lumpProfit)"></p>
+                            <p class="text-base font-extrabold text-[#28a04a]" x-text="fmt(lumpProfit)"></p>
                         </div>
                     </div>
                     <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center text-xs text-emerald-800">
@@ -1251,7 +1251,7 @@
                             <p class="text-xs text-slate-500">Includes brokerage commission, CDC, SECP & FBR CGT.</p>
                         </div>
                         <button type="button" @click="tradeIsFiler = !tradeIsFiler"
-                            :class="tradeIsFiler ? 'bg-emerald-100 text-[#00A86B] border-emerald-300' : 'bg-amber-100 text-amber-800 border-amber-300'"
+                            :class="tradeIsFiler ? 'bg-emerald-100 text-[#28a04a] border-emerald-300' : 'bg-amber-100 text-amber-800 border-amber-300'"
                             class="px-2.5 py-1 rounded-lg text-xs font-bold border transition-colors">
                             <span x-text="tradeIsFiler ? 'Active Filer (15% CGT)' : 'Non-Filer (30% CGT)'"></span>
                         </button>
@@ -1260,36 +1260,36 @@
                         <div>
                             <label class="text-xs font-bold text-slate-700 block mb-1">Buying Price (PKR)</label>
                             <input type="number" x-model.number="tradeBuyPrice" step="0.5"
-                                class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold text-slate-800 focus:outline-none focus:border-[#00C48C]" />
+                                class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold text-slate-800 focus:outline-none focus:border-[#39E554]" />
                         </div>
                         <div>
                             <label class="text-xs font-bold text-slate-700 block mb-1">Selling Price (PKR)</label>
                             <input type="number" x-model.number="tradeSellPrice" step="0.5"
-                                class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold text-slate-800 focus:outline-none focus:border-[#00C48C]" />
+                                class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-bold text-slate-800 focus:outline-none focus:border-[#39E554]" />
                         </div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Quantity of Shares</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="tradeShares.toLocaleString() + ' Shares'"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="tradeShares.toLocaleString() + ' Shares'"></span>
                         </div>
                         <input type="range" x-model.number="tradeShares" min="50" max="50000" step="50"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>50 Shares</span><span>50,000 Shares</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Broker Commission Rate</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="tradeCommissionRate + '% per side'"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="tradeCommissionRate + '% per side'"></span>
                         </div>
                         <input type="range" x-model.number="tradeCommissionRate" min="0.05" max="0.50" step="0.01"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>0.05% (Fintech)</span><span>0.50% (Full Service)</span></div>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-4 sm:gap-5">
-                    <div :class="tradeNetProfit >= 0 ? 'bg-gradient-to-br from-[#00D084] to-[#00A86B]' : 'bg-gradient-to-br from-rose-500 to-red-600'"
+                    <div :class="tradeNetProfit >= 0 ? 'bg-gradient-to-br from-[#32d44b] to-[#28a04a]' : 'bg-gradient-to-br from-rose-500 to-red-600'"
                         class="rounded-3xl p-7 text-center shadow-xl relative overflow-hidden flex-1 flex flex-col justify-center text-white">
                         <p class="text-xs font-bold text-white/80 uppercase tracking-wider mb-2">Net Cash-In-Hand Profit</p>
                         <p class="text-4xl sm:text-5xl font-black leading-none" x-text="fmt(tradeNetProfit)"></p>
@@ -1340,29 +1340,29 @@
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Shares Owned</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="divShares.toLocaleString() + ' Shares'"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="divShares.toLocaleString() + ' Shares'"></span>
                         </div>
                         <input type="range" x-model.number="divShares" min="100" max="25000" step="100"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                     </div>
                     <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200">
                         <div>
                             <p class="text-xs font-bold text-slate-800">Reinvest Dividends (DRIP)</p>
                             <p class="text-[10px] text-slate-500">Compound cash payouts into purchasing more shares</p>
                         </div>
-                        <input type="checkbox" x-model="divReinvest" class="w-5 h-5 rounded text-[#00C48C] accent-[#00C48C]" />
+                        <input type="checkbox" x-model="divReinvest" class="w-5 h-5 rounded text-[#39E554] accent-[#39E554]" />
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-4 sm:gap-5">
-                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                    <div class="bg-gradient-to-br from-[#32d44b] to-[#28a04a] rounded-3xl p-7 text-center shadow-xl shadow-[#39E554]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
                         <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Annual Dividend Payout</p>
                         <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(divAnnualPayout)"></p>
                         <p class="text-sm text-emerald-100/90 mt-3" x-text="'Dividend Yield: ' + divYieldPct + '% per annum'"></p>
                     </div>
                     <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4">
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Projected 5-Year Portfolio Value</p>
-                        <p class="text-xl font-extrabold text-[#00A86B]" x-text="fmt(divFutureCorpus)"></p>
+                        <p class="text-xl font-extrabold text-[#28a04a]" x-text="fmt(divFutureCorpus)"></p>
                         <p class="text-[11px] text-slate-500 mt-1" x-text="divReinvest ? '🚀 Reinvesting dividends significantly accelerates portfolio compounding.' : '💵 Taking cash payouts without reinvestment.'"></p>
                     </div>
                 </div>
@@ -1379,34 +1379,34 @@
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Target Financial Goal</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(goalTarget)"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="fmt(goalTarget)"></span>
                         </div>
                         <input type="range" x-model.number="goalTarget" min="500000" max="25000000" step="250000"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 5 Lakh</span><span>PKR 2.5 Crore</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Target Timeframe</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="goalYears + (goalYears == 1 ? ' Year' : ' Years')"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="goalYears + (goalYears == 1 ? ' Year' : ' Years')"></span>
                         </div>
                         <input type="range" x-model.number="goalYears" min="1" max="20" step="1"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>1 Year</span><span>20 Years</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Annual Return</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="goalRate + '% p.a.'"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="goalRate + '% p.a.'"></span>
                         </div>
                         <input type="range" x-model.number="goalRate" min="5" max="25" step="0.5"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>5%</span><span>25%</span></div>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-4 sm:gap-5">
-                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                    <div class="bg-gradient-to-br from-[#32d44b] to-[#28a04a] rounded-3xl p-7 text-center shadow-xl shadow-[#39E554]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
                         <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Required Monthly Investment</p>
                         <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(goalMonthlyRequired)"></p>
                         <p class="text-sm text-emerald-100/90 mt-3" x-text="'Invest monthly for ' + goalYears + ' years'"></p>
@@ -1418,7 +1418,7 @@
                         </div>
                         <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
                             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Market Growth Gain</p>
-                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(goalWealthGain)"></p>
+                            <p class="text-base font-extrabold text-[#28a04a]" x-text="fmt(goalWealthGain)"></p>
                         </div>
                     </div>
                 </div>
@@ -1484,26 +1484,26 @@
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Expected Annual Rate of Return</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="ruleRate + '% p.a.'"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="ruleRate + '% p.a.'"></span>
                         </div>
                         <input type="range" x-model.number="ruleRate" min="5" max="36" step="1"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>5%</span><span>36%</span></div>
                     </div>
                     <div class="grid grid-cols-2 gap-2 pt-2">
-                        <button type="button" @click="ruleRate = 11" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#00C48C] text-left text-xs">
+                        <button type="button" @click="ruleRate = 11" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#39E554] text-left text-xs">
                             <span class="font-bold block text-slate-800">Bank Savings</span>
                             <span class="text-slate-500">~11% p.a.</span>
                         </button>
-                        <button type="button" @click="ruleRate = 14" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#00C48C] text-left text-xs">
+                        <button type="button" @click="ruleRate = 14" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#39E554] text-left text-xs">
                             <span class="font-bold block text-slate-800">National Savings</span>
                             <span class="text-slate-500">~14% p.a.</span>
                         </button>
-                        <button type="button" @click="ruleRate = 16" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#00C48C] text-left text-xs">
+                        <button type="button" @click="ruleRate = 16" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#39E554] text-left text-xs">
                             <span class="font-bold block text-slate-800">Income Funds</span>
                             <span class="text-slate-500">~16% p.a.</span>
                         </button>
-                        <button type="button" @click="ruleRate = 22" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#00C48C] text-left text-xs">
+                        <button type="button" @click="ruleRate = 22" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#39E554] text-left text-xs">
                             <span class="font-bold block text-slate-800">PSX Equities</span>
                             <span class="text-slate-500">~22% p.a. (CAGR)</span>
                         </button>
@@ -1511,14 +1511,14 @@
                 </div>
 
                 <div class="flex flex-col gap-4 sm:gap-5">
-                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                    <div class="bg-gradient-to-br from-[#32d44b] to-[#28a04a] rounded-3xl p-7 text-center shadow-xl shadow-[#39E554]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
                         <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Years to 2x Your Wealth</p>
                         <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="ruleYearsToDouble + ' Years'"></p>
                         <p class="text-sm text-emerald-100/90 mt-3" x-text="'At ' + ruleRate + '% annual compounding rate'"></p>
                     </div>
                     <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
                         <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Timeline to 3x (Triple) Money</p>
-                        <p class="text-xl font-extrabold text-[#00A86B]" x-text="ruleYearsToTriple + ' Years'"></p>
+                        <p class="text-xl font-extrabold text-[#28a04a]" x-text="ruleYearsToTriple + ' Years'"></p>
                         <p class="text-[11px] text-slate-500 mt-1">Formula: Years = 72 ÷ Return Rate %</p>
                     </div>
                 </div>
@@ -1535,28 +1535,28 @@
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Monthly Essential Household Expenses</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="fmt(emgExpenses)"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="fmt(emgExpenses)"></span>
                         </div>
                         <input type="range" x-model.number="emgExpenses" min="30000" max="500000" step="5000"
-                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#00C48C] bg-slate-200" />
+                            class="w-full h-2 rounded-full appearance-none cursor-pointer accent-[#39E554] bg-slate-200" />
                         <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>PKR 30K</span><span>PKR 5 Lakh</span></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs sm:text-sm font-bold text-slate-700">Months of Safety Cushion</label>
-                            <span class="text-xs sm:text-sm font-extrabold text-[#00A86B]" x-text="emgMonths + ' Months'"></span>
+                            <span class="text-xs sm:text-sm font-extrabold text-[#28a04a]" x-text="emgMonths + ' Months'"></span>
                         </div>
                         <div class="grid grid-cols-4 gap-2">
-                            <button type="button" @click="emgMonths = 3" :class="emgMonths === 3 ? 'bg-[#00C48C] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">3 Mo</button>
-                            <button type="button" @click="emgMonths = 6" :class="emgMonths === 6 ? 'bg-[#00C48C] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">6 Mo</button>
-                            <button type="button" @click="emgMonths = 9" :class="emgMonths === 9 ? 'bg-[#00C48C] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">9 Mo</button>
-                            <button type="button" @click="emgMonths = 12" :class="emgMonths === 12 ? 'bg-[#00C48C] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">12 Mo</button>
+                            <button type="button" @click="emgMonths = 3" :class="emgMonths === 3 ? 'bg-[#39E554] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">3 Mo</button>
+                            <button type="button" @click="emgMonths = 6" :class="emgMonths === 6 ? 'bg-[#39E554] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">6 Mo</button>
+                            <button type="button" @click="emgMonths = 9" :class="emgMonths === 9 ? 'bg-[#39E554] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">9 Mo</button>
+                            <button type="button" @click="emgMonths = 12" :class="emgMonths === 12 ? 'bg-[#39E554] text-white font-bold' : 'bg-white text-slate-700'" class="p-2 rounded-xl border border-slate-200 text-xs">12 Mo</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-4 sm:gap-5">
-                    <div class="bg-gradient-to-br from-[#00D084] to-[#00A86B] rounded-3xl p-7 text-center shadow-xl shadow-[#00C48C]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
+                    <div class="bg-gradient-to-br from-[#32d44b] to-[#28a04a] rounded-3xl p-7 text-center shadow-xl shadow-[#39E554]/20 relative overflow-hidden flex-1 flex flex-col justify-center">
                         <p class="text-xs font-bold text-emerald-100 uppercase tracking-wider mb-2">Recommended Safety Reserve</p>
                         <p class="text-4xl sm:text-5xl font-black text-white leading-none" x-text="fmt(emgTotalNeeded)"></p>
                         <p class="text-sm text-emerald-100/90 mt-3" x-text="'Guarantees ' + emgMonths + ' months of worry-free living'"></p>
@@ -1568,7 +1568,7 @@
                         </div>
                         <div class="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 text-center">
                             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Money Market Fund (70%)</p>
-                            <p class="text-base font-extrabold text-[#00A86B]" x-text="fmt(emgFundPart)"></p>
+                            <p class="text-base font-extrabold text-[#28a04a]" x-text="fmt(emgFundPart)"></p>
                         </div>
                     </div>
                     <p class="text-[10px] text-slate-400 text-center">* Park the 70% portion in Islamic Money Market Funds for high liquidity + daily halal returns.</p>
@@ -1591,13 +1591,13 @@
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 reveal-item">
                 <div>
                     <span
-                        class="inline-block px-4 py-1.5 rounded-full bg-[#00C48C]/10 text-[#00A86B] text-xs font-bold uppercase tracking-wider mb-3">FinPulse
+                        class="inline-block px-4 py-1.5 rounded-full bg-[#39E554]/10 text-[#28a04a] text-xs font-bold uppercase tracking-wider mb-3">FinPulse
                         Blog</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">Latest <em
-                            class="not-italic text-[#00C48C]">Insights.</em></h2>
+                            class="not-italic text-[#39E554]">Insights.</em></h2>
                 </div>
                 <a href="#"
-                    class="text-sm font-bold text-[#00A86B] hover:text-[#007a52] flex items-center gap-1.5 transition-colors group shrink-0">
+                    class="text-sm font-bold text-[#28a04a] hover:text-[#007a52] flex items-center gap-1.5 transition-colors group shrink-0">
                     View All Articles <span class="group-hover:translate-x-1 transition-transform inline-block">→</span>
                 </a>
             </div>
@@ -1605,29 +1605,29 @@
 
                 <!-- Article 1 -->
                 <a href="#"
-                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#39E554]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div
-                        class="relative aspect-[16/10] bg-gradient-to-br from-[#00A86B] to-[#007a52] flex items-center justify-center overflow-hidden">
+                        class="relative aspect-[16/10] bg-gradient-to-br from-[#28a04a] to-[#007a52] flex items-center justify-center overflow-hidden">
                         <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8"
                                 d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2" />
                         </svg>
                         <div class="absolute bottom-3 left-3"><span
-                                class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-[#00A86B]">PSX
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-[#28a04a]">PSX
                                 Basics</span></div>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
                             <h3
-                                class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">
+                                class="text-base font-bold text-[#0F172A] group-hover:text-[#39E554] transition-colors leading-snug mb-2">
                                 How to Read the KSE-100 Index: A Beginner's Complete Guide</h3>
                             <p class="text-xs text-[#64748B] leading-relaxed">Understand what the KSE-100 measures, why
                                 it moves, and how to use it to make smarter investment decisions.</p>
                         </div>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 rounded-full bg-[#00C48C]/15 flex items-center justify-center"><span
-                                        class="text-[8px] font-black text-[#00A86B]">FP</span></div>
+                                <div class="w-6 h-6 rounded-full bg-[#39E554]/15 flex items-center justify-center"><span
+                                        class="text-[8px] font-black text-[#28a04a]">FP</span></div>
                                 <span class="text-xs font-medium text-slate-600">FinPulse Team</span>
                             </div>
                             <span class="text-[10px] text-slate-400">8 min · Sep 2026</span>
@@ -1637,7 +1637,7 @@
 
                 <!-- Article 2 -->
                 <a href="#"
-                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#39E554]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div
                         class="relative aspect-[16/10] bg-gradient-to-br from-[#4e5bff] to-[#3730d1] flex items-center justify-center overflow-hidden">
                         <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1651,7 +1651,7 @@
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
                             <h3
-                                class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">
+                                class="text-base font-bold text-[#0F172A] group-hover:text-[#39E554] transition-colors leading-snug mb-2">
                                 Mutual Funds vs Direct Stocks: Which Strategy Fits You?</h3>
                             <p class="text-xs text-[#64748B] leading-relaxed">Compare the risks, returns, and
                                 suitability of both to decide which investment approach matches your goals.</p>
@@ -1669,7 +1669,7 @@
 
                 <!-- Article 3 -->
                 <a href="#"
-                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#00C48C]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    class="reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#39E554]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div
                         class="relative aspect-[16/10] bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center overflow-hidden">
                         <svg class="w-24 h-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1683,7 +1683,7 @@
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
                             <h3
-                                class="text-base font-bold text-[#0F172A] group-hover:text-[#00C48C] transition-colors leading-snug mb-2">
+                                class="text-base font-bold text-[#0F172A] group-hover:text-[#39E554] transition-colors leading-snug mb-2">
                                 How to Read a Company's Financial Statements</h3>
                             <p class="text-xs text-[#64748B] leading-relaxed">Decode income statements, balance sheets,
                                 and cash flow reports to make confident, data-driven decisions.</p>
@@ -1712,10 +1712,10 @@
 
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                     Start Free. <em
-                        class="not-italic text-[#00C48C] [text-shadow:0_0_28px_rgba(0,196,140,0.35)]">Upgrade When
+                        class="not-italic text-[#39E554] [text-shadow:0_0_28px_rgba(57,229,84,0.35)]">Upgrade When
                         You're Ready.</em>
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mt-4"></div>
                 <p class="mt-5 text-base text-emerald-100/80">
                     Transparent membership plans tailored for retail investors.
                 </p>
@@ -1724,7 +1724,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center">
                 <!-- Free Member Card -->
                 <div
-                    class="reveal-item bg-[#0B2A20]/50 rounded-3xl p-8 border border-[#00C48C]/20 backdrop-blur-xl shadow-xl hover:border-[#00C48C]/50 transition-all duration-300 flex flex-col h-full">
+                    class="reveal-item bg-[#0B2A20]/50 rounded-3xl p-8 border border-[#39E554]/20 backdrop-blur-xl shadow-xl hover:border-[#39E554]/50 transition-all duration-300 flex flex-col h-full">
                     <div class="flex-1">
                         <h3 class="text-2xl font-bold text-white mb-2">Free Member</h3>
                         <p class="text-sm text-emerald-100/70 mb-6">Perfect for beginners taking their first steps.</p>
@@ -1733,7 +1733,7 @@
                         </div>
                         <ul class="space-y-4 text-sm text-emerald-100/80 mb-8">
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1741,7 +1741,7 @@
                                 <span>Full Community Feed Access</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1749,7 +1749,7 @@
                                 <span>Free Explainer Videos & Glossaries</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1757,7 +1757,7 @@
                                 <span>Post, Comment & Earn Badges</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1767,16 +1767,16 @@
                         </ul>
                     </div>
                     <a href="{{ route('register') }}" wire:navigate
-                        class="w-full py-3.5 px-6 rounded-xl border border-[#00C48C]/40 text-white hover:bg-[#00C48C] hover:border-[#00C48C] font-bold text-center transition-all duration-200 block">
+                        class="w-full py-3.5 px-6 rounded-xl border border-[#39E554]/40 text-white hover:bg-[#39E554] hover:border-[#39E554] font-bold text-center transition-all duration-200 block">
                         Join Free
                     </a>
                 </div>
 
                 <!-- Paid Subscriber Card -->
                 <div
-                    class="reveal-item bg-[#0B2A20]/80 rounded-3xl p-8 border-2 border-[#00C48C] shadow-[0_0_50px_rgba(0,196,140,0.3)] backdrop-blur-xl flex flex-col relative h-full md:-translate-y-3">
+                    class="reveal-item bg-[#0B2A20]/80 rounded-3xl p-8 border-2 border-[#39E554] shadow-[0_0_50px_rgba(57,229,84,0.3)] backdrop-blur-xl flex flex-col relative h-full md:-translate-y-3">
                     <div
-                        class="absolute -top-4 right-8 bg-gradient-to-r from-[#00C48C] to-[#00A86B] text-white font-bold text-xs uppercase tracking-widest px-5 py-1.5 rounded-full shadow-lg">
+                        class="absolute -top-4 right-8 bg-gradient-to-r from-[#39E554] to-[#28a04a] text-white font-bold text-xs uppercase tracking-widest px-5 py-1.5 rounded-full shadow-lg">
                         Most Popular
                     </div>
                     <div class="flex-1">
@@ -1789,7 +1789,7 @@
                         <p class="text-xs text-emerald-100/50 mb-8">PKR 1,000–2,500 range · cancel anytime</p>
                         <ul class="space-y-4 text-sm text-emerald-100/80 mb-8">
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1797,7 +1797,7 @@
                                 <span class="text-white"><strong>Everything in Free</strong></span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1805,7 +1805,7 @@
                                 <span class="text-white">In-Depth Research Reports</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1813,7 +1813,7 @@
                                 <span class="text-white">Model Portfolios</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1821,7 +1821,7 @@
                                 <span class="text-white">Advanced Valuation Courses</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1829,7 +1829,7 @@
                                 <span class="text-white">Live Webinars & 1-on-1 Sessions</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1837,7 +1837,7 @@
                                 <span class="text-white">Shareable Course Certificates</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 shrink-0 text-[#00C48C]" fill="none" stroke="currentColor"
+                                <svg class="w-5 h-5 shrink-0 text-[#39E554]" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M5 13l4 4L19 7" />
@@ -1881,28 +1881,28 @@
             <div class="text-center max-w-2xl mx-auto mb-14 reveal-item">
 
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-                    Frequently Asked Questions. <br class="hidden sm:inline" /><em class="not-italic text-[#00C48C]">We
+                    Frequently Asked Questions. <br class="hidden sm:inline" /><em class="not-italic text-[#39E554]">We
                         Have Answers.</em>
                 </h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-[#00C48C] to-[#00A86B] rounded-full mx-auto mt-4"></div>
+                <div class="w-16 h-1 bg-gradient-to-r from-[#39E554] to-[#28a04a] rounded-full mx-auto mt-4"></div>
             </div>
 
             <!-- FAQ Accordion -->
             <div class="space-y-3">
                 @foreach ($faqs as $faq)
                     <div class="reveal-item rounded-2xl overflow-hidden border bg-white transition-all duration-300"
-                        :class="activeId === {{ $faq['id'] }} ? 'border-[#00C48C]/50 shadow-lg' : 'border-slate-200 hover:border-slate-300'">
+                        :class="activeId === {{ $faq['id'] }} ? 'border-[#39E554]/50 shadow-lg' : 'border-slate-200 hover:border-slate-300'">
                         <button @click="toggle({{ $faq['id'] }})"
                             class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none cursor-pointer group"
                             :aria-expanded="activeId === {{ $faq['id'] }} ? 'true' : 'false'"
                             aria-controls="faq-ans-{{ $faq['id'] }}" id="faq-btn-{{ $faq['id'] }}">
                             <span
-                                class="text-sm sm:text-base font-semibold text-[#0F172A] leading-snug group-hover:text-[#00C48C] transition-colors">
+                                class="text-sm sm:text-base font-semibold text-[#0F172A] leading-snug group-hover:text-[#39E554] transition-colors">
                                 {{ $faq['q'] }}
                             </span>
 
                             <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
-                                :class="activeId === {{ $faq['id'] }} ? 'bg-[#00C48C] text-white rotate-45 shadow-sm' : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200'">
+                                :class="activeId === {{ $faq['id'] }} ? 'bg-[#39E554] text-white rotate-45 shadow-sm' : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200'">
                                 <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
@@ -1932,7 +1932,7 @@
     <section class="py-20 relative overflow-hidden bg-white fp-cta-section font-['DM_Sans',sans-serif]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
-                class="rounded-3xl bg-gradient-to-r from-[#00D084] to-[#00A86B] p-10 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl">
+                class="rounded-3xl bg-gradient-to-r from-[#32d44b] to-[#28a04a] p-10 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl">
                 <div class="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl pointer-events-none">
                 </div>
 
@@ -1966,7 +1966,7 @@
         class="relative overflow-hidden font-['DM_Sans',sans-serif] bg-[#061A14] text-white border-t border-emerald-950">
         <!-- Subtle grid pattern overlay -->
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
-            style="opacity:0.04; background-image: linear-gradient(rgba(0,196,140,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,196,140,0.3) 1px, transparent 1px); background-size: 60px 60px;">
+            style="opacity:0.04; background-image: linear-gradient(rgba(57,229,84,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(57,229,84,0.3) 1px, transparent 1px); background-size: 60px 60px;">
         </div>
 
         <!-- Main Footer Content -->
@@ -1978,10 +1978,10 @@
                     <!-- Logo -->
                     <a href="/" wire:navigate class="inline-flex items-center gap-3 group" aria-label="FinPulse Home">
                         <div
-                            class="w-8 h-8 rounded-lg bg-[#00C48C] flex items-center justify-center text-white font-black shadow-md shadow-[#00C48C]/30">
+                            class="w-8 h-8 rounded-lg bg-[#39E554] flex items-center justify-center text-white font-black shadow-md shadow-[#39E554]/30">
                             FP
                         </div>
-                        <span class="font-bold text-xl text-white">Fin<span class="text-[#00C48C]">Pulse</span></span>
+                        <span class="font-bold text-xl text-white">Fin<span class="text-[#39E554]">Pulse</span></span>
                     </a>
 
                     <!-- Description -->
@@ -1993,35 +1993,35 @@
                     <!-- Social Icons -->
                     <div class="flex items-center gap-4 pt-1">
                         <a href="#" aria-label="Twitter / X"
-                            class="text-slate-400 hover:text-[#00C48C] transition-colors duration-200">
+                            class="text-slate-400 hover:text-[#39E554] transition-colors duration-200">
                             <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                             </svg>
                         </a>
                         <a href="#" aria-label="GitHub"
-                            class="text-slate-400 hover:text-[#00C48C] transition-colors duration-200">
+                            class="text-slate-400 hover:text-[#39E554] transition-colors duration-200">
                             <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
                             </svg>
                         </a>
                         <a href="#" aria-label="LinkedIn"
-                            class="text-slate-400 hover:text-[#00C48C] transition-colors duration-200">
+                            class="text-slate-400 hover:text-[#39E554] transition-colors duration-200">
                             <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                             </svg>
                         </a>
                         <a href="#" aria-label="YouTube"
-                            class="text-slate-400 hover:text-[#00C48C] transition-colors duration-200">
+                            class="text-slate-400 hover:text-[#39E554] transition-colors duration-200">
                             <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                             </svg>
                         </a>
                         <a href="#" aria-label="Instagram"
-                            class="text-slate-400 hover:text-[#00C48C] transition-colors duration-200">
+                            class="text-slate-400 hover:text-[#39E554] transition-colors duration-200">
                             <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
@@ -2037,16 +2037,16 @@
                         <h4 class="text-sm font-semibold text-white mb-5">Platform</h4>
                         <ul class="space-y-3">
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Community
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Community
                                     Feed</a></li>
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Stock
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Stock
                                     Research</a></li>
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Learning
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Learning
                                     Modules</a></li>
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Market
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Market
                                     Watchlist</a></li>
                         </ul>
                     </div>
@@ -2056,16 +2056,16 @@
                         <h4 class="text-sm font-semibold text-white mb-5">Resources</h4>
                         <ul class="space-y-3">
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Blog</a>
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Blog</a>
                             </li>
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Research
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Research
                                     Library</a></li>
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Webinars</a>
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Webinars</a>
                             </li>
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Newsletters</a>
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Newsletters</a>
                             </li>
                         </ul>
                     </div>
@@ -2075,19 +2075,19 @@
                         <h4 class="text-sm font-semibold text-white mb-5">Company</h4>
                         <ul class="space-y-3">
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">About
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">About
                                     Us</a></li>
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Careers</a>
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Careers</a>
                             </li>
                             <li><a href="{{ route('privacy') }}"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Privacy
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Privacy
                                     Policy</a></li>
                             <li><a href="{{ route('terms') }}"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Terms
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Terms
                                     of Service</a></li>
                             <li><a href="#"
-                                    class="text-sm text-slate-400 hover:text-[#00C48C] transition-colors duration-200">Contact
+                                    class="text-sm text-slate-400 hover:text-[#39E554] transition-colors duration-200">Contact
                                     Us</a></li>
                         </ul>
                     </div>
@@ -2107,7 +2107,7 @@
             style="margin-top: -30px;">
             <div class="max-w-[100vw] flex items-end justify-center" style="height: 150px;">
                 <span class="whitespace-nowrap text-white text-[min(14vw,160px)] font-black tracking-tight leading-none"
-                    style="color: transparent; -webkit-text-stroke: 1.5px rgba(0, 196, 140, 0.3); text-stroke: 1.5px rgba(0, 196, 140, 0.3);">
+                    style="color: transparent; -webkit-text-stroke: 1.5px rgba(57, 229, 84, 0.3); text-stroke: 1.5px rgba(57, 229, 84, 0.3);">
                     FinPulse
                 </span>
             </div>

@@ -37,8 +37,8 @@ new #[Layout('layouts.guest')] class extends Component
 
 <div>
     <div class="mb-6">
-        <h2 class="text-2xl font-bold text-finpulse-navy">Verify Email</h2>
-        <p class="text-sm text-finpulse-gray mt-1">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Verify Email</h2>
+        <p class="text-sm text-slate-500 mt-1.5 font-medium">
             {{ __('Thanks for signing up! Before getting started, please verify your email address by clicking on the link we sent to your inbox.') }}
         </p>
     </div>
@@ -54,8 +54,8 @@ new #[Layout('layouts.guest')] class extends Component
             {{ __('Resend Verification Email') }}
         </x-primary-button>
 
-        <div class="pt-2 text-center border-t border-gray-100">
-            <button wire:click="logout" type="button" class="text-sm font-semibold text-finpulse-navy hover:text-finpulse-gold transition-colors duration-150">
+        <div class="pt-3 text-center border-t border-slate-100">
+            <button wire:click="logout" type="button" class="text-sm font-bold text-[#168a43] hover:text-[#0b542c] transition-colors duration-150 underline decoration-[#39E554]/50 decoration-2 underline-offset-2">
                 {{ __('Log Out') }}
             </button>
         </div>

@@ -231,71 +231,81 @@
 
     </section>
 
-    <!-- Bottom Client/Partner Logos Bar -->
-    <footer class="w-full max-w-6xl mx-auto px-4 pb-10 pt-4 relative z-30">
+    <!-- Bottom Market Pillars & Financial Trust Anchors -->
+    <footer class="w-full max-w-6xl mx-auto px-4 pb-10 pt-2 relative z-30">
         <div class="text-center">
-            <p class="text-sm font-semibold text-slate-800 mb-8 tracking-tight">
-                Trusted by fast-growing companies worldwide
+            <p class="text-[11px] sm:text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-6">
+                Institutional Learning Anchors &middot; Built for Pakistan's Capital Markets
             </p>
 
-            <!-- Grid/Flex Row of Sleek Logos -->
-            <div class="flex items-center justify-center flex-wrap gap-8 sm:gap-14 lg:gap-20 text-slate-500 opacity-90">
+            <!-- Grid of Sleek Financial Trust Badges -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 items-stretch justify-center">
 
-                <!-- Logo 1: Hexsmith -->
-                <div
-                    class="flex items-center gap-2 font-extrabold text-base tracking-tight text-slate-700 hover:text-slate-900 transition-colors">
-                    <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8L18.8 8 12 11.2 5.2 8 12 4.8zM4 9.6l7 3.3v6.7l-7-3.5V9.6zm16 6.5l-7 3.5v-6.7l7-3.3v6.5z" />
-                    </svg>
-                    <span>Hexsmith</span>
+                <!-- Badge 1: PSX Equities & KSE-100 -->
+                <div class="group bg-white/80 hover:bg-white backdrop-blur-md border border-slate-200/80 hover:border-[#39E554]/50 rounded-2xl p-3.5 flex flex-col items-center text-center shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#28a04a] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                    <span class="text-xs font-extrabold text-slate-900 tracking-tight leading-tight">PSX Equities</span>
+                    <span class="text-[10px] text-slate-500 font-medium mt-0.5">KSE-100 &amp; All-Share</span>
                 </div>
 
-                <!-- Logo 2: Norse Star -->
-                <div
-                    class="flex items-center gap-2 font-extrabold text-base tracking-tight text-slate-700 hover:text-slate-900 transition-colors">
-                    <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z" />
-                    </svg>
-                    <span>Norse Star</span>
+                <!-- Badge 2: SECP Investor Standards -->
+                <div class="group bg-white/80 hover:bg-white backdrop-blur-md border border-slate-200/80 hover:border-[#39E554]/50 rounded-2xl p-3.5 flex flex-col items-center text-center shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#28a04a] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs font-extrabold text-slate-900 tracking-tight leading-tight">SECP Aware</span>
+                    <span class="text-[10px] text-slate-500 font-medium mt-0.5">Investor Protection</span>
                 </div>
 
-                <!-- Logo 3: Railspeed -->
-                <div
-                    class="flex items-center gap-2 font-extrabold text-base tracking-tight text-slate-700 hover:text-slate-900 transition-colors">
-                    <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M4 6h16v2H4zm4 5h12v2H8zm-4 5h16v2H4z" />
-                    </svg>
-                    <span>Railspeed</span>
+                <!-- Badge 3: CDC Custody & Sub-Accounts -->
+                <div class="group bg-white/80 hover:bg-white backdrop-blur-md border border-slate-200/80 hover:border-[#39E554]/50 rounded-2xl p-3.5 flex flex-col items-center text-center shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#28a04a] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs font-extrabold text-slate-900 tracking-tight leading-tight">CDC Accounts</span>
+                    <span class="text-[10px] text-slate-500 font-medium mt-0.5">Direct Share Custody</span>
                 </div>
 
-                <!-- Logo 4: Ollio -->
-                <div
-                    class="flex items-center gap-2 font-extrabold text-base tracking-tight text-slate-700 hover:text-slate-900 transition-colors">
-                    <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="3">
-                        <circle cx="12" cy="12" r="8" />
-                    </svg>
-                    <span>Ollio</span>
+                <!-- Badge 4: Shariah Screening KMI-30 -->
+                <div class="group bg-white/80 hover:bg-white backdrop-blur-md border border-slate-200/80 hover:border-[#39E554]/50 rounded-2xl p-3.5 flex flex-col items-center text-center shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#28a04a] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs font-extrabold text-slate-900 tracking-tight leading-tight">Shariah Screened</span>
+                    <span class="text-[10px] text-slate-500 font-medium mt-0.5">KMI-30 Methodology</span>
                 </div>
 
-                <!-- Logo 5: PictelAI -->
-                <div
-                    class="flex items-center gap-2 font-extrabold text-base tracking-tight text-slate-700 hover:text-slate-900 transition-colors">
-                    <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 5h2v4h-2V7zm0 6h2v4h-2v-4z" />
-                    </svg>
-                    <span>PictelAI</span>
+                <!-- Badge 5: Mutual Funds & VPS -->
+                <div class="group bg-white/80 hover:bg-white backdrop-blur-md border border-slate-200/80 hover:border-[#39E554]/50 rounded-2xl p-3.5 flex flex-col items-center text-center shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#28a04a] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs font-extrabold text-slate-900 tracking-tight leading-tight">Mutual Funds</span>
+                    <span class="text-[10px] text-slate-500 font-medium mt-0.5">VPS &amp; Money Market</span>
                 </div>
 
-                <!-- Logo 6: Quixx -->
-                <div
-                    class="flex items-center gap-2 font-extrabold text-base tracking-tight text-slate-700 hover:text-slate-900 transition-colors">
-                    <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 2a10 10 0 106.32 17.74l1.42 1.42 1.41-1.41-1.42-1.42A10 10 0 0012 2zm0 16a6 6 0 110-12 6 6 0 010 12z" />
-                    </svg>
-                    <span>Quixx</span>
+                <!-- Badge 6: Filer CGT & Tax Rules -->
+                <div class="group bg-white/80 hover:bg-white backdrop-blur-md border border-slate-200/80 hover:border-[#39E554]/50 rounded-2xl p-3.5 flex flex-col items-center text-center shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#28a04a] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs font-extrabold text-slate-900 tracking-tight leading-tight">Tax &amp; CGT Rules</span>
+                    <span class="text-[10px] text-slate-500 font-medium mt-0.5">Filer vs Non-Filer</span>
                 </div>
 
             </div>

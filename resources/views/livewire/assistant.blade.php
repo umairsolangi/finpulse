@@ -23,7 +23,7 @@
                 </div>
                 <h1 class="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-3">
                     FinPulse
-                    <span class="bg-clip-text text-transparent" style="background:linear-gradient(135deg,#0b542c 0%,#39e554 100%);">Assistant</span>
+                    <span class="text-[#168a43]">Assistant</span>
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#0b542c] text-white shadow-xs">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#39e554] animate-pulse"></span>
                         Instant AI

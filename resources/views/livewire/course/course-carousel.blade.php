@@ -17,8 +17,8 @@
     </div>
 
     <!-- Soft Ambient Glows -->
-    <div class="absolute top-1/4 -left-48 w-96 h-96 bg-[#00C48C]/10 rounded-full blur-[120px] pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#00A86B]/10 rounded-full blur-[120px] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute top-1/4 -left-48 w-96 h-96 bg-[#39E554]/10 rounded-full blur-[120px] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-1/4 -right-48 w-96 h-96 bg-[#28a04a]/10 rounded-full blur-[120px] pointer-events-none" aria-hidden="true"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <!-- Section Heading -->
@@ -27,7 +27,7 @@
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#061A14] tracking-tight">
                 Our Courses
             </h2>
-            <div class="w-16 h-1 bg-[#00C48C] rounded-full mx-auto mt-4"></div>
+            <div class="w-16 h-1 bg-[#39E554] rounded-full mx-auto mt-4"></div>
             <p class="mt-4 text-base text-slate-600 max-w-2xl mx-auto">
                 Explore expert-led investment tracks tailored for Pakistan capital markets, from fundamental valuation to technical strategies.
             </p>
@@ -42,7 +42,7 @@
                 class="relative pb-3 text-sm sm:text-base font-medium whitespace-nowrap transition-colors duration-200 {{ $activeTab === 'new' ? 'text-[#061A14] font-bold' : 'text-slate-500 hover:text-[#061A14]' }}">
                 New
                 @if($activeTab === 'new')
-                    <span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#00C48C] rounded-full shadow-[0_0_8px_rgba(0,196,140,0.4)]"></span>
+                    <span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#39E554] rounded-full shadow-[0_0_8px_rgba(57,229,84,0.4)]"></span>
                 @endif
             </button>
 
@@ -53,7 +53,7 @@
                 class="relative pb-3 text-sm sm:text-base font-medium whitespace-nowrap transition-colors duration-200 {{ $activeTab === 'popular' ? 'text-[#061A14] font-bold' : 'text-slate-500 hover:text-[#061A14]' }}">
                 Popular
                 @if($activeTab === 'popular')
-                    <span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#00C48C] rounded-full shadow-[0_0_8px_rgba(0,196,140,0.4)]"></span>
+                    <span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#39E554] rounded-full shadow-[0_0_8px_rgba(57,229,84,0.4)]"></span>
                 @endif
             </button>
 
@@ -65,7 +65,7 @@
                     class="relative pb-3 text-sm sm:text-base font-medium whitespace-nowrap transition-colors duration-200 {{ $activeTab === $topic->value ? 'text-[#061A14] font-bold' : 'text-slate-500 hover:text-[#061A14]' }}">
                     {{ $topic->label() }}
                     @if($activeTab === $topic->value)
-                        <span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#00C48C] rounded-full shadow-[0_0_8px_rgba(0,196,140,0.4)]"></span>
+                        <span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#39E554] rounded-full shadow-[0_0_8px_rgba(57,229,84,0.4)]"></span>
                     @endif
                 </button>
             @endforeach
@@ -100,7 +100,7 @@
                 x-cloak
                 @click="scrollPrev()"
                 aria-label="Previous courses"
-                class="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white hover:bg-[#00C48C] text-slate-700 hover:text-white border border-slate-200 shadow-xl items-center justify-center backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none">
+                class="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white hover:bg-[#39E554] text-slate-700 hover:text-white border border-slate-200 shadow-xl items-center justify-center backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -112,7 +112,7 @@
                 x-show="canScrollRight"
                 @click="scrollNext()"
                 aria-label="Next courses"
-                class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white hover:bg-[#00C48C] text-slate-700 hover:text-white border border-slate-200 shadow-xl items-center justify-center backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none">
+                class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white hover:bg-[#39E554] text-slate-700 hover:text-white border border-slate-200 shadow-xl items-center justify-center backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
@@ -128,8 +128,8 @@
                     @php
                         // Cycle through brand tones tailored to theme
                         $tones = [
-                            'bg-gradient-to-br from-[#061A14] via-[#0A2E23] to-[#00C48C]',
-                            'bg-gradient-to-br from-[#0B231B] via-[#124233] to-[#00A86B]',
+                            'bg-gradient-to-br from-[#061A14] via-[#0A2E23] to-[#39E554]',
+                            'bg-gradient-to-br from-[#0B231B] via-[#124233] to-[#28a04a]',
                             'bg-gradient-to-br from-[#04120E] via-[#0D382B] to-[#059669]',
                             'bg-gradient-to-br from-[#07241A] via-[#0E4534] to-[#10B981]',
                         ];
@@ -148,7 +148,7 @@
 
                     <div
                         wire:key="course-{{ $course->id }}"
-                        class="tilt-card snap-start shrink-0 w-[82vw] max-w-[310px] sm:w-[310px] rounded-2xl overflow-hidden bg-white border border-slate-200/90 shadow-[0_10px_25px_rgba(15,23,42,0.06)] hover:border-[#00C48C]/50 hover:shadow-[0_18px_38px_rgba(0,196,140,0.18)] transition-all duration-300 flex flex-col justify-between group">
+                        class="tilt-card snap-start shrink-0 w-[82vw] max-w-[310px] sm:w-[310px] rounded-2xl overflow-hidden bg-white border border-slate-200/90 shadow-[0_10px_25px_rgba(15,23,42,0.06)] hover:border-[#39E554]/50 hover:shadow-[0_18px_38px_rgba(57,229,84,0.18)] transition-all duration-300 flex flex-col justify-between group">
                         
                         <!-- Top Banner -->
                         <div class="relative h-44 p-4 flex flex-col justify-between overflow-hidden {{ $tone }}">
@@ -162,7 +162,7 @@
                                 </span>
 
                                 @if($course->tier->value !== 'free')
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-white bg-[#00C48C] border border-white/30 shadow-sm backdrop-blur-md">
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-white bg-[#39E554] border border-white/30 shadow-sm backdrop-blur-md">
                                         <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944z" clip-rule="evenodd" />
                                         </svg>
@@ -201,16 +201,16 @@
                                 <!-- Price / Subscription Indicator -->
                                 <div class="mb-2">
                                     @if($course->tier->value === 'free')
-                                        <span class="text-sm font-bold text-[#00A86B]">Free</span>
+                                        <span class="text-sm font-bold text-[#28a04a]">Free</span>
                                     @else
-                                        <span class="text-xs font-semibold text-[#00A86B] bg-[#E6F9F2] px-2.5 py-1 rounded-md border border-[#00C48C]/20">
+                                        <span class="text-xs font-semibold text-[#28a04a] bg-[#E6F9F2] px-2.5 py-1 rounded-md border border-[#39E554]/20">
                                             Included with Subscription
                                         </span>
                                     @endif
                                 </div>
 
                                 <!-- Course Title Link -->
-                                <h3 class="text-sm font-bold text-[#061A14] group-hover:text-[#00C48C] transition-colors line-clamp-1 mt-2">
+                                <h3 class="text-sm font-bold text-[#061A14] group-hover:text-[#39E554] transition-colors line-clamp-1 mt-2">
                                     <a href="{{ route('courses.show', $course->slug) }}" class="hover:underline focus:outline-none">
                                         {{ $course->title }}
                                     </a>
@@ -231,7 +231,7 @@
                                 <!-- Enrollment Count (ONLY shown if > 0) -->
                                 @if($course->progress_count > 0)
                                     <span class="text-xs font-semibold text-slate-600 flex items-center gap-1.5">
-                                        <svg class="w-3.5 h-3.5 text-[#00C48C]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <svg class="w-3.5 h-3.5 text-[#39E554]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                                         </svg>
                                         {{ $course->progress_count >= 1000 ? number_format($course->progress_count / 1000, 1) . 'K' : $course->progress_count }} Enrolled
@@ -253,7 +253,7 @@
         <div class="text-center mt-12">
             <a
                 href="{{ route('courses.index') }}"
-                class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-[#061A14] bg-[#00C48C] hover:bg-[#00D084] shadow-[0_4px_20px_rgba(0,196,140,0.3)] transition-all duration-200 hover:scale-105 active:scale-95">
+                class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-[#061A14] bg-[#39E554] hover:bg-[#32d44b] shadow-[0_4px_20px_rgba(57,229,84,0.3)] transition-all duration-200 hover:scale-105 active:scale-95">
                 <span>Browse All Courses</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
