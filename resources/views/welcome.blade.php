@@ -39,6 +39,11 @@
              ===================================================== -->
     <x-herosection />
 
+    <!-- =====================================================
+             SECTION 1.5 — PSX LIVE STOCK TICKER TAPE (PATTI BAR)
+             ===================================================== -->
+    <x-psx-ticker />
+
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress" class="fp-scroll-progress" style="width:0%"></div>
 
@@ -656,7 +661,7 @@
     <!-- =====================================================
              SECTION — PSX STOCK SEARCH + INTERACTIVE CHART
              ===================================================== -->
-    <div x-data="stockDashboard()" x-init="initChart()">
+    <div x-data="stockDashboard()" x-init="initChart()" @select-psx-stock.window="selectByTicker($event.detail)">
 
         <!-- ── Stock Search ── -->
         <section id="stock-search" class="py-20 bg-white border-t border-slate-200 font-['DM_Sans',sans-serif]">
@@ -840,6 +845,14 @@
                 { ticker: 'NESTLE', name: 'Nestlé Pakistan Ltd.', sector: 'FMCG', price: 6250, change: -1.2, volume: '0.1M', marketCap: 'PKR 294B', pe: '28.6x', high52w: 7100 },
                 { ticker: 'FFBL', name: 'Fauji Fertilizer BQ', sector: 'Fertilizer', price: 28.40, change: -0.4, volume: '8.2M', marketCap: 'PKR 32B', pe: '6.1x', high52w: 38 },
                 { ticker: 'PKGS', name: 'Packages Ltd.', sector: 'Packaging', price: 523, change: -0.9, volume: '0.3M', marketCap: 'PKR 62B', pe: '14.3x', high52w: 590 },
+                { ticker: 'SYS', name: 'Systems Limited', sector: 'Technology', price: 420.50, change: 2.0, volume: '2.1M', marketCap: 'PKR 118B', pe: '15.4x', high52w: 485 },
+                { ticker: 'HUBC', name: 'Hub Power Co.', sector: 'Power', price: 142.80, change: 1.5, volume: '7.4M', marketCap: 'PKR 185B', pe: '4.8x', high52w: 160 },
+                { ticker: 'FFC', name: 'Fauji Fertilizer Co.', sector: 'Fertilizer', price: 168.40, change: 1.1, volume: '3.8M', marketCap: 'PKR 214B', pe: '6.2x', high52w: 185 },
+                { ticker: 'PPL', name: 'Pakistan Petroleum Ltd.', sector: 'Oil & Gas', price: 122.50, change: 1.2, volume: '4.9M', marketCap: 'PKR 333B', pe: '4.1x', high52w: 135 },
+                { ticker: 'MARI', name: 'Mari Energies Ltd.', sector: 'Exploration', price: 2450.00, change: 1.5, volume: '0.4M', marketCap: 'PKR 327B', pe: '5.9x', high52w: 2650 },
+                { ticker: 'EFERT', name: 'Engro Fertilizers', sector: 'Fertilizer', price: 148.90, change: -0.6, volume: '2.7M', marketCap: 'PKR 198B', pe: '7.8x', high52w: 165 },
+                { ticker: 'ILP', name: 'Interloop Ltd.', sector: 'Textile', price: 76.40, change: 2.4, volume: '3.1M', marketCap: 'PKR 107B', pe: '8.4x', high52w: 88 },
+                { ticker: 'ATRL', name: 'Attock Refinery Ltd.', sector: 'Refinery', price: 365.20, change: 2.1, volume: '1.9M', marketCap: 'PKR 39B', pe: '3.5x', high52w: 420 },
             ];
             var cache = {};
             function genData(base, days) {
@@ -865,7 +878,15 @@
                     this.searchOpen = true;
                 },
                 selectStock: function (stock) { this.selected = stock; this.query = ''; this.searchOpen = false; this.updateChart(); },
-                selectByTicker: function (t) { var s = this.stocks.find(function (x) { return x.ticker === t; }); if (s) this.selectStock(s); },
+                selectByTicker: function (t) {
+                    var s = this.stocks.find(function (x) { return x.ticker.toUpperCase() === t.toUpperCase(); });
+                    if (s) {
+                        this.selectStock(s);
+                    } else if (t.toUpperCase().indexOf('KSE') !== -1 || t.toUpperCase().indexOf('KMI') !== -1 || t.toUpperCase().indexOf('ALL') !== -1) {
+                        // For index clicks, keep or show leading blue-chip
+                        this.selectStock(this.stocks[0]);
+                    }
+                },
                 setTimePeriod: function (p) { this.timePeriod = p; this.updateChart(); },
                 initChart: function () {
                     var self = this;
